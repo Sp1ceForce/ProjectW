@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class SkillsController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] Blink BlinkSkill;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update() {
+        Debug.DrawRay(transform.position,transform.forward * 8,Color.black);
+        if(Input.GetKeyDown(KeyCode.Space)){
+            BlinkSkill.Activate(gameObject);
+        }
     }
 }
