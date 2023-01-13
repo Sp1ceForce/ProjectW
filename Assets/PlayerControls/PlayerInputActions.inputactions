@@ -1,0 +1,74 @@
+{
+    "name": "PlayerInputActions",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "158de193-8d9a-46de-bffe-45f10a2db564",
+            "actions": [
+                {
+                    "name": "BlinkSkill",
+                    "type": "Button",
+                    "id": "92628783-416a-401a-8fe7-07e6da2ff647",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "QSkill",
+                    "type": "Button",
+                    "id": "3c274068-7e19-451c-9b46-dbcdc9765468",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ESkill",
+                    "type": "Button",
+                    "id": "d44e6cb1-9f68-4c5d-85e9-57077859df57",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8f441968-1b2f-4e20-870b-628770fbb883",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BlinkSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5bee4ebc-ad92-4bee-832d-d756e785fc2b",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b119dc8d-9176-45e5-9d44-d9771ac5a303",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ESkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
