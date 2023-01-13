@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52ae8594ac6a24748a46ee27947c23e1, type: 3}
-  m_Name: WitchGlobalData
+  m_Script: {fileID: 11500000, guid: b901304b39fb9534686226f2ffb0e6ef, type: 3}
+  m_Name: SpellGlobalData
   m_EditorClassIdentifier: 
-  moveControllerData:
-    playerSpeed: 9
-    SpeedMultiplier: 1
+  blinkData:
+    cooldown: 2
+    blinkDistance: 10

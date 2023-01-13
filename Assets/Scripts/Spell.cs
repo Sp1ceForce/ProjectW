@@ -27,7 +27,6 @@ public abstract class Spell : ScriptableObject, ISpellActivate {
             while(TimeLeft>0){
                 yield return timeStep;
                 TimeLeft = TimeLeft - 0.1f;
-                Debug.Log(TimeLeft);
             }
             canCast= true;
     }

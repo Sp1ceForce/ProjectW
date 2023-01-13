@@ -12,15 +12,11 @@ public class Blink : Spell
 {
     //Отступ от стены в случае попадания луча в стену 
     [SerializeField] float onWallHitOffset = 0.5f;
-    [SerializeField] BlinkData spellData;
-    //Надо потом переделать так, чтобы BlinkData подгружалась с SpellData 
-    /* {
-        get {
-        if(spellData == null) spellData = WitchGlobalData.Instance.BlinkData
-        }
-    } */
+    BlinkData spellData;
     public override void Activate(GameObject Instigator)
     {
+        if(spellData == null) spellData = SpellGlobalData.Instance.BlinkData;
+        Debug.Log(spellData.BlinkDistance);
         if(!canCast) return;
         Vector3 blinkDirection = Instigator.transform.forward;
         RaycastHit hit;

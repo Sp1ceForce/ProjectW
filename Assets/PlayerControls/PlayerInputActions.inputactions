@@ -1,8 +1,8 @@
 {
-    "name": "PlayerControls",
+    "name": "PlayerInputActions",
     "maps": [
         {
-            "name": "SkillsMap",
+            "name": "Player",
             "id": "158de193-8d9a-46de-bffe-45f10a2db564",
             "actions": [
                 {
@@ -11,7 +11,7 @@
                     "id": "92628783-416a-401a-8fe7-07e6da2ff647",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
