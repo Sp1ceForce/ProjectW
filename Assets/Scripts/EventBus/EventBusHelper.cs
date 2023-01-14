@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using EventBusSustem;
+using EventBusSystem;
 using UnityEngine;
-
+/*
+Автор: Дима
+Что делает этот файл: вспомогательный класс для EventBus..=
+*/
 namespace EventBusSystem
 {
     internal static class EventBusHelper

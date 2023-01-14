@@ -1,5 +1,9 @@
 using System.Collections.Generic;
 
+/*
+Автор: Дима
+Что делает этот файл: обёртка над List, чтобы EventBus правильно взаимодействовал с событиями.
+*/
 namespace EventBusSystem
 {
     internal class SubscribersList<TSubscriber> where TSubscriber : class
