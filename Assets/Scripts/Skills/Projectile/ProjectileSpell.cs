@@ -9,7 +9,7 @@ public class ProjectileData:SpellData {
 [CreateAssetMenu(fileName = "ProjectileSpell", menuName = "ProjectW/Skills/ProjectileSpell", order = 0)]
 public class ProjectileSpell : Spell
 {
-    
+    [SerializeField] ProjectileScript ProjectileObject;
     [SerializeField] ProjectileData spellData;
     public override void Activate(GameObject Instigator)
     {

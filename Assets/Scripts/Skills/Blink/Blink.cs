@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 [System.Serializable]
@@ -15,8 +14,8 @@ public class Blink : Spell
     BlinkData spellData;
     public override void Activate(GameObject Instigator)
     {
-        if(spellData == null) spellData = SpellGlobalData.Instance.BlinkData;
-        Debug.Log(spellData.BlinkDistance);
+        //if(spellData == null) spellData = SpellGlobalData.Instance.BlinkData;
+
         if(!canCast) return;
         Vector3 blinkDirection = Instigator.transform.forward;
         RaycastHit hit;
@@ -34,6 +33,4 @@ public class Blink : Spell
         Instigator.GetComponent<SkillsController>().StartCoroutine(StartCooldown(spellData.SpellCooldown));
 
     }
-
-
 }
