@@ -47,23 +47,23 @@
                 },
                 {
                     "name": "",
-                    "id": "5bee4ebc-ad92-4bee-832d-d756e785fc2b",
-                    "path": "",
+                    "id": "b119dc8d-9176-45e5-9d44-d9771ac5a303",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "QSkill",
+                    "action": "ESkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "b119dc8d-9176-45e5-9d44-d9771ac5a303",
-                    "path": "",
+                    "id": "5bee4ebc-ad92-4bee-832d-d756e785fc2b",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ESkill",
+                    "action": "QSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -14,19 +14,36 @@ public class MoveController : MonoBehaviour
     public Vector2 InputVector {get; private set;}
     Rigidbody rb;
     
-
+    bool isAiming = false;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         stats = WitchGlobalData.Instance.MoveControllerData;
+        SubscribeToEvents();
     }
+    void SubscribeToEvents(){
+        var skillsController = GetComponent<SkillsController>();
+        skillsController.OnAimingStart += () => isAiming = true;
+        skillsController.OnAimingEnd += () => isAiming = false;
 
+    }
     // Update is called once per frame
     void Update()
     {
         MovePlayer();
-        RotatePlayer();
+        if(!isAiming) RotatePlayerToInput();
+        else RotatePlayerToCursor();
+        
+    }
+
+    private void RotatePlayerToCursor()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        Physics.Raycast(ray, out hit, Mathf.Infinity);
+        transform.LookAt(hit.point);
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }
 
     private void MovePlayer()
@@ -35,7 +52,7 @@ public class MoveController : MonoBehaviour
         rb.velocity = new Vector3(InputVector.x * stats.PlayerSpeed * stats.SpeedMultiplier, rb.velocity.y, InputVector.y * stats.PlayerSpeed * stats.SpeedMultiplier);
     }
 
-    public void RotatePlayer(){
+    public void RotatePlayerToInput(){
         if(InputVector!= Vector2.zero){
           transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(InputVector.x, 0, InputVector.y)), 0.1f);
         }

@@ -9,14 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b901304b39fb9534686226f2ffb0e6ef, type: 3}
-  m_Name: SpellGlobalData
+  m_Script: {fileID: 11500000, guid: 299093f5362f10b45b405c7df43ae177, type: 3}
+  m_Name: ProjectileSpell
   m_EditorClassIdentifier: 
-  blinkData:
-    cooldown: 2
-    blinkDistance: 10
-  projectileData:
+  canCast: 0
+  VFX: {fileID: 0}
+  SpellOutline: {fileID: 0}
+  SpellType: 0
+  ProjectileObject: {fileID: 2891046712479863512, guid: 6de1e6676007a994591e55e4faea51f8,
+    type: 3}
+  spellData:
     cooldown: 2
     damage: 15
     projectileSpeed: 20
     projectileLifetime: 10
+  forwardOffset: 1.1

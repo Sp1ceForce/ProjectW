@@ -17,7 +17,6 @@ public class ProjectileScript : MonoBehaviour {
     private void OnCollisionEnter(Collision other) {
         //TODO: Создать класс EnemyHealthComponent и при попадании в противника наносить ему урон
         //if(other.collider.GetComponent<EnemyHealthComponent>()){}
-
         Destroy(gameObject);
     }
 }

@@ -11,5 +11,8 @@ public class WitchGlobalData : ScriptableObject {
     static WitchGlobalData instance;
     public MoveControllerData MoveControllerData => moveControllerData;
     [SerializeField] MoveControllerData moveControllerData;
+
+    public WitchData WitchData => witchData;
+    [SerializeField] WitchData witchData;
         
 }

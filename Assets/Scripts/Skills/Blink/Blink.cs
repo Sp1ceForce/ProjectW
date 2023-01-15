@@ -11,22 +11,20 @@ public class Blink : Spell
 {
     //Отступ от стены в случае попадания луча в стену 
     [SerializeField] float onWallHitOffset = 0.5f;
-    BlinkData spellData;
+    [SerializeField] BlinkData spellData;
     public override void Activate(GameObject Instigator)
     {
-        //if(spellData == null) spellData = SpellGlobalData.Instance.BlinkData;
-
+        if(SpellGlobalData.Instance.BlinkData == null) spellData = SpellGlobalData.Instance.BlinkData;
         if(!canCast) return;
-        Vector3 blinkDirection = Instigator.transform.forward;
+
+        Vector2 inputVector = Instigator.GetComponent<MoveController>().InputVector;
+        Vector3 blinkDirection = new Vector3(inputVector.x,0,inputVector.y);
         RaycastHit hit;
         
         if(!Physics.Raycast(Instigator.transform.position,blinkDirection,out hit, spellData.BlinkDistance)){
-            Debug.DrawRay(Instigator.transform.position, blinkDirection * spellData.BlinkDistance,Color.white,6f);
             Instigator.transform.position = Instigator.transform.position + blinkDirection * spellData.BlinkDistance;
         }
         else{
-            Debug.DrawRay(Instigator.transform.position, blinkDirection * spellData.BlinkDistance, Color.red,6f);
-
             Instigator.transform.position =Instigator.transform.position + ((hit.point - Instigator.transform.position) * onWallHitOffset);
         }
         canCast = false;

@@ -16,7 +16,8 @@ public enum SpellType {
 public abstract class Spell : ScriptableObject, ISpellActivate {
     public float TimeLeft {get;protected set;}
     
-    protected bool canCast = true;
+    public bool CanCast =>canCast;
+    [SerializeField] protected bool canCast = true;
     public GameObject VFX;
     public Sprite SpellOutline;
     public SpellType SpellType;
