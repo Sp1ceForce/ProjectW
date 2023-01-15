@@ -15,5 +15,7 @@ public class SpellGlobalData : ScriptableObject {
     [SerializeField] ProjectileData projectileData;
     public WaveData WaveData => waveData;
     [SerializeField] WaveData waveData;
+    public MeleeData MeleeData => meleeData;
+    [SerializeField] MeleeData meleeData;
         
 }

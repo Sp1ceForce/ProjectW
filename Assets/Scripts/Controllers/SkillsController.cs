@@ -5,12 +5,8 @@ public class SkillsController : MonoBehaviour
 {
     [SerializeField] Blink BlinkSkill;
     [SerializeField] ProjectileSpell ProjectileSkill;
-    [SerializeField] Spell WaveSkill;
-    [SerializeField] Spell MeleeAttack;
-
-
-    //Класс отвечающий за вызов событий при нажатии на кнопки
-    PlayerInputActions playerInputActions;
+    [SerializeField] Wave WaveSkill;
+    [SerializeField] MeleeAttack MeleeAttack;
 
     //События вызывающиеся при:
     //Смене активного заклинания(пригодится когда буду реализовывать отрисовку индикаторов)
@@ -22,13 +18,22 @@ public class SkillsController : MonoBehaviour
 
 
     public void OnBlinkButtonPress(InputAction.CallbackContext obj){
-        if(obj.started){
-            BlinkSkill.Activate(gameObject);
-        }
+        if(obj.started) BlinkSkill.Activate(gameObject);
     }
     public void OnMeleeButtonPress(InputAction.CallbackContext obj){
+        switch(obj.phase){
+            case InputActionPhase.Started:
+            OnAimingStart?.Invoke();
+            OnActiveSpellChanged?.Invoke();
+            break;
+            case InputActionPhase.Performed:
+            MeleeAttack.Activate(gameObject);
+            break;
+            case InputActionPhase.Canceled:
+            OnAimingEnd?.Invoke();
+            break;
+        }
 
-        BlinkSkill.Activate(gameObject);
     }
     public void OnProjectileButtonPress(InputAction.CallbackContext obj){
         switch(obj.phase){
@@ -43,7 +48,6 @@ public class SkillsController : MonoBehaviour
         }
     }
     public void OnWaveButtonPress(InputAction.CallbackContext obj){
-
-        BlinkSkill.Activate(gameObject);
+        if(obj.started) WaveSkill.Activate(gameObject);
     }
 }

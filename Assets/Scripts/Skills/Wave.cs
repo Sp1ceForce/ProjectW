@@ -10,7 +10,7 @@ public class WaveData:SpellData {
     [SerializeField] float waveKnockbackForce;
 
 }
-[CreateAssetMenu(fileName = "ProjectileSpell", menuName = "ProjectW/Skills/ProjectileSpell", order = 0)]
+[CreateAssetMenu(fileName = "Wave", menuName = "ProjectW/Skills/Wave", order = 0)]
 public class Wave : Spell
 {
     [SerializeField] WaveData spellData;
