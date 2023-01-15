@@ -492,8 +492,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlinkSkill: {fileID: 11400000, guid: 4d28eaf0370105246a40d7c3972804e6, type: 2}
   ProjectileSkill: {fileID: 11400000, guid: 491753b588c274443a097d3080341f5c, type: 2}
-  WaveSkill: {fileID: 0}
-  MeleeAttack: {fileID: 0}
+  WaveSkill: {fileID: 11400000, guid: 4304c56030d48ae4e94b9b15a6852d98, type: 2}
+  MeleeAttack: {fileID: 11400000, guid: 41a45870383b43c41aa0fa07dd43e00c, type: 2}
 --- !u!114 &295441982523887152
 MonoBehaviour:
   m_ObjectHideFlags: 0
