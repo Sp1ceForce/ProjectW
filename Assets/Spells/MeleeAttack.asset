@@ -17,8 +17,8 @@ MonoBehaviour:
   SpellOutline: {fileID: 0}
   SpellType: 0
   spellData:
-    cooldown: 0
-    damage: 0
-    attackRadius: 0
-    attackAngle: 0
-    attackKnockbackForce: 0
+    cooldown: 0.4
+    damage: 20
+    attackRadius: 7
+    attackAngle: 60
+    attackKnockbackForce: 4

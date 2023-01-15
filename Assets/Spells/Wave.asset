@@ -17,7 +17,7 @@ MonoBehaviour:
   SpellOutline: {fileID: 0}
   SpellType: 0
   spellData:
-    cooldown: 0
-    damage: 0
-    waveRadius: 0
-    waveKnockbackForce: 0
+    cooldown: 3
+    damage: 20
+    waveRadius: 8
+    waveKnockbackForce: 6
