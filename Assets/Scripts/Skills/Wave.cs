@@ -19,9 +19,9 @@ public class Wave : Spell
         if(SpellGlobalData.Instance.WaveData !=null) spellData = SpellGlobalData.Instance.WaveData;
         if(!canCast) return;
         //ОБЯЗАТЕЛЬНО СТАВИТЬ СЛОЙ Enemy на противников
-        var colliders = Physics.OverlapSphere(Instigator.transform.position, spellData.WaveRadius, LayerMask.NameToLayer("Default"));
+        var colliders = Physics.OverlapSphere(Instigator.transform.position, spellData.WaveRadius,LayerMask.GetMask("Enemy"));
         foreach(Collider collider in colliders){
-            
+            Debug.Log(collider.name);
             //Добавить проверку на наличие класса EnemyKnockbackComponent и вызывать метод KnockAway
         }
         canCast = false;

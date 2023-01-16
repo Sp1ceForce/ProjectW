@@ -9,6 +9,9 @@ public class SpellGlobalData : ScriptableObject {
         }
     }
     static SpellGlobalData instance;
+    private void OnEnable() {
+        instance = (SpellGlobalData)Resources.Load("Data/SpellGlobalData");
+    }
     public BlinkData BlinkData {get => blinkData;}
     [SerializeField] BlinkData blinkData;
     public ProjectileData ProjectileData {get => projectileData;}

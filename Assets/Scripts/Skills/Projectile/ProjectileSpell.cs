@@ -17,8 +17,10 @@ public class ProjectileSpell : Spell
     [SerializeField] ProjectileData spellData;
     //Мне не особо нравится идея пустого объекта который является начальной точкой для запуска снаряда, поэтому попробую просто Forward вектор игрока умножать на forwardOffset
     [SerializeField] float forwardOffset =1.1f;
+
     public override void Activate(GameObject Instigator)
     {
+
         if(SpellGlobalData.Instance.ProjectileData !=null) spellData = SpellGlobalData.Instance.ProjectileData;
         if(!canCast) return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

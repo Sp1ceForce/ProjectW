@@ -22,6 +22,9 @@ public abstract class Spell : ScriptableObject, ISpellActivate {
     public Sprite SpellOutline;
     public SpellType SpellType;
     public abstract void Activate(GameObject Instigator);
+    private void OnEnable() {
+        canCast = true;
+    }
     public virtual IEnumerator StartCooldown(float cooldownTime){
         TimeLeft = cooldownTime;
             WaitForSeconds timeStep = new WaitForSeconds(0.1f);

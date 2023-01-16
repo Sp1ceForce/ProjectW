@@ -33,7 +33,7 @@ public class MoveController : MonoBehaviour
     {
         MovePlayer();
         if(!isAiming) RotatePlayerToInput();
-        else RotatePlayerToCursor();
+        else RotatePlayerToCursor();   
         
     }
 

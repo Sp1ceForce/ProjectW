@@ -1066,9 +1066,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1145133670563810, guid: 18c5fed9cca812a458ccf567688e3a1f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224826569276776, guid: 18c5fed9cca812a458ccf567688e3a1f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1254399211750902, guid: 18c5fed9cca812a458ccf567688e3a1f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319455345704902, guid: 18c5fed9cca812a458ccf567688e3a1f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517861405374046, guid: 18c5fed9cca812a458ccf567688e3a1f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1684007911718038, guid: 18c5fed9cca812a458ccf567688e3a1f, type: 3}
       propertyPath: m_Name
       value: SM_Veh_Car_Sports_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684007911718038, guid: 18c5fed9cca812a458ccf567688e3a1f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892518458157146, guid: 18c5fed9cca812a458ccf567688e3a1f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4996138570027138, guid: 18c5fed9cca812a458ccf567688e3a1f, type: 3}
       propertyPath: m_RootOrder

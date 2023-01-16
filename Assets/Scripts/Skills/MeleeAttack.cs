@@ -26,12 +26,13 @@ public class MeleeAttack : Spell
         if(SpellGlobalData.Instance.MeleeData !=null) spellData = SpellGlobalData.Instance.MeleeData;
         if(!canCast) return;
         //ОБЯЗАТЕЛЬНО СТАВИТЬ СЛОЙ Enemy на противников
-        var colliders = Physics.OverlapSphere(Instigator.transform.position, spellData.AttackRadius, LayerMask.NameToLayer("Default"));
+        var colliders = Physics.OverlapSphere(Instigator.transform.position, spellData.AttackRadius,LayerMask.GetMask("Enemy"));
         foreach(Collider collider in colliders){
             Transform target = collider.transform;
             Vector3 dirToTarget = (target.position - Instigator.transform.position).normalized;
             if(Vector3.Angle(Instigator.transform.forward,dirToTarget) < spellData.AttackAngle / 2)
             {
+                Debug.Log(collider.name);
                 //Тут нужно будет делать проверки наличия компонентов и после этого вызывать методы для отбрасывания и получения урона
             }  
         }
