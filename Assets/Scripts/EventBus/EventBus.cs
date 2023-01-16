@@ -3,14 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using EventBusSystem;
 using UnityEngine;
-
-/*
-Автор: Дима
-Что делает этот файл: Это класс для удобного обращения с ивентами и доступа к ним по ключам-интерфейсам. 
-Как использовать: Подключите namespace "EventBusSystem", подпишитесь через EventBus на нужные ивенты и вызывайте их тоже через него.Отписка тоже через EventBus.
-Пример работы находиться в папке example.
-*/
-namespace EventBusSystem
+namespace EventBusSustem
 {
     public static class EventBus
     {
