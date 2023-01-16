@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using EventBusSystem;
+using EventBusSustem;
 public interface ILoadLocationHandler : IGlobalSubscriber
 {
     void LoadLocation();

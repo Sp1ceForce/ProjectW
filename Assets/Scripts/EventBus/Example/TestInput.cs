@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using EventBusSystem;
+using EventBusSustem;
 public class TestInput : MonoBehaviour
 {
     private void Update()
