@@ -23,7 +23,7 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
     public Vector2 InputVector { get; private set; }
     private Rigidbody rb;
     private Transform trn;
-
+    bool isAiming = false;
     private void OnEnable()
     {
         EventBus.Subscribe(this);
