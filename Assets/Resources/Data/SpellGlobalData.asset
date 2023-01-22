@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blinkData:
     cooldown: 2
-    blinkDistance: 10
+    blinkDistance: 6
   projectileData:
     cooldown: 2
     damage: 15
@@ -28,6 +28,6 @@ MonoBehaviour:
   meleeData:
     cooldown: 0.4
     damage: 25
-    attackRadius: 2
+    attackRadius: 3.5
     attackAngle: 70
     attackKnockbackForce: 30

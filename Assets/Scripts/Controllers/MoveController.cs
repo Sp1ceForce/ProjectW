@@ -25,6 +25,10 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
     private CharacterController characterController;
     private Transform trn;
     bool isAiming = false;
+    [Header("Проверка на нахождение на змле")]
+    [SerializeField] Transform groundChecker;
+    [SerializeField] float groundDistance;
+    [SerializeField] LayerMask groundMask;
     bool isGrounded = true;
     private void OnEnable()
     {
@@ -51,6 +55,7 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
     // Update is called once per frame
     void Update()
     {
+        isGrounded = Physics.CheckSphere(groundChecker.position,groundDistance,groundMask);
         MovePlayer();
         if(!isAiming) RotatePlayerToInput();
         else RotatePlayerToCursor();   
@@ -71,7 +76,7 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
         InputVector = new Vector3(Input.GetAxisRaw("Horizontal"),0, Input.GetAxisRaw("Vertical")).normalized;
         Vector3 MovementVector = InputVector * Time.deltaTime * Data.PlayerSpeed * Data.SpeedMultiplier;
 
-        if(!isGrounded) MovementVector -= Physics.gravity * Time.deltaTime;
+        if(!isGrounded) MovementVector += Physics.gravity * Time.deltaTime;
         //rb.velocity = new Vector3(InputVector.x * Data.PlayerSpeed * Data.SpeedMultiplier, rb.velocity.y, InputVector.y * Data.PlayerSpeed * Data.SpeedMultiplier);
         characterController.Move(MovementVector);
     }

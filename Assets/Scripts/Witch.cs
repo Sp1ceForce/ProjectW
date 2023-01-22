@@ -32,6 +32,7 @@ public class Witch : MonoBehaviour {
     private void LoadData()
     {
         if (WitchGlobalData.Instance.WitchData != null) witchData = WitchGlobalData.Instance.WitchData;
+        witchData.CurrentHealth = witchData.MaxHealth;
     }
 
     public void TakeDamage(int Damage){
@@ -42,7 +43,13 @@ public class Witch : MonoBehaviour {
         else {
             witchData.CurrentHealth = Math.Clamp(newHealth,1,witchData.MaxHealth);
         }
-        if(witchData.CurrentHealth <=0) OnDeath?.Invoke();
+        if(witchData.CurrentHealth <=0) {
+            OnDeath?.Invoke();
+            Death();
+        }
+    }
+    void Death(){
+        Destroy(gameObject);
     }
     public void Heal(int Healing){
         witchData.CurrentHealth+=Healing;

@@ -30,8 +30,6 @@ public class MeleeAttack : Spell
         foreach(Collider collider in colliders){
             Transform target = collider.transform;
             Vector3 dirToTarget = (target.position - Instigator.transform.position).normalized;
-            Debug.DrawRay(Instigator.transform.position,dirToTarget,Color.blue,3f);
-            Debug.Log(Vector3.Angle(Instigator.transform.forward,dirToTarget));
             if(Vector3.Angle(Instigator.transform.forward,dirToTarget) < spellData.AttackAngle / 2)
             {
                 var knockbackComponent = collider.GetComponent<EnemyKnockbackComponent>();

@@ -17,18 +17,19 @@ public class Blink : Spell
         if(SpellGlobalData.Instance.BlinkData == null) spellData = SpellGlobalData.Instance.BlinkData;
         if(!canCast) return;
 
-        Vector2 inputVector = Instigator.GetComponent<MoveController>().InputVector;
-        Vector3 blinkDirection = new Vector3(inputVector.x,0,inputVector.y);
+        Vector3 blinkDirection = Instigator.GetComponent<MoveController>().InputVector;
         RaycastHit hit;
         //Костыль, но не знаю как пофиксить
-        Instigator.GetComponent<CharacterController>().enabled = false;
+        //UPD: Нашёл как пофиксить - сменил в настройках Auto Sync Transforms(ProjectSettings/Physics), на всякий случай оставил прошлый вариант если появятся проблемы
+        //Instigator.GetComponent<CharacterController>().enabled = false;
         if(!Physics.Raycast(Instigator.transform.position,blinkDirection,out hit, spellData.BlinkDistance)){
             Instigator.transform.position = Instigator.transform.position + blinkDirection * spellData.BlinkDistance;
+
         }
         else{
             Instigator.transform.position =Instigator.transform.position + ((hit.point - Instigator.transform.position) * onWallHitOffset);
         }
-        Instigator.GetComponent<CharacterController>().enabled = true;
+        //Instigator.GetComponent<CharacterController>().enabled = true;
         canCast = false;
         Instigator.GetComponent<SkillsController>().StartCoroutine(StartCooldown(spellData.SpellCooldown));
 
