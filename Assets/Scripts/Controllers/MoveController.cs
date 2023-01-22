@@ -58,7 +58,7 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        Physics.Raycast(ray, out hit, Mathf.Infinity);
+        Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Ground"));
         transform.LookAt(hit.point);
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }

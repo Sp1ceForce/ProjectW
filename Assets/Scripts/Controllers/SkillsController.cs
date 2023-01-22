@@ -27,6 +27,7 @@ public class SkillsController : MonoBehaviour
             OnActiveSpellChanged?.Invoke();
             break;
             case InputActionPhase.Performed:
+            Debug.Log("aa");
             MeleeAttack.Activate(gameObject);
             break;
             case InputActionPhase.Canceled:

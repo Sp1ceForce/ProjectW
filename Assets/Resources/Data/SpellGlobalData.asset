@@ -20,3 +20,14 @@ MonoBehaviour:
     damage: 15
     projectileSpeed: 20
     projectileLifetime: 10
+  waveData:
+    cooldown: 2
+    damage: 10
+    waveRadius: 20
+    waveKnockbackForce: 80
+  meleeData:
+    cooldown: 0.4
+    damage: 25
+    attackRadius: 15
+    attackAngle: 70
+    attackKnockbackForce: 30

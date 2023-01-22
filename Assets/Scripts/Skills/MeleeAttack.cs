@@ -29,11 +29,17 @@ public class MeleeAttack : Spell
         var colliders = Physics.OverlapSphere(Instigator.transform.position, spellData.AttackRadius,LayerMask.GetMask("Enemy"));
         foreach(Collider collider in colliders){
             Transform target = collider.transform;
-            Vector3 dirToTarget = (target.position - Instigator.transform.position).normalized;
+            Vector3 tempPos = new Vector3(target.position.x,Instigator.transform.position.y,target.position.z);
+            Vector3 dirToTarget = (tempPos - Instigator.transform.position).normalized;
+            Debug.DrawRay(Instigator.transform.position,dirToTarget,Color.blue,3f);
+            Debug.Log(Vector3.Angle(Instigator.transform.forward,dirToTarget));
             if(Vector3.Angle(Instigator.transform.forward,dirToTarget) < spellData.AttackAngle / 2)
             {
-                Debug.Log(collider.name);
                 //Тут нужно будет делать проверки наличия компонентов и после этого вызывать методы для отбрасывания и получения урона
+                var knockbackComponent = collider.GetComponent<EnemyKnockbackComponent>();
+                if(knockbackComponent){
+                    knockbackComponent.KnockBack(Instigator.transform,spellData.AttackKnockbackForce);
+                }
             }  
         }
         canCast = false;

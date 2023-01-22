@@ -23,6 +23,10 @@ public class Wave : Spell
         foreach(Collider collider in colliders){
             Debug.Log(collider.name);
             //Добавить проверку на наличие класса EnemyKnockbackComponent и вызывать метод KnockAway
+            var knockbackComponent = collider.GetComponent<EnemyKnockbackComponent>();
+            if(knockbackComponent){
+                knockbackComponent.KnockBack(Instigator.transform,spellData.WaveKnockbackForce);
+            }
         }
         canCast = false;
         Instigator.GetComponent<SkillsController>().StartCoroutine(StartCooldown(spellData.SpellCooldown));
