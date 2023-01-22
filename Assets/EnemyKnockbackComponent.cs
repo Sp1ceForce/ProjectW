@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 public class EnemyKnockbackComponent : MonoBehaviour
@@ -11,7 +10,7 @@ public class EnemyKnockbackComponent : MonoBehaviour
         GetComponent<EnemyStateController>().enabled = false;
         Vector3 knockdirection = transform.position - Instigator.transform.position;
         GetComponent<Rigidbody>().AddForce(knockdirection.normalized * knockbackForce,ForceMode.Impulse);
-        Debug.Log(transform.name);
+        StartCoroutine(KnockedCooldown());
     }
     IEnumerator KnockedCooldown(){
         yield return new WaitForSeconds(knockedTime);

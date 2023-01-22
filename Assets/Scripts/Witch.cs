@@ -48,7 +48,6 @@ public class Witch : MonoBehaviour {
         witchData.CurrentHealth+=Healing;
         witchData.CurrentHealth = Math.Clamp(witchData.CurrentHealth,0,witchData.MaxHealth);
     }
-
     public IEnumerator CurseIncreaseCoroutine(){
         yield return new NotImplementedException();
     }

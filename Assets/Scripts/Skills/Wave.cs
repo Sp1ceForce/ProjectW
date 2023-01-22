@@ -21,12 +21,11 @@ public class Wave : Spell
         //ОБЯЗАТЕЛЬНО СТАВИТЬ СЛОЙ Enemy на противников
         var colliders = Physics.OverlapSphere(Instigator.transform.position, spellData.WaveRadius,LayerMask.GetMask("Enemy"));
         foreach(Collider collider in colliders){
-            Debug.Log(collider.name);
-            //Добавить проверку на наличие класса EnemyKnockbackComponent и вызывать метод KnockAway
+
             var knockbackComponent = collider.GetComponent<EnemyKnockbackComponent>();
-            if(knockbackComponent){
-                knockbackComponent.KnockBack(Instigator.transform,spellData.WaveKnockbackForce);
-            }
+            if(knockbackComponent) knockbackComponent.KnockBack(Instigator.transform,spellData.WaveKnockbackForce);
+            var healthComponent = collider.GetComponent<EnemyHealthComponent>();
+            if(healthComponent) healthComponent.TakeDamage(spellData.Damage);
         }
         canCast = false;
         Instigator.GetComponent<SkillsController>().StartCoroutine(StartCooldown(spellData.SpellCooldown));

@@ -23,11 +23,11 @@ MonoBehaviour:
   waveData:
     cooldown: 2
     damage: 10
-    waveRadius: 20
+    waveRadius: 6
     waveKnockbackForce: 80
   meleeData:
     cooldown: 0.4
     damage: 25
-    attackRadius: 15
+    attackRadius: 2
     attackAngle: 70
     attackKnockbackForce: 30

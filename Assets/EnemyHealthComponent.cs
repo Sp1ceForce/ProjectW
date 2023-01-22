@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class EnemyHealthComponent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    //Пока что временно будут просто переменные, позже продумаю как грамотно сделать классы для статов
+    [SerializeField] int maxHealth;
+    [SerializeField] int currentHealth;
+    public Action OnDeath;
+    public Action OnTakeDamage;
+    public Action<int> OnHealthChange;
+    private void Start() {
+        currentHealth = maxHealth;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void TakeDamage(int Damage){
+        currentHealth -=Damage;
+        OnTakeDamage?.Invoke();
+        if(currentHealth<=0){
+            OnDeath?.Invoke();
+            Death();
+        }
+    }
+    void Death(){
+        Destroy(gameObject);
     }
 }
