@@ -18,12 +18,20 @@ public class MoveControllerData
 //Дима:Закешировал Transform, добавил DataUpdate
 public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSaveData
 {
+    [Header("Статы")]
+    [SerializeField] bool useGlobalData = true;
     [SerializeField] MoveControllerData Data;
 
-    public Vector2 InputVector { get; private set; }
+    public Vector3 InputVector { get; private set; }
     private Rigidbody rb;
+    private CharacterController characterController;
     private Transform trn;
     bool isAiming = false;
+    [Header("Проверка на нахождение на змле")]
+    [SerializeField] Transform groundChecker;
+    [SerializeField] float groundDistance;
+    [SerializeField] LayerMask groundMask;
+    bool isGrounded = true;
     private void OnEnable()
     {
         EventBus.Subscribe(this);
@@ -34,8 +42,9 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
     }
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        Data = WitchGlobalData.Instance.MoveControllerData;
+        //rb = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
+        if(useGlobalData) Data = WitchGlobalData.Instance.MoveControllerData;
         trn = transform;
         SubscribeToEvents();
     }
@@ -48,6 +57,7 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
     // Update is called once per frame
     void Update()
     {
+        isGrounded = Physics.CheckSphere(groundChecker.position,groundDistance,groundMask);
         MovePlayer();
         if(!isAiming) RotatePlayerToInput();
         else RotatePlayerToCursor();   
@@ -58,20 +68,24 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        Physics.Raycast(ray, out hit, Mathf.Infinity);
+        Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Ground"));
         transform.LookAt(hit.point);
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }
 
     private void MovePlayer()
     {
-        InputVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        rb.velocity = new Vector3(InputVector.x * Data.PlayerSpeed * Data.SpeedMultiplier, rb.velocity.y, InputVector.y * Data.PlayerSpeed * Data.SpeedMultiplier);
+        InputVector = new Vector3(Input.GetAxisRaw("Horizontal"),0, Input.GetAxisRaw("Vertical")).normalized;
+        Vector3 MovementVector = InputVector * Time.deltaTime * Data.PlayerSpeed * Data.SpeedMultiplier;
+
+        if(!isGrounded) MovementVector += Physics.gravity * Time.deltaTime;
+        //rb.velocity = new Vector3(InputVector.x * Data.PlayerSpeed * Data.SpeedMultiplier, rb.velocity.y, InputVector.y * Data.PlayerSpeed * Data.SpeedMultiplier);
+        characterController.Move(MovementVector);
     }
 
     public void RotatePlayerToInput(){
-        if(InputVector!= Vector2.zero){
-          transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(InputVector.x, 0, InputVector.y)), 0.1f);
+        if(InputVector!= Vector3.zero){
+          transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(InputVector), 0.1f);
         }
     }
     //Дима

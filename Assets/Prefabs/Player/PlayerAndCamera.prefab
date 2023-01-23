@@ -292,7 +292,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 0
+  m_UpdateMethod: 2
   m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 1363077565}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -507,8 +507,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc694d2ee06ce784ab68fba74db6eca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats:
-    playerSpeed: 6
+  Data:
+    playerSpeed: 0
     SpeedMultiplier: 1
 --- !u!114 &295441982523887153
 MonoBehaviour:

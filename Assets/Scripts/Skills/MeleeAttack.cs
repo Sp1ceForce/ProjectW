@@ -32,8 +32,10 @@ public class MeleeAttack : Spell
             Vector3 dirToTarget = (target.position - Instigator.transform.position).normalized;
             if(Vector3.Angle(Instigator.transform.forward,dirToTarget) < spellData.AttackAngle / 2)
             {
-                Debug.Log(collider.name);
-                //Тут нужно будет делать проверки наличия компонентов и после этого вызывать методы для отбрасывания и получения урона
+                var knockbackComponent = collider.GetComponent<EnemyKnockbackComponent>();
+                if(knockbackComponent) knockbackComponent.KnockBack(Instigator.transform,spellData.AttackKnockbackForce);
+                var healthComponent = collider.GetComponent<EnemyHealthComponent>();
+                if(healthComponent) healthComponent.TakeDamage(spellData.Damage);
             }  
         }
         canCast = false;

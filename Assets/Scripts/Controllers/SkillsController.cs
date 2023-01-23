@@ -26,10 +26,8 @@ public class SkillsController : MonoBehaviour
             OnAimingStart?.Invoke();
             OnActiveSpellChanged?.Invoke();
             break;
-            case InputActionPhase.Performed:
-            MeleeAttack.Activate(gameObject);
-            break;
             case InputActionPhase.Canceled:
+            MeleeAttack.Activate(gameObject);
             OnAimingEnd?.Invoke();
             break;
         }
