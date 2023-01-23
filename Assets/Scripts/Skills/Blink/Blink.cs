@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 [System.Serializable]
@@ -12,28 +11,27 @@ public class Blink : Spell
 {
     //Отступ от стены в случае попадания луча в стену 
     [SerializeField] float onWallHitOffset = 0.5f;
-    BlinkData spellData;
+    [SerializeField] BlinkData spellData;
     public override void Activate(GameObject Instigator)
     {
-        if(spellData == null) spellData = SpellGlobalData.Instance.BlinkData;
-        Debug.Log(spellData.BlinkDistance);
+        if(SpellGlobalData.Instance.BlinkData == null) spellData = SpellGlobalData.Instance.BlinkData;
         if(!canCast) return;
-        Vector3 blinkDirection = Instigator.transform.forward;
+
+        Vector3 blinkDirection = Instigator.GetComponent<MoveController>().InputVector;
         RaycastHit hit;
-        
+        //Костыль, но не знаю как пофиксить
+        //UPD: Нашёл как пофиксить - сменил в настройках Auto Sync Transforms(ProjectSettings/Physics), на всякий случай оставил прошлый вариант если появятся проблемы
+        //Instigator.GetComponent<CharacterController>().enabled = false;
         if(!Physics.Raycast(Instigator.transform.position,blinkDirection,out hit, spellData.BlinkDistance)){
-            Debug.DrawRay(Instigator.transform.position, blinkDirection * spellData.BlinkDistance,Color.white,6f);
             Instigator.transform.position = Instigator.transform.position + blinkDirection * spellData.BlinkDistance;
+
         }
         else{
-            Debug.DrawRay(Instigator.transform.position, blinkDirection * spellData.BlinkDistance, Color.red,6f);
-
             Instigator.transform.position =Instigator.transform.position + ((hit.point - Instigator.transform.position) * onWallHitOffset);
         }
+        //Instigator.GetComponent<CharacterController>().enabled = true;
         canCast = false;
         Instigator.GetComponent<SkillsController>().StartCoroutine(StartCooldown(spellData.SpellCooldown));
 
     }
-
-
 }

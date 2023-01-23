@@ -16,11 +16,15 @@ public enum SpellType {
 public abstract class Spell : ScriptableObject, ISpellActivate {
     public float TimeLeft {get;protected set;}
     
-    protected bool canCast = true;
+    public bool CanCast =>canCast;
+    [SerializeField] protected bool canCast = true;
     public GameObject VFX;
     public Sprite SpellOutline;
     public SpellType SpellType;
     public abstract void Activate(GameObject Instigator);
+    private void OnEnable() {
+        canCast = true;
+    }
     public virtual IEnumerator StartCooldown(float cooldownTime){
         TimeLeft = cooldownTime;
             WaitForSeconds timeStep = new WaitForSeconds(0.1f);

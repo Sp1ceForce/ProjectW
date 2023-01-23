@@ -15,3 +15,8 @@ MonoBehaviour:
   moveControllerData:
     playerSpeed: 9
     SpeedMultiplier: 1
+  witchData:
+    MaxHealth: 100
+    CurrentHealth: 0
+    MaxCurse: 200
+    CurrentCurse: 0
