@@ -18,6 +18,8 @@ public class MoveControllerData
 //Дима:Закешировал Transform, добавил DataUpdate
 public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSaveData
 {
+    [Header("Статы")]
+    [SerializeField] bool useGlobalData = true;
     [SerializeField] MoveControllerData Data;
 
     public Vector3 InputVector { get; private set; }
@@ -42,7 +44,7 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
     {
         //rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
-        Data = WitchGlobalData.Instance.MoveControllerData;
+        if(useGlobalData) Data = WitchGlobalData.Instance.MoveControllerData;
         trn = transform;
         SubscribeToEvents();
     }
