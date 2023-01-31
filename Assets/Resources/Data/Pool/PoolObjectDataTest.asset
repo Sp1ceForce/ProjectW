@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edaa75c5c43a29e4882f587b60844798, type: 3}
+  m_Name: PoolObjectDataTest
+  m_EditorClassIdentifier: Assembly-CSharp::PoolObjectData
+  _defaultCapacity: 10
+  _maxPoolSize: 1000
+  _respawn: 1
+  _timeToRespawn: 2
+  _objectName: Object
+  _objectTag: TestTagForItem
+  _objectPrefab: {fileID: 0}

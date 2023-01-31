@@ -53,6 +53,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftMouseButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""33f0f9de-2677-4f71-b57b-725596f3418a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -69,8 +78,19 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""b119dc8d-9176-45e5-9d44-d9771ac5a303"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ESkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5bee4ebc-ad92-4bee-832d-d756e785fc2b"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -80,12 +100,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b119dc8d-9176-45e5-9d44-d9771ac5a303"",
-                    ""path"": """",
+                    ""id"": ""b01ff300-1b79-4f59-8112-782187048265"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ESkill"",
+                    ""action"": ""LeftMouseButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -99,6 +119,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_BlinkSkill = m_Player.FindAction("BlinkSkill", throwIfNotFound: true);
         m_Player_QSkill = m_Player.FindAction("QSkill", throwIfNotFound: true);
         m_Player_ESkill = m_Player.FindAction("ESkill", throwIfNotFound: true);
+        m_Player_LeftMouseButton = m_Player.FindAction("LeftMouseButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -161,6 +182,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_BlinkSkill;
     private readonly InputAction m_Player_QSkill;
     private readonly InputAction m_Player_ESkill;
+    private readonly InputAction m_Player_LeftMouseButton;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -168,6 +190,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @BlinkSkill => m_Wrapper.m_Player_BlinkSkill;
         public InputAction @QSkill => m_Wrapper.m_Player_QSkill;
         public InputAction @ESkill => m_Wrapper.m_Player_ESkill;
+        public InputAction @LeftMouseButton => m_Wrapper.m_Player_LeftMouseButton;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -186,6 +209,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @ESkill.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnESkill;
                 @ESkill.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnESkill;
                 @ESkill.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnESkill;
+                @LeftMouseButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
+                @LeftMouseButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
+                @LeftMouseButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -199,6 +225,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @ESkill.started += instance.OnESkill;
                 @ESkill.performed += instance.OnESkill;
                 @ESkill.canceled += instance.OnESkill;
+                @LeftMouseButton.started += instance.OnLeftMouseButton;
+                @LeftMouseButton.performed += instance.OnLeftMouseButton;
+                @LeftMouseButton.canceled += instance.OnLeftMouseButton;
             }
         }
     }
@@ -208,5 +237,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnBlinkSkill(InputAction.CallbackContext context);
         void OnQSkill(InputAction.CallbackContext context);
         void OnESkill(InputAction.CallbackContext context);
+        void OnLeftMouseButton(InputAction.CallbackContext context);
     }
 }
