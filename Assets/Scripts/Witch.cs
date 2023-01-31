@@ -15,7 +15,8 @@ public class WitchData {
     //Сюда можно добавить интервал с которым проклятие будет увеличиваться, а так же насколько сильно будет повышаться само проклятие, функцию реализую, но добавить это можем и позже 
 }
 public class Witch : MonoBehaviour {
-    //Статы
+    [Header("Статы")]
+    [SerializeField] bool useGlobalData = true;
     [SerializeField] WitchData witchData;
 
 
@@ -31,7 +32,7 @@ public class Witch : MonoBehaviour {
 
     private void LoadData()
     {
-        if (WitchGlobalData.Instance.WitchData != null) witchData = WitchGlobalData.Instance.WitchData;
+        if (WitchGlobalData.Instance.WitchData != null && useGlobalData) witchData = WitchGlobalData.Instance.WitchData;
         witchData.CurrentHealth = witchData.MaxHealth;
     }
 
