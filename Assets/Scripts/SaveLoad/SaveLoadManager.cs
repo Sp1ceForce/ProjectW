@@ -19,6 +19,12 @@ public class SaveLoadManager : ScriptableObject, ISaveWitchHandler, ISaveLocatio
     {
         EventBus.Unsubscribe(this);
     }
+    private static SaveLoadManager _instance;
+    public static SaveLoadManager Instance => _instance == null ? LoadData() : _instance;
+    private static SaveLoadManager LoadData()
+    {
+        return _instance = Resources.Load<SaveLoadManager>("SaveLoadManager");
+    }
     public void LoadLocation()
     {
         Debug.Log("Load Location");
