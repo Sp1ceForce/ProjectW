@@ -804,6 +804,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935f5c75dfe1fe40b99f341cef95265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentSave: {fileID: 11400000, guid: b959450e8a4c0d245b07a99a51edea4c, type: 2}
+  SaveLoadManager: {fileID: 11400000, guid: 134e7d386a4f6fb488e75b27984b7ce9, type: 2}
 --- !u!4 &67131989 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7625361593287480045, guid: d6f245ef652d1a74e9d37050458127dd,
@@ -13331,9 +13333,7 @@ MonoBehaviour:
   InventoryPanel: {fileID: 328700139}
   iconPrefab: {fileID: 2548620270237638251, guid: a9433ee947f7d0c4d8b25bce20a85f71,
     type: 3}
-  items:
-  - item: {fileID: 11400000, guid: 7b3bb8d18a8f2be48b73993bfa11bf9d, type: 2}
-    amount: 3
+  items: []
   slots: []
   size: 3
   steckCount: 3
