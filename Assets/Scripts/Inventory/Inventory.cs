@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using EventBusSystem;
+using TMPro;
 [System.Serializable]
 public class InventorySlot
 {
     public Item item;
     public int amount;
-    public Transform objectSlot;
-    public InventorySlot(Item item, Transform objectSlot, int amount = 1)
+    public Transform transform;
+    public TMP_Text countText;
+    public GameObject iconGameObject;
+    public InventorySlot(Item item, Transform transform, TMP_Text countText, GameObject iconGameOject, int amount)
     {
         this.item = item;
-        this.objectSlot = objectSlot;
         this.amount = amount;
-
+        this.transform = transform;
+        this.countText = countText;
+        this.iconGameObject = iconGameOject;
     }
 }
 public class Inventory : MonoBehaviour, IAddItem
@@ -25,109 +29,103 @@ public class Inventory : MonoBehaviour, IAddItem
     private List<Transform> slots = new List<Transform>();
     private int size;
     [SerializeField] private int steckCount = 3;
+    public int SteckCount { get => steckCount; set => steckCount = value; }
+
     private void Start()
     {
+        //Собрать UI слоты в список
         size = InventoryPanel.transform.childCount;
         for (int i = 0; i < size; i++)
         {
             slots.Add(InventoryPanel.transform.GetChild(i));
-        }
-
-
-        foreach (InventorySlot inventorySlot in items)
-        {
-            iconPrefab.GetComponent<Image>().sprite = inventorySlot.item.icon;
-            foreach (Transform slot in slots)
+            if (items[i].item != null && items[i].amount != 0)
             {
-                if (slot.childCount == 0)
-                {
-                    Instantiate(iconPrefab, slot);
-                    inventorySlot.objectSlot = slot;
-                    break;
-                }
+                AddItemToUI(items[i], slots[i]);
             }
         }
     }
 
+    public void AddItemToUI(InventorySlot invSlot, Transform objSlot)
+    {
+        iconPrefab.GetComponent<Image>().sprite = invSlot.item.icon;
+        GameObject objectIcon = Instantiate(iconPrefab, objSlot);
+
+        invSlot.iconGameObject = objectIcon;
+        invSlot.transform = objSlot;
+        invSlot.countText = objectIcon.GetComponentInChildren<TMP_Text>();
+        invSlot.countText.SetText(invSlot.amount.ToString());
+    }
     public void AddItem(Item item, int amount = 1)
     {
+        //Нельзя добавить, если перебор
+        // if (items.Count >= size) return;
+
+        //добавить в ГОТОВЫЙ Слот(1 <= amount < 3) предмет
         foreach (InventorySlot slot in items)
         {
-            if (slot.item.id == item.id && slot.amount < steckCount)
+            if (slot.item != null)
             {
-                slot.amount += amount;
-                return;
+                if (slot.item.id == item.id && slot.amount < steckCount)
+                {
+                    slot.amount += amount;
+                    return;
+                }
             }
         }
 
-        if (items.Count >= size) return;
-
-        iconPrefab.GetComponent<Image>().sprite = item.icon;
-        foreach (Transform slot in slots)
+        //Добавить предмет в ПЕРВЫЙ ПУСТОЙ слот
+        for (int i = 0; i < size; i++)
         {
-            if (slot.childCount == 0)
+            if (items[i].item == null)
             {
-                Instantiate(iconPrefab, slot);
-                InventorySlot new_slot = new InventorySlot(item, slot, amount);
-                items.Add(new_slot);
+                items[i].item = item;
+                items[i].amount = amount;
+                AddItemToUI(items[i], slots[i]);
                 break;
             }
         }
-
     }
-    public void AddItem(Item item, Transform slotTrn, int amount = 1)
+    public InventorySlot AddItemToSelectedSlot(Item item, Transform parent, int amount = 1)
     {
-
-        iconPrefab.GetComponent<Image>().sprite = item.icon;
-        Instantiate(iconPrefab, slotTrn);
-        InventorySlot new_slot = new InventorySlot(item, slotTrn, amount);
-        items.Add(new_slot);
+        InventorySlot q = GetInventorySlot(parent);
+        q.item = item;
+        q.amount = amount;
+        AddItemToUI(q, parent);
+        return q;
     }
-
-
     public void RemoveItem(InventorySlot inventorySlot, int amount = 1)
     {
-        foreach (InventorySlot slot in items)
+        int result = inventorySlot.amount - amount;
+        if (result > 0)
         {
-            if (slot.item.id == inventorySlot.item.id)
-            {
-                if (slot.amount > 1) { slot.amount -= 1; break; }
-                else
-                {
-                    Destroy(inventorySlot.objectSlot.gameObject);
-                    items.Remove(inventorySlot);
-                    break;
-                }
-            }
+            inventorySlot.amount -= amount;
+        }
+        else
+        {
+            inventorySlot.amount = 0;
+            inventorySlot.item = null;
+            inventorySlot.countText = null;
+            Destroy(inventorySlot.iconGameObject);
+            inventorySlot.iconGameObject = null;
+            inventorySlot.transform = null;
         }
     }
-    public void SwapItem(InventorySlot itemOne, InventorySlot itemTwo)
+    public void SwapItem(InventorySlot one, InventorySlot two)
     {
-        Transform tmp = itemOne.objectSlot;
-        itemOne.objectSlot = itemTwo.objectSlot;
-        itemTwo.objectSlot = tmp;
+        InventorySlot tmp = one;
+        one = two;
+        two = tmp;
     }
     public InventorySlot GetInventorySlot(Transform trn)
     {
-        foreach (InventorySlot item in items)
-        {
-            if (item.objectSlot == trn) { return item; }
-        }
-        return null;
+        int q = -1;
+        if (slots.Contains(trn))
+            q = slots.IndexOf(trn);
+        if (q != -1)
+            return items[q];
+        else
+            return null;
     }
-    public Item GetItem(int i)
-    {
-        return i < items.Count ? items[i].item : null;
-    }
-    public int GetAmount(int i)
-    {
-        return i < items.Count ? items[i].amount : 0;
-    }
-    public int GetSize()
-    {
-        return items.Count;
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
@@ -144,22 +142,5 @@ public class Inventory : MonoBehaviour, IAddItem
         EventBus.Unsubscribe(this);
     }
 
-    // public void RemoveItem(Item item, int amount = 1)
-    // {
-    //     InventorySlot toDelete = null;
-    //     foreach (InventorySlot slot in items)
-    //     {
-    //         if (slot.item.id == item.id)
-    //         {
-    //             if (slot.amount > 1) { slot.amount -= 1; break; }
-    //             else { toDelete = slot; break; }
-    //         }
-    //     }
-    //     if (toDelete != null)
-    //     {
-    //         Destroy(toDelete.objectSlot.gameObject);
-    //         items.Remove(toDelete);
-    //     }
-    // }
 
 }

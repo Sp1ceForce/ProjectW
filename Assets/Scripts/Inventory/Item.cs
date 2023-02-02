@@ -9,5 +9,6 @@ public class Item : ScriptableObject
     public Sprite icon;
     public float timeToPickUp = 3000f;
     public float currentTimeToPickUp = 0f;
+    public GameObject prefab;
 
 }

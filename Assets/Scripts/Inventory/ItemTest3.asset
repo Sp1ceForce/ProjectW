@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 970fdbea258f6a44684f8b982fe1d7b5, type: 3}
-  m_Name: Item23
+  m_Name: ItemTest3
   m_EditorClassIdentifier: 
   id: 3
   icon: {fileID: 0}
-  timeToPickUp: 4.32
+  timeToPickUp: 2
   currentTimeToPickUp: 0
+  prefab: {fileID: 8475328201870182764, guid: 9f15c5fd4e1b60e41a988cef2411f282, type: 3}

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -11,8 +12,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private RectTransform dragLayer;
     private Transform slot;
     private Inventory inventory;
-    private InventorySlot inventorySlot;
-
+    // private InventorySlot tmpSlot;
     private void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
@@ -25,24 +25,11 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         slot = null;
         dragItem = this;
-        inventorySlot = inventory.GetInventorySlot(transform.parent);
-        if (Input.GetMouseButton(0))
-        {
-            inventorySlot.objectSlot = null;
-        }
-        if (Input.GetMouseButton(1))
-        {
-            if (inventorySlot.amount != 1)
-            {
-                inventorySlot.amount -= 1;
-                inventory.AddItem(inventorySlot.item, inventorySlot.objectSlot, inventorySlot.amount);
-                inventorySlot.amount = 1;
-            }
-        }
         startPosition = transform.position;
         startParrent = transform.parent;
         transform.SetParent(dragLayer);
         canvasGroup.blocksRaycasts = false;
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -56,9 +43,22 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         canvasGroup.blocksRaycasts = true;
         if (slot == null)
         {
-            inventorySlot.objectSlot = startParrent; ////
-            transform.SetParent(startParrent);
-            transform.position = startPosition;
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                InventorySlot invSlot = inventory.GetInventorySlot(startParrent);
+                Instantiate(invSlot.item.prefab,
+                new Vector3(hit.point.x, hit.point.y + 1, hit.point.z),
+                Quaternion.identity);
+                inventory.RemoveItem(invSlot);
+            }
+            else
+            {
+                transform.SetParent(startParrent);
+                transform.position = startPosition;
+            }
+
         }
         slot = null;
     }
@@ -66,7 +66,6 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void SetItemToSlot(Transform slot)
     {
         this.slot = slot;
-        inventorySlot.objectSlot = slot;     ////
         transform.SetParent(slot);
         currentSlot = slot;
         transform.localPosition = Vector3.zero;

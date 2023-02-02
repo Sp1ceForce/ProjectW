@@ -12,12 +12,15 @@ public class SelectedItem : MonoBehaviour
         if (!item) return;
         if (Input.GetKey(KeyCode.F))
         {
-            item.currentTimeToPickUp += Time.deltaTime;
-            if (item.currentTimeToPickUp >= item.timeToPickUp)
+            if (other.tag == "Player")
             {
-                item.currentTimeToPickUp = 0;
-                EventBus.RaiseEvent<IAddItem>(h => h.AddItem(item, amount));
-                Destroy(this.gameObject);
+                item.currentTimeToPickUp += Time.deltaTime;
+                if (item.currentTimeToPickUp >= item.timeToPickUp)
+                {
+                    item.currentTimeToPickUp = 0;
+                    EventBus.RaiseEvent<IAddItem>(h => h.AddItem(item, amount));
+                    Destroy(this.gameObject);
+                }
             }
 
         }
