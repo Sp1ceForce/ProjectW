@@ -19,11 +19,12 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         canvasGroup = GetComponent<CanvasGroup>();
         dragLayer = GameObject.FindGameObjectWithTag("DragLayer").GetComponent<RectTransform>();
         currentSlot = transform.parent;
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        inventory = transform.parent.parent.gameObject.GetComponent<Inventory>();
         slot = null;
         dragItem = this;
         startPosition = transform.position;
@@ -59,8 +60,8 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 transform.SetParent(startParrent);
                 transform.position = startPosition;
             }
-
         }
+        // inventory = null;
         slot = null;
     }
 
