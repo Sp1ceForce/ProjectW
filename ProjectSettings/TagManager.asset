@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TestTagForItem
   - DragLayer
+  - Inventory
   layers:
   - Default
   - TransparentFX

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970fdbea258f6a44684f8b982fe1d7b5, type: 3}
   m_Name: ItemTest3
   m_EditorClassIdentifier: 
-  id: 3
-  icon: {fileID: 0}
+  id: 2
+  icon: {fileID: 21300000, guid: d24e7e0b75e1a244bb9687d6fd4315ef, type: 3}
   timeToPickUp: 2
   currentTimeToPickUp: 0
   prefab: {fileID: 8475328201870182764, guid: 9f15c5fd4e1b60e41a988cef2411f282, type: 3}
+  itSelectedItem: 1

@@ -30,6 +30,7 @@ public class Inventory : MonoBehaviour, IAddItem
     private int size;
     [SerializeField] private int steckCount = 3;
     public int SteckCount { get => steckCount; set => steckCount = value; }
+    [SerializeField] private bool mainInventory = false;
 
     private void Start()
     {
@@ -48,7 +49,23 @@ public class Inventory : MonoBehaviour, IAddItem
             items[i].transform = slots[i];
         }
     }
+    public void SendItemToAnotherInventory(Inventory other, InventorySlot otherSlot, InventorySlot thisSlot, int amount = 1)
+    {
+        other.AddItemToSelectedSlot(thisSlot.item, otherSlot.transform, amount);
+        RemoveItem(thisSlot);
 
+
+    }
+    public void SwapItemBetwenInventory(Inventory other, InventorySlot otherSlot, InventorySlot thisSlot, int amount = 1)
+    {
+        Item tmpOtherItem = otherSlot.item;
+        Item TmpThisItem = thisSlot.item;
+        InventorySlot tmp = thisSlot;
+        other.AddItemToSelectedSlot(TmpThisItem, otherSlot.transform, amount);
+        AddItemToSelectedSlot(tmpOtherItem, tmp.transform, amount);
+        RemoveItem(thisSlot);
+        // other.RemoveItem(otherSlot);
+    }
     public void AddItemToUI(InventorySlot invSlot, Transform objSlot)
     {
         iconPrefab.GetComponent<Image>().sprite = invSlot.item.icon;
@@ -92,9 +109,11 @@ public class Inventory : MonoBehaviour, IAddItem
     public InventorySlot AddItemToSelectedSlot(Item item, Transform parent, int amount = 1)
     {
         InventorySlot q = GetInventorySlot(parent);
+        Debug.Log(q.item);
         q.item = item;
         q.amount = amount;
-        AddItemToUI(q, parent);
+        if (parent.childCount < 1)
+            AddItemToUI(q, parent);
         return q;
     }
     public void RemoveItem(InventorySlot inventorySlot, int amount = 1)
@@ -111,7 +130,7 @@ public class Inventory : MonoBehaviour, IAddItem
             inventorySlot.countText = null;
             Destroy(inventorySlot.iconGameObject);
             inventorySlot.iconGameObject = null;
-            inventorySlot.transform = null;
+            // inventorySlot.transform = null;
         }
     }
     public void SwapItem(InventorySlot one, InventorySlot two)
@@ -119,24 +138,26 @@ public class Inventory : MonoBehaviour, IAddItem
         InventorySlot tmpOne = one;
         int IndexOne = items.IndexOf(one);
         int IndexTwo = items.IndexOf(two);
-
+        // Debug.Log(IndexOne);
+        // Debug.Log(IndexTwo);
         items[IndexOne] = items[IndexTwo];
         items[IndexTwo] = tmpOne;
 
         Transform tmp = items[IndexOne].transform;
         items[IndexOne].transform = tmpOne.transform;
         items[IndexTwo].transform = tmp;
-
-
-
     }
     public InventorySlot GetInventorySlot(Transform trn)
     {
         int q = -1;
         if (slots.Contains(trn))
+        {
             q = slots.IndexOf(trn);
+        }
         if (q != -1)
+        {
             return items[q];
+        }
         else
             return null;
     }
@@ -149,7 +170,8 @@ public class Inventory : MonoBehaviour, IAddItem
     }
     private void OnEnable()
     {
-        EventBus.Subscribe(this);
+        if (mainInventory)
+            EventBus.Subscribe(this);
     }
     private void OnDisable()
     {
