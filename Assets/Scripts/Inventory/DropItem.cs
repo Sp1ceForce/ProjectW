@@ -14,6 +14,7 @@ public class DropItem : MonoBehaviour, IDropHandler
         var item = DragItem.dragItem;
         var childrens = transform.GetComponentsInChildren<DragItem>();
         // var SlotTag = transform.tag;
+        inventory.SwapItem(inventory.GetInventorySlot(item.currentSlot), inventory.GetInventorySlot(transform));
         if (item != null && childrens.Length == 0)
         {
             item.SetItemToSlot(transform);
@@ -23,6 +24,7 @@ public class DropItem : MonoBehaviour, IDropHandler
             var slot = item.currentSlot;
             childrens[0].SetItemToSlot(slot);
             item.SetItemToSlot(transform);
+
         }
     }
 

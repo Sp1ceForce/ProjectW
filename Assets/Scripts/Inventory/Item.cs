@@ -10,5 +10,6 @@ public class Item : ScriptableObject
     public float timeToPickUp = 3000f;
     public float currentTimeToPickUp = 0f;
     public GameObject prefab;
+    public bool itSelectedItem = true;
 
 }
