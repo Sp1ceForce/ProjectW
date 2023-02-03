@@ -43,6 +43,10 @@ public class Inventory : MonoBehaviour, IAddItem
                 AddItemToUI(items[i], slots[i]);
             }
         }
+        for (int i = 0; i < size; i++)
+        {
+            items[i].transform = slots[i];
+        }
     }
 
     public void AddItemToUI(InventorySlot invSlot, Transform objSlot)
@@ -112,9 +116,19 @@ public class Inventory : MonoBehaviour, IAddItem
     }
     public void SwapItem(InventorySlot one, InventorySlot two)
     {
-        InventorySlot tmp = one;
-        one = two;
-        two = tmp;
+        InventorySlot tmpOne = one;
+        int IndexOne = items.IndexOf(one);
+        int IndexTwo = items.IndexOf(two);
+
+        items[IndexOne] = items[IndexTwo];
+        items[IndexTwo] = tmpOne;
+
+        Transform tmp = items[IndexOne].transform;
+        items[IndexOne].transform = tmpOne.transform;
+        items[IndexTwo].transform = tmp;
+
+
+
     }
     public InventorySlot GetInventorySlot(Transform trn)
     {

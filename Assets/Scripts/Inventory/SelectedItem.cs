@@ -18,8 +18,10 @@ public class SelectedItem : MonoBehaviour
                 if (item.currentTimeToPickUp >= item.timeToPickUp)
                 {
                     item.currentTimeToPickUp = 0;
-                    EventBus.RaiseEvent<IAddItem>(h => h.AddItem(item, amount));
-                    Destroy(this.gameObject);
+                    if (item.itSelectedItem)
+                        EventBus.RaiseEvent<IAddItem>(h => h.AddItem(item, amount));
+                    gameObject.GetComponent<AfterInteract>().AfterInteractLogic();
+                    // Destroy(this.gameObject);
                 }
             }
 
@@ -28,7 +30,5 @@ public class SelectedItem : MonoBehaviour
         {
             item.currentTimeToPickUp = 0;
         }
-
-
     }
 }

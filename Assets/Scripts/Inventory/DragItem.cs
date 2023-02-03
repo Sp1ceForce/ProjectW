@@ -8,6 +8,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public Transform currentSlot;
     private Vector3 startPosition;
     private Transform startParrent;
+    public Transform StartParrent { get => startParrent; }
     private CanvasGroup canvasGroup;
     private RectTransform dragLayer;
     private Transform slot;
