@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EventBusSystem;
-public class IngredientAfterIteractLogic : AfterInteract
+public class IngredientIteractLogic : AfterInteract
 {
     public override void AfterInteractLogic()
     {
