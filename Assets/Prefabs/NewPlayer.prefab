@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc694d2ee06ce784ab68fba74db6eca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useGlobalData: 1
   Data:
     playerSpeed: 0
     SpeedMultiplier: 1
@@ -379,6 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c455d9dd6784fbf49a07430fc8364db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useGlobalData: 1
   witchData:
     MaxHealth: 100
     CurrentHealth: 0

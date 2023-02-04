@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - TestTagForItem
+  - DragLayer
+  - Inventory
   layers:
   - Default
   - TransparentFX
