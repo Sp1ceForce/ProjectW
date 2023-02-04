@@ -49,11 +49,12 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                InventorySlot invSlot = inventory.GetInventorySlot(startParrent);
+                Debug.Log(currentSlot.name);
+                InventorySlot invSlot = inventory.GetInventorySlot(currentSlot);
                 Instantiate(invSlot.item.prefab,
                 new Vector3(hit.point.x, hit.point.y + 1, hit.point.z),
                 Quaternion.identity);
-                inventory.RemoveItem(invSlot);
+                inventory.RemoveItem(inventorySlot: invSlot);
             }
             else
             {
@@ -67,6 +68,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void SetItemToSlot(Transform slot)
     {
+        startParrent = null;
         this.slot = slot;
         transform.SetParent(slot);
         currentSlot = slot;

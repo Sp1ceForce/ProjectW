@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: -1
   icon: {fileID: 0}
-  timeToPickUp: 0.1
+  timeToPickUp: 0.001
   currentTimeToPickUp: 0
   prefab: {fileID: 0}
   itSelectedItem: 0

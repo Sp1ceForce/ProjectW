@@ -53,18 +53,44 @@ public class Inventory : MonoBehaviour, IAddItem
     {
         other.AddItemToSelectedSlot(thisSlot.item, otherSlot.transform, amount);
         RemoveItem(thisSlot);
-
-
     }
     public void SwapItemBetwenInventory(Inventory other, InventorySlot otherSlot, InventorySlot thisSlot, int amount = 1)
     {
-        Item tmpOtherItem = otherSlot.item;
-        Item TmpThisItem = thisSlot.item;
-        InventorySlot tmp = thisSlot;
-        other.AddItemToSelectedSlot(TmpThisItem, otherSlot.transform, amount);
-        AddItemToSelectedSlot(tmpOtherItem, tmp.transform, amount);
-        RemoveItem(thisSlot);
+        InventorySlot tmpOther = otherSlot;
+        InventorySlot tmpThis = thisSlot;
+        Item itmpThis = thisSlot.item;
+        Item itmpOther = otherSlot.item;
+        GameObject GOThis = thisSlot.iconGameObject;
+        GameObject GOOther = otherSlot.iconGameObject;
+        // RemoveItem(thisSlot);
         // other.RemoveItem(otherSlot);
+
+        // other.AddItemToSelectedSlot(TmpThis.item, tmpOther.transform, amount);
+        thisSlot.item = itmpOther;
+        thisSlot.amount = tmpOther.amount;
+        thisSlot.iconGameObject = GOOther;
+        thisSlot.iconGameObject.transform.position = tmpOther.iconGameObject.transform.position;
+        // thisSlot.iconGameObject.GetComponent<Image>().sprite = itmpOther.icon;
+
+        // AddItemToSelectedSlot(tmpOther.item, TmpThis.transform, amount);
+        otherSlot.item = itmpThis;
+        otherSlot.amount = tmpThis.amount;
+        otherSlot.iconGameObject = GOThis;
+        otherSlot.iconGameObject.transform.position = tmpThis.iconGameObject.transform.position;
+        // otherSlot.iconGameObject.GetComponent<Image>().sprite = itmpThis.icon;
+
+
+
+    }
+    public InventorySlot AddItemToSelectedSlot(Item item, Transform parent, int amount = 1)
+    {
+        InventorySlot q = GetInventorySlot(parent);
+        // Debug.Log(q.item);
+        q.item = item;
+        q.amount = amount;
+        if (parent.childCount < 1)
+            AddItemToUI(q, parent);
+        return q;
     }
     public void AddItemToUI(InventorySlot invSlot, Transform objSlot)
     {
@@ -105,16 +131,6 @@ public class Inventory : MonoBehaviour, IAddItem
                 break;
             }
         }
-    }
-    public InventorySlot AddItemToSelectedSlot(Item item, Transform parent, int amount = 1)
-    {
-        InventorySlot q = GetInventorySlot(parent);
-        Debug.Log(q.item);
-        q.item = item;
-        q.amount = amount;
-        if (parent.childCount < 1)
-            AddItemToUI(q, parent);
-        return q;
     }
     public void RemoveItem(InventorySlot inventorySlot, int amount = 1)
     {
@@ -161,6 +177,15 @@ public class Inventory : MonoBehaviour, IAddItem
         else
             return null;
     }
+    [ContextMenu("Clear Inventory")]
+    private void ClearInventory()
+    {
+        foreach (InventorySlot slot in items)
+        {
+            RemoveItem(slot, slot.amount);
+        }
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
