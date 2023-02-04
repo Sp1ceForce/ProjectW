@@ -78,9 +78,6 @@ public class Inventory : MonoBehaviour, IAddItem
         otherSlot.iconGameObject = GOThis;
         otherSlot.iconGameObject.transform.position = tmpThis.iconGameObject.transform.position;
         // otherSlot.iconGameObject.GetComponent<Image>().sprite = itmpThis.icon;
-
-
-
     }
     public InventorySlot AddItemToSelectedSlot(Item item, Transform parent, int amount = 1)
     {
