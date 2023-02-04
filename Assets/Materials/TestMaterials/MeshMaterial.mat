@@ -35,12 +35,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EdgeWidth: 0.019
+    - _EdgeWidth: 0.076
     - _QueueControl: 0
     - _QueueOffset: 0
     - _dissolveAmount: 0
+    - _noiseScale: 94.2
     m_Colors:
-    - _EdgeColor: {r: 0.98039216, g: 0.29411757, b: 0.62644154, a: 0}
+    - _EdgeColor: {r: 0.26191637, g: 0.18519048, b: 0.6415094, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2197945002722342690
 MonoBehaviour:
