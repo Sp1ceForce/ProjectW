@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-public abstract class BaseBomb : BaseQuickslotItem
+public abstract class BaseBomb : ScriptableObject, ISpellActivate
 {
     [Header("Полёт бомбы и эффекты")]
     [SerializeField] AnimationCurve throwingArc;
@@ -12,13 +12,19 @@ public abstract class BaseBomb : BaseQuickslotItem
     [SerializeField] LayerMask physicsMask;
     [SerializeField] float explosionRaidus;
     [SerializeField] float explosionTime; 
-    public override void Activate(GameObject instigator)
+    public void Activate(GameObject instigator)
     {
         instigator.GetComponent<MonoBehaviour>().StartCoroutine(ThrowBomb(instigator));
     }
 
     protected abstract void ExplosionLogic(GameObject instigator, Vector3 explosionPosition, Collider[] entitiesHit);
 
+    protected void DealDamage(Collider[] entitiesHit, int damage){
+        foreach(var entity in entitiesHit){
+            EnemyHealthComponent healthComponent = entity.GetComponent<EnemyHealthComponent>();
+            if(healthComponent!=null) healthComponent.TakeDamage(damage);
+        }
+    }
     IEnumerator ThrowBomb(GameObject instigator){
         //Получение координат куда должна прилететь бомба
         Vector3 endPosition;
@@ -30,25 +36,21 @@ public abstract class BaseBomb : BaseQuickslotItem
         Vector3 startPosition = instigator.transform.position + instigator.transform.forward * 0.7f;
         var bomb = Instantiate(bombObject,startPosition,Quaternion.identity);
         float timePassed = 0f;
-
         while(timePassed < throwDuration){
-            timePassed += Time.deltaTime;
             float linearT = timePassed / throwDuration;
             float heightT = throwingArc.Evaluate(linearT);
+
             float height = Mathf.Lerp (0f,maxHeight,heightT);
-            bomb.transform.position = Vector3.Lerp(startPosition,endPosition,linearT) + new Vector3(0,height,0);
-            yield return new WaitForEndOfFrame();
+            bombObject.transform.position = Vector3.Lerp(startPosition,endPosition,linearT) + new Vector3(0,height,0);
         }
 
         //Ожидание взрыва гранаты
         yield return new WaitForSeconds(explosionTime);
 
         //Взрыв 
-        var explosion = Instantiate(explosionParticles,bomb.transform.position,Quaternion.identity);
         var colliders = Physics.OverlapSphere(endPosition,explosionRaidus,physicsMask);
         ExplosionLogic(instigator,endPosition,colliders);
         Destroy(bomb);
-        Destroy(explosion,0.7f);
     }
 
     protected void PushAway(Collider[] entitiesHit, float pushForce, Vector3 explosionPosition){
@@ -58,11 +60,5 @@ public abstract class BaseBomb : BaseQuickslotItem
         }
     }
 
-    protected void DealDamage(Collider[] entitiesHit, int damage){
-        foreach(var entity in entitiesHit){
-            EnemyHealthComponent healthComponent = entity.GetComponent<EnemyHealthComponent>();
-            if(healthComponent!=null) healthComponent.TakeDamage(damage);
-        }
-    }
 }
 
