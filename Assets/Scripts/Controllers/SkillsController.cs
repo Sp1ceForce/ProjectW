@@ -19,8 +19,8 @@ public class SkillsController : MonoBehaviour
     public Action OnAimingEnd;
     [Header("Быстрые слоты")]
 
-    [SerializeField] List<BaseQuickslotItem> quickslotItems;
-    BaseQuickslotItem activeItem;
+    [SerializeField] List<ISpellActivate> quickSlots;
+    ISpellActivate activeSpell;
     public void OnQuickSlotButtonPress(InputAction.CallbackContext obj){
         if(obj.started){
             switch(obj.control.displayName)
@@ -42,8 +42,8 @@ public class SkillsController : MonoBehaviour
     }
     void ChangeQuickSlot(int slotIndex){
         int newSlotIndex = slotIndex - 1;
-        if(quickslotItems[newSlotIndex]!=null){
-            activeItem = quickslotItems[newSlotIndex];
+        if(quickSlots[newSlotIndex]!=null){
+            activeSpell = quickSlots[newSlotIndex];
         }
     }
     public void OnBlinkButtonPress(InputAction.CallbackContext obj){
@@ -61,28 +61,6 @@ public class SkillsController : MonoBehaviour
             break;
         }
 
-    }
-    
-     public void OnRightClickPress(InputAction.CallbackContext obj){
-        if(activeItem == null) return;
-       
-        switch(activeItem.ItemType){
-            case ItemType.IT_Bomb:
-                switch(obj.phase){
-                    case InputActionPhase.Started:
-                    OnAimingStart?.Invoke();
-                    OnActiveSpellChanged?.Invoke();
-                    break;
-                    case InputActionPhase.Canceled:
-                    activeItem.Activate(gameObject);
-                    OnAimingEnd?.Invoke();
-                    break;
-                }
-            break;
-            case ItemType.IT_Potion:
-                if(obj.started) activeItem.Activate(gameObject);
-            break;
-        }
     }
     public void OnProjectileButtonPress(InputAction.CallbackContext obj){
         switch(obj.phase){
