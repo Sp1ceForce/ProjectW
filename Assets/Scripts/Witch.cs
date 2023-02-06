@@ -17,7 +17,7 @@ public class WitchData {
 public class Witch : MonoBehaviour {
     [Header("Статы")]
     [SerializeField] bool useGlobalData = true;
-    [SerializeField] WitchData witchData;
+    public WitchData witchData;
 
 
     //События
@@ -28,6 +28,7 @@ public class Witch : MonoBehaviour {
     private void Start()
     {
         LoadData();
+        OnHealthChange?.Invoke();
     }
 
     private void LoadData()
@@ -44,6 +45,7 @@ public class Witch : MonoBehaviour {
         else {
             witchData.CurrentHealth = Math.Clamp(newHealth,1,witchData.MaxHealth);
         }
+        OnHealthChange?.Invoke();
         if(witchData.CurrentHealth <=0) {
             OnDeath?.Invoke();
             Death();
@@ -55,6 +57,7 @@ public class Witch : MonoBehaviour {
     public void Heal(int Healing){
         witchData.CurrentHealth+=Healing;
         witchData.CurrentHealth = Math.Clamp(witchData.CurrentHealth,0,witchData.MaxHealth);
+        OnHealthChange?.Invoke();
     }
     public IEnumerator CurseIncreaseCoroutine(){
         yield return new NotImplementedException();

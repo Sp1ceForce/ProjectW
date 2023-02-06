@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78145a66eaaa5ca418de9bb05962af82, type: 3}
   m_Name: ExplosiveBomb
   m_EditorClassIdentifier: 
+  ItemType: 0
   throwingArc:
     serializedVersion: 2
     m_Curve:
@@ -56,4 +57,4 @@ MonoBehaviour:
   explosionRaidus: 4
   explosionTime: 0.7
   damage: 60
-  pushForce: 200
+  pushForce: 60
