@@ -19,12 +19,6 @@ public abstract class BaseBomb : BaseQuickslotItem
 
     protected abstract void ExplosionLogic(GameObject instigator, Vector3 explosionPosition, Collider[] entitiesHit);
 
-    protected void DealDamage(Collider[] entitiesHit, int damage){
-        foreach(var entity in entitiesHit){
-            EnemyHealthComponent healthComponent = entity.GetComponent<EnemyHealthComponent>();
-            if(healthComponent!=null) healthComponent.TakeDamage(damage);
-        }
-    }
     IEnumerator ThrowBomb(GameObject instigator){
         //Получение координат куда должна прилететь бомба
         Vector3 endPosition;
@@ -64,5 +58,11 @@ public abstract class BaseBomb : BaseQuickslotItem
         }
     }
 
+    protected void DealDamage(Collider[] entitiesHit, int damage){
+        foreach(var entity in entitiesHit){
+            EnemyHealthComponent healthComponent = entity.GetComponent<EnemyHealthComponent>();
+            if(healthComponent!=null) healthComponent.TakeDamage(damage);
+        }
+    }
 }
 

@@ -65,14 +65,22 @@ public class SkillsController : MonoBehaviour
     
      public void OnRightClickPress(InputAction.CallbackContext obj){
         if(activeItem == null) return;
-        switch(obj.phase){
-            case InputActionPhase.Started:
-            OnAimingStart?.Invoke();
-            OnActiveSpellChanged?.Invoke();
+       
+        switch(activeItem.ItemType){
+            case ItemType.IT_Bomb:
+                switch(obj.phase){
+                    case InputActionPhase.Started:
+                    OnAimingStart?.Invoke();
+                    OnActiveSpellChanged?.Invoke();
+                    break;
+                    case InputActionPhase.Canceled:
+                    activeItem.Activate(gameObject);
+                    OnAimingEnd?.Invoke();
+                    break;
+                }
             break;
-            case InputActionPhase.Canceled:
-            activeItem.Activate(gameObject);
-            OnAimingEnd?.Invoke();
+            case ItemType.IT_Potion:
+                if(obj.started) activeItem.Activate(gameObject);
             break;
         }
     }
