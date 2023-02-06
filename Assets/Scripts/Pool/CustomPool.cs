@@ -4,28 +4,12 @@ using UnityEngine;
 using UnityEngine.Pool;
 using EventBusSystem;
 
-public class PullObjectData : ScriptableObject
-{
-    [SerializeField] private int _defaultCapacity = 10;
-    public int DefaultCapacity { get => _defaultCapacity; set => _defaultCapacity = value; }
-    [SerializeField] private int _maxPoolSize = 1000;
-    public int MaxPoolSize { get => _maxPoolSize; set => _maxPoolSize = value; }
-    [SerializeField] private bool _respawn = true;
-    public bool Respawn { get => _respawn; set => _respawn = value; }
-    [SerializeField] private float _timeToRespawn = 2f;
-    public float TimeToRespawn { get => _timeToRespawn; set => _timeToRespawn = value; }
-    [SerializeField] private string _objectName = "Object";
-    public string ObjectName { get => _objectName; set => _objectName = value; }
-    [SerializeField] private string _objectTag = "TestItem";
-    public string ObjectTag { get => _objectTag; set => _objectTag = value; }
-    [SerializeField] private GameObject _objectPrefab;
-    public GameObject ObjectPrefab { get => _objectPrefab; set => _objectPrefab = value; }
-}
+
 public class CustomPool : MonoBehaviour, IFindItem
 {
     private ObjectPool<GameObject> _pool;
     private bool _findObject = true;
-    [SerializeField] private PullObjectData _data;
+    [SerializeField] private PoolObjectData _data;
     private void OnEnable()
     {
         EventBus.Subscribe(this);
@@ -62,6 +46,8 @@ public class CustomPool : MonoBehaviour, IFindItem
         collectionCheck: false,
         defaultCapacity: _data.DefaultCapacity,
         maxSize: _data.MaxPoolSize);
+
+        
         _pool.Get();
     }
     private void OnDisable()

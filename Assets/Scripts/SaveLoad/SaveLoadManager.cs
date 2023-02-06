@@ -11,6 +11,8 @@ using System.Xml.Serialization;
 
 public class SaveLoadManager : ScriptableObject, ISaveWitchHandler, ISaveLocationHandler, ILoadWitchHandler, ILoadLocationHandler
 {
+
+
     private void OnEnable()
     {
         EventBus.Subscribe(this);
@@ -19,13 +21,23 @@ public class SaveLoadManager : ScriptableObject, ISaveWitchHandler, ISaveLocatio
     {
         EventBus.Unsubscribe(this);
     }
-    public void LoadLocation()
+    private static SaveLoadManager _instance;
+    public static SaveLoadManager Instance => _instance == null ? LoadData() : _instance;
+    public static SaveLoadManager LoadData()
     {
-        Debug.Log("Load Location");
+        Debug.Log("SaveLoadManager is load!");
+
+        return _instance = Resources.Load<SaveLoadManager>("SaveLoadManager");
+
     }
 
 
 
+
+    public void LoadLocation()
+    {
+        Debug.Log("Load Location");
+    }
     public void SaveLocation()
     {
         Debug.Log("Save Location");
