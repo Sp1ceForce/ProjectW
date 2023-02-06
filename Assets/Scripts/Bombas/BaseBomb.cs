@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-public abstract class BaseBomb : ScriptableObject, ISpellActivate
+public abstract class BaseBomb : BaseQuickslotItem
 {
     [Header("Полёт бомбы и эффекты")]
     [SerializeField] AnimationCurve throwingArc;
@@ -12,7 +12,7 @@ public abstract class BaseBomb : ScriptableObject, ISpellActivate
     [SerializeField] LayerMask physicsMask;
     [SerializeField] float explosionRaidus;
     [SerializeField] float explosionTime; 
-    public void Activate(GameObject instigator)
+    public override void Activate(GameObject instigator)
     {
         instigator.GetComponent<MonoBehaviour>().StartCoroutine(ThrowBomb(instigator));
     }
@@ -36,21 +36,25 @@ public abstract class BaseBomb : ScriptableObject, ISpellActivate
         Vector3 startPosition = instigator.transform.position + instigator.transform.forward * 0.7f;
         var bomb = Instantiate(bombObject,startPosition,Quaternion.identity);
         float timePassed = 0f;
+
         while(timePassed < throwDuration){
+            timePassed += Time.deltaTime;
             float linearT = timePassed / throwDuration;
             float heightT = throwingArc.Evaluate(linearT);
-
             float height = Mathf.Lerp (0f,maxHeight,heightT);
-            bombObject.transform.position = Vector3.Lerp(startPosition,endPosition,linearT) + new Vector3(0,height,0);
+            bomb.transform.position = Vector3.Lerp(startPosition,endPosition,linearT) + new Vector3(0,height,0);
+            yield return new WaitForEndOfFrame();
         }
 
         //Ожидание взрыва гранаты
         yield return new WaitForSeconds(explosionTime);
 
         //Взрыв 
+        var explosion = Instantiate(explosionParticles,bomb.transform.position,Quaternion.identity);
         var colliders = Physics.OverlapSphere(endPosition,explosionRaidus,physicsMask);
         ExplosionLogic(instigator,endPosition,colliders);
         Destroy(bomb);
+        Destroy(explosion,0.7f);
     }
 
     protected void PushAway(Collider[] entitiesHit, float pushForce, Vector3 explosionPosition){

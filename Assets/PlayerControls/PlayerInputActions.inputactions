@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "RightMouseButton",
+                    "type": "Button",
+                    "id": "d7f841a3-a048-428f-a794-b6ed54cc6888",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "QuickSlots",
                     "type": "Value",
                     "id": "f1db5fe9-cc0e-44f4-b71f-dae54328b50b",
@@ -137,6 +146,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "QuickSlots",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b661f5c1-d367-4322-8fc9-b05bf30e1686",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightMouseButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
