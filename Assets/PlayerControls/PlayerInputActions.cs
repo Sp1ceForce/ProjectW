@@ -64,6 +64,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""RightMouseButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""d7f841a3-a048-428f-a794-b6ed54cc6888"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""QuickSlots"",
                     ""type"": ""Value"",
                     ""id"": ""f1db5fe9-cc0e-44f4-b71f-dae54328b50b"",
@@ -161,6 +170,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""QuickSlots"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b661f5c1-d367-4322-8fc9-b05bf30e1686"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightMouseButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -173,6 +193,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_QSkill = m_Player.FindAction("QSkill", throwIfNotFound: true);
         m_Player_ESkill = m_Player.FindAction("ESkill", throwIfNotFound: true);
         m_Player_LeftMouseButton = m_Player.FindAction("LeftMouseButton", throwIfNotFound: true);
+        m_Player_RightMouseButton = m_Player.FindAction("RightMouseButton", throwIfNotFound: true);
         m_Player_QuickSlots = m_Player.FindAction("QuickSlots", throwIfNotFound: true);
     }
 
@@ -237,6 +258,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_QSkill;
     private readonly InputAction m_Player_ESkill;
     private readonly InputAction m_Player_LeftMouseButton;
+    private readonly InputAction m_Player_RightMouseButton;
     private readonly InputAction m_Player_QuickSlots;
     public struct PlayerActions
     {
@@ -246,6 +268,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @QSkill => m_Wrapper.m_Player_QSkill;
         public InputAction @ESkill => m_Wrapper.m_Player_ESkill;
         public InputAction @LeftMouseButton => m_Wrapper.m_Player_LeftMouseButton;
+        public InputAction @RightMouseButton => m_Wrapper.m_Player_RightMouseButton;
         public InputAction @QuickSlots => m_Wrapper.m_Player_QuickSlots;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -268,6 +291,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @LeftMouseButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
                 @LeftMouseButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
                 @LeftMouseButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
+                @RightMouseButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouseButton;
+                @RightMouseButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouseButton;
+                @RightMouseButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouseButton;
                 @QuickSlots.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuickSlots;
                 @QuickSlots.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuickSlots;
                 @QuickSlots.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuickSlots;
@@ -287,6 +313,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @LeftMouseButton.started += instance.OnLeftMouseButton;
                 @LeftMouseButton.performed += instance.OnLeftMouseButton;
                 @LeftMouseButton.canceled += instance.OnLeftMouseButton;
+                @RightMouseButton.started += instance.OnRightMouseButton;
+                @RightMouseButton.performed += instance.OnRightMouseButton;
+                @RightMouseButton.canceled += instance.OnRightMouseButton;
                 @QuickSlots.started += instance.OnQuickSlots;
                 @QuickSlots.performed += instance.OnQuickSlots;
                 @QuickSlots.canceled += instance.OnQuickSlots;
@@ -300,6 +329,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnQSkill(InputAction.CallbackContext context);
         void OnESkill(InputAction.CallbackContext context);
         void OnLeftMouseButton(InputAction.CallbackContext context);
+        void OnRightMouseButton(InputAction.CallbackContext context);
         void OnQuickSlots(InputAction.CallbackContext context);
     }
 }

@@ -18,35 +18,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.2762083
-      outSlope: 0.2762083
+      inSlope: 2.0168066
+      outSlope: 2.0168066
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.65429974
-      value: 0.18072303
-      inSlope: 0.083518684
-      outSlope: 0.083518684
-      tangentMode: 0
+      time: 0.49583334
+      value: 1
+      inSlope: 0.016667783
+      outSlope: 0.016667783
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.27145967
-    - serializedVersion: 3
-      time: 0.9199815
-      value: 0.13592476
-      inSlope: -0.7568882
-      outSlope: -0.7568882
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.47928697
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -1.6986662
-      outSlope: -1.6986662
+      inSlope: -1.983471
+      outSlope: -1.983471
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -54,8 +45,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  throwDuration: 1
-  maxHeight: 2.5
+  throwDuration: 0.7
+  maxHeight: 3
   bombObject: {fileID: 1086224761313166, guid: fa66820763744ef46b5a9cfb5ef88187, type: 3}
   explosionParticles: {fileID: 1804206099813350, guid: 4dd02b5f854b6c84990fbeb810abffe4,
     type: 3}
@@ -63,4 +54,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   explosionRaidus: 4
-  explosionTime: 2
+  explosionTime: 0.7
+  damage: 60
+  pushForce: 200
