@@ -1649,7 +1649,7 @@ PrefabInstance:
     - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
         type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
         type: 3}
@@ -1658,12 +1658,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: d7f841a3-a048-428f-a794-b6ed54cc6888
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_ActionName
       value: Player/QuickSlots[/Keyboard/1]
       objectReference: {fileID: 0}
     - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: Player/RightMouseButton[/Mouse/rightButton]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
@@ -1673,7 +1688,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1259875999}
+    - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1259875999}
     - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
@@ -1683,8 +1708,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnQuickSlotButtonPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnRightClickPress
       objectReference: {fileID: 0}
     - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
         type: 3}
@@ -1693,9 +1728,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SkillsController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2226049689613550708, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226049689613550709, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
+      propertyPath: quickslotItems.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226049689613550709, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
+      propertyPath: quickslotItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d87fd3731acae143b8af50ec697c37c,
+        type: 2}
     - target: {fileID: 2226049689613550710, guid: 535db1614a2641745b6c1633c8a9053e,
         type: 3}
       propertyPath: m_LocalPosition.x
