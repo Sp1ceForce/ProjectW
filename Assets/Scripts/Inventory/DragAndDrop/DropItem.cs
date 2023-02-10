@@ -5,19 +5,32 @@ public class DropItem : MonoBehaviour, IDropHandler
 {
     private Inventory fromInventory;
     private Inventory thisInventory;
+    private ResultSlot resultSlot;
+    private bool itResultSlot;
     private void Start()
     {
         // mainInventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
         thisInventory = transform.parent.GetComponent<Inventory>();
         fromInventory = null;
+        if (itResultSlot = TryGetComponent<ResultSlot>(out resultSlot))
+        {
+            Debug.Log(itResultSlot);
+        };
     }
     public void OnDrop(PointerEventData eventData)
     {
         var item = DragItem.dragItem;
         var childrens = transform.GetComponentsInChildren<DragItem>();
 
+        if (itResultSlot)
+        {
+            var slot = item.currentSlot;
+            item.SetItemToSlot(slot);
+            return;
+        }
+
         fromInventory = item.StartParrent.parent.GetComponent<Inventory>();
-        Debug.Log(fromInventory);
+        // Debug.Log(fromInventory);
         if (thisInventory == fromInventory)
         {
             thisInventory.SwapItem(thisInventory.GetInventorySlot(item.currentSlot), thisInventory.GetInventorySlot(transform));
@@ -34,7 +47,6 @@ public class DropItem : MonoBehaviour, IDropHandler
         }
         else
         {
-
             if (item != null && childrens.Length == 0)
             {
                 fromInventory.SendItemToAnotherInventory(
