@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Item", menuName = "ProjectW/Item")]
+[CreateAssetMenu(fileName = "Item", menuName = "ProjectW/Items/Item")]
 public class Item : ScriptableObject
 {
     public int id;
@@ -11,5 +11,5 @@ public class Item : ScriptableObject
     public float currentTimeToPickUp = 0f;
     public GameObject prefab;
     public bool itSelectedItem = true;
-
+    [SerializeField] public Ingredient ingredient;
 }
