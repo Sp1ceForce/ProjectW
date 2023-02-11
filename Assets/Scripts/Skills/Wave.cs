@@ -23,7 +23,7 @@ public class Wave : Spell
         foreach(Collider collider in colliders){
 
             var knockbackComponent = collider.GetComponent<EnemyKnockbackComponent>();
-            if(knockbackComponent) knockbackComponent.KnockBack(Instigator.transform.position,spellData.WaveKnockbackForce);
+            if(knockbackComponent) knockbackComponent.KnockBack(Instigator.transform,spellData.WaveKnockbackForce);
             var healthComponent = collider.GetComponent<EnemyHealthComponent>();
             if(healthComponent) healthComponent.TakeDamage(spellData.Damage);
         }

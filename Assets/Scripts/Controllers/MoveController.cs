@@ -51,14 +51,8 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
     void SubscribeToEvents()
     {
         var skillsController = GetComponent<SkillsController>();
-        skillsController.OnAimingStart += () => {
-            RotatePlayerToCursor();
-            isAiming = true;
-        };
-        skillsController.OnAimingEnd += () => {
-            RotatePlayerToInput();
-            isAiming = false;
-        };
+        skillsController.OnAimingStart += () => isAiming = true;
+        skillsController.OnAimingEnd += () => isAiming = false;
 
     }
     // Update is called once per frame
