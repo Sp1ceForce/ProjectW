@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class ResultSlot : MonoBehaviour
+using EventBusSystem;
+public abstract class ResultSlot : MonoBehaviour, IRefreshCraft
 {
-    // Start is called before the first frame update
-    void Start()
+    private InventorySlot slot;
+    private Inventory inventory;
+    public abstract void RefreshCraft();
+
+    private void Start()
     {
-        
+        inventory = transform.parent.GetComponent<Inventory>();
+        slot = inventory.GetInventorySlot(transform);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
