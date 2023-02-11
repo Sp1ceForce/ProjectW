@@ -33,7 +33,7 @@ public class MeleeAttack : Spell
             if(Vector3.Angle(Instigator.transform.forward,dirToTarget) < spellData.AttackAngle / 2)
             {
                 var knockbackComponent = collider.GetComponent<EnemyKnockbackComponent>();
-                if(knockbackComponent) knockbackComponent.KnockBack(Instigator.transform.position,spellData.AttackKnockbackForce);
+                if(knockbackComponent) knockbackComponent.KnockBack(Instigator.transform,spellData.AttackKnockbackForce);
                 var healthComponent = collider.GetComponent<EnemyHealthComponent>();
                 if(healthComponent) healthComponent.TakeDamage(spellData.Damage);
             }  
