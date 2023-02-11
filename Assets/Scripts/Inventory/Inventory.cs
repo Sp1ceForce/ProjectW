@@ -194,6 +194,14 @@ public class Inventory : MonoBehaviour, IAddItem
         }
     }
 
+    [ContextMenu("Hide Inventory")]
+    private void HideInventory()
+    {
+        for (int i = 0; i < InventoryPanel.transform.childCount; i++)
+        {
+            InventoryPanel.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
 
     //Я знаю, что так нельзя, это временное решение, потом нужно перевести на нормальную систему управления
     //К тому же есть проблема с тем, что я написал инвентарь так, что класс Inventory находиться на объекте Panel Inventory -

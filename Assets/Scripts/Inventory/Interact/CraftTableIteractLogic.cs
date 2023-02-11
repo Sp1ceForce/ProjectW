@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EventBusSystem;
-public class PotionIteractLogic : AfterInteract
+public class CraftTableIteractLogic : AfterInteract
 {
-    [SerializeField] public GameObject potionUI;
+    [SerializeField] public GameObject panelUI;
     private bool active = false;
     public override void AfterInteractLogic()
     {
         if (active != true)
         {
             active = true;
-            potionUI.SetActive(active);
+            panelUI.SetActive(active);
         }
     }
 
@@ -20,7 +20,7 @@ public class PotionIteractLogic : AfterInteract
         if (active != false)
         {
             active = false;
-            potionUI.SetActive(active);
+            panelUI.SetActive(active);
         }
     }
 
