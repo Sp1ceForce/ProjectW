@@ -10,7 +10,7 @@ public class SaveData
     private Quaternion _rotation;
     public Quaternion Rotation { get => _rotation; set => _rotation = value; }
     int hp = 0;
-    int curse = 0;
+    int curced = 0;
 }
 [CreateAssetMenu(fileName = "CurrentSave", menuName = "ProjectW/CurrentSave")]
 public class CurrentSave : ScriptableObject, IWitchToSaveData, ISaveDataToWitch

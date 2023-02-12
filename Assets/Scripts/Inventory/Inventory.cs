@@ -32,6 +32,7 @@ public class Inventory : MonoBehaviour, IAddItem
     public int SteckCount { get => steckCount; set => steckCount = value; }
     [SerializeField] private bool mainInventory = false;
 
+
     private void Start()
     {
         //Собрать UI слоты в список
@@ -49,11 +50,14 @@ public class Inventory : MonoBehaviour, IAddItem
             items[i].transform = slots[i];
         }
     }
+
     public void SendItemToAnotherInventory(Inventory other, InventorySlot otherSlot, InventorySlot thisSlot, int amount = 1)
     {
         other.AddItemToSelectedSlot(thisSlot.item, otherSlot.transform, amount);
         RemoveItem(thisSlot);
     }
+
+    //Inventory
     public void SwapItemBetwenInventory(Inventory other, InventorySlot otherSlot, InventorySlot thisSlot, int amount = 1)
     {
         InventorySlot tmpOther = otherSlot;
@@ -79,6 +83,7 @@ public class Inventory : MonoBehaviour, IAddItem
         otherSlot.iconGameObject.transform.position = tmpThis.iconGameObject.transform.position;
         // otherSlot.iconGameObject.GetComponent<Image>().sprite = itmpThis.icon;
     }
+
     public InventorySlot AddItemToSelectedSlot(Item item, Transform parent, int amount = 1)
     {
         InventorySlot q = GetInventorySlot(parent);
@@ -89,6 +94,7 @@ public class Inventory : MonoBehaviour, IAddItem
             AddItemToUI(q, parent);
         return q;
     }
+
     public void AddItemToUI(InventorySlot invSlot, Transform objSlot)
     {
         iconPrefab.GetComponent<Image>().sprite = invSlot.item.icon;
@@ -99,6 +105,7 @@ public class Inventory : MonoBehaviour, IAddItem
         invSlot.countText = objectIcon.GetComponentInChildren<TMP_Text>();
         invSlot.countText.SetText(invSlot.amount.ToString());
     }
+
     public void AddItem(Item item, int amount = 1)
     {
         //Нельзя добавить, если перебор
@@ -129,6 +136,7 @@ public class Inventory : MonoBehaviour, IAddItem
             }
         }
     }
+
     public void RemoveItem(InventorySlot inventorySlot, int amount = 1)
     {
         int result = inventorySlot.amount - amount;
@@ -146,6 +154,7 @@ public class Inventory : MonoBehaviour, IAddItem
             // inventorySlot.transform = null;
         }
     }
+
     public void SwapItem(InventorySlot one, InventorySlot two)
     {
         InventorySlot tmpOne = one;
@@ -160,6 +169,7 @@ public class Inventory : MonoBehaviour, IAddItem
         items[IndexOne].transform = tmpOne.transform;
         items[IndexTwo].transform = tmp;
     }
+
     public InventorySlot GetInventorySlot(Transform trn)
     {
         int q = -1;
@@ -174,6 +184,7 @@ public class Inventory : MonoBehaviour, IAddItem
         else
             return null;
     }
+
     [ContextMenu("Clear Inventory")]
     private void ClearInventory()
     {
@@ -183,11 +194,28 @@ public class Inventory : MonoBehaviour, IAddItem
         }
     }
 
+    [ContextMenu("Hide Inventory")]
+    private void HideInventory()
+    {
+        for (int i = 0; i < InventoryPanel.transform.childCount; i++)
+        {
+            InventoryPanel.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    //Я знаю, что так нельзя, это временное решение, потом нужно перевести на нормальную систему управления
+    //К тому же есть проблема с тем, что я написал инвентарь так, что класс Inventory находиться на объекте Panel Inventory -
+    //Но это даёт преймущество, ибо теперь каждый инвентарь - контейнер. Хотя код на самом деле полное дерьмо
+    //Я просто надеюсь, что это не сломает нам ноги. 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            InventoryPanel.SetActive(!InventoryPanel.active);
+            if (mainInventory == true)
+                foreach (Transform slot in slots)
+                {
+                    slot.gameObject.SetActive(!slot.gameObject.active);
+                }
         }
     }
     private void OnEnable()
