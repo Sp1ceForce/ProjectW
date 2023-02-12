@@ -15,6 +15,7 @@ MonoBehaviour:
   idPotion: 21
   Potion: heal
   idBomb: 9
+  BombITem: {fileID: 11400000, guid: 7b3bb8d18a8f2be48b73993bfa11bf9d, type: 2}
   Bomb: damage
   idDopBomb: 11
   dopBomp: 1.5

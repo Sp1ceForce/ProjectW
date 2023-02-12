@@ -13,7 +13,12 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private RectTransform dragLayer;
     private Transform slot;
     private Inventory inventory;
-    // private InventorySlot tmpSlot;
+    private ResultSlot resultSlot;
+    private bool itResultSlot = false;
+    private CraftSlot craftSlot;
+    private bool itCraftSlot = false;
+    private InventoryQuickSlot quickSlot;
+    private bool itQuickSlot = false;
     private void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
@@ -24,6 +29,20 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (itResultSlot = transform.parent.TryGetComponent<ResultSlot>(out resultSlot))
+        {
+            Debug.Log(itResultSlot);
+            resultSlot.removeComponentCraft();
+        };
+        if (itCraftSlot = transform.parent.TryGetComponent<CraftSlot>(out craftSlot))
+        {
+            Debug.Log(itCraftSlot);
+            craftSlot.resultSlot.removeResultCraft();
+        };
+        if (itQuickSlot = TryGetComponent<InventoryQuickSlot>(out quickSlot))
+        {
+            quickSlot.removeItemFromSkillController();
+        }
         inventory = transform.parent.parent.gameObject.GetComponent<Inventory>();
         slot = null;
         dragItem = this;
@@ -64,6 +83,12 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
         // inventory = null;
         slot = null;
+        resultSlot = null;
+        itResultSlot = false;
+        craftSlot = null;
+        itCraftSlot = false;
+        quickSlot = null;
+        itQuickSlot = false;
     }
 
     public void SetItemToSlot(Transform slot)
