@@ -6,23 +6,17 @@ public class ResultBombSlot : ResultSlot
 {
     [SerializeField] private CraftSlot craftSlot_1;
     [SerializeField] private CraftSlot craftSlot_2;
-    private ScriptableObject effect_1;
-    private ScriptableObject effect_2;
+    private string Bomb;
+    private float dopBomp;
 
     public override void RefreshCraft()
     {
         //Получить эффекты из слотов 
         if (craftSlot_1.slot.item.ingredient != null)
-            effect_1 = craftSlot_1.slot.item.ingredient.Effect_1;
+            Bomb = craftSlot_1.slot.item.ingredient.Bomb;
         if (craftSlot_2.slot.item.ingredient != null)
-            effect_2 = craftSlot_2.slot.item.ingredient.Effect_2;
-
+            dopBomp = craftSlot_2.slot.item.ingredient.dopBomp;
         //сотворить в слоте бомбу с нужным эффектами
-        if (effect_1.bombTag1 == effect_2.bombTag2)
-        {
-            inventory.AddItemToSelectedSlot(slot, slot.transform)
-        }
-        // Inventory.
-
+        //Bomb * dopBomp;
     }
 }
