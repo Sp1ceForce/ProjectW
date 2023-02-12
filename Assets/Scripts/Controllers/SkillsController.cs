@@ -19,76 +19,88 @@ public class SkillsController : MonoBehaviour
     public Action OnAimingEnd;
     [Header("Быстрые слоты")]
 
-    [SerializeField] List<BaseQuickslotItem> quickslotItems;
+    [SerializeField] public List<BaseQuickslotItem> quickslotItems;
     BaseQuickslotItem activeItem;
-    public void OnQuickSlotButtonPress(InputAction.CallbackContext obj){
-        if(obj.started){
-            switch(obj.control.displayName)
+    public void OnQuickSlotButtonPress(InputAction.CallbackContext obj)
+    {
+        if (obj.started)
+        {
+            switch (obj.control.displayName)
             {
                 case "1":
-                ChangeQuickSlot(1);
-                break;
+                    ChangeQuickSlot(1);
+                    break;
                 case "2":
-                ChangeQuickSlot(2);
-                break;
+                    ChangeQuickSlot(2);
+                    break;
                 case "3":
-                ChangeQuickSlot(3);
-                break;
+                    ChangeQuickSlot(3);
+                    break;
                 case "4":
-                ChangeQuickSlot(4);
-                break;
+                    ChangeQuickSlot(4);
+                    break;
             }
         }
     }
-    void ChangeQuickSlot(int slotIndex){
+    void ChangeQuickSlot(int slotIndex)
+    {
         int newSlotIndex = slotIndex - 1;
-        if(quickslotItems[newSlotIndex]!=null){
+        if (quickslotItems[newSlotIndex] != null)
+        {
             activeItem = quickslotItems[newSlotIndex];
         }
     }
-    public void OnBlinkButtonPress(InputAction.CallbackContext obj){
-        if(obj.started) BlinkSkill.Activate(gameObject);
+    public void OnBlinkButtonPress(InputAction.CallbackContext obj)
+    {
+        if (obj.started) BlinkSkill.Activate(gameObject);
     }
-    public void OnMeleeButtonPress(InputAction.CallbackContext obj){
-        switch(obj.phase){
+    public void OnMeleeButtonPress(InputAction.CallbackContext obj)
+    {
+        switch (obj.phase)
+        {
             case InputActionPhase.Started:
-            OnAimingStart?.Invoke();
-            OnActiveSpellChanged?.Invoke();
-            break;
+                OnAimingStart?.Invoke();
+                OnActiveSpellChanged?.Invoke();
+                break;
             case InputActionPhase.Canceled:
-            MeleeAttack.Activate(gameObject);
-            OnAimingEnd?.Invoke();
-            break;
+                MeleeAttack.Activate(gameObject);
+                OnAimingEnd?.Invoke();
+                break;
         }
 
     }
-    
-     public void OnRightClickPress(InputAction.CallbackContext obj){
-        if(activeItem == null) return;
-        switch(obj.phase){
+
+    public void OnRightClickPress(InputAction.CallbackContext obj)
+    {
+        if (activeItem == null) return;
+        switch (obj.phase)
+        {
             case InputActionPhase.Started:
-            OnAimingStart?.Invoke();
-            OnActiveSpellChanged?.Invoke();
-            break;
+                OnAimingStart?.Invoke();
+                OnActiveSpellChanged?.Invoke();
+                break;
             case InputActionPhase.Canceled:
-            activeItem.Activate(gameObject);
-            OnAimingEnd?.Invoke();
-            break;
+                activeItem.Activate(gameObject);
+                OnAimingEnd?.Invoke();
+                break;
         }
     }
-    public void OnProjectileButtonPress(InputAction.CallbackContext obj){
-        switch(obj.phase){
+    public void OnProjectileButtonPress(InputAction.CallbackContext obj)
+    {
+        switch (obj.phase)
+        {
             case InputActionPhase.Started:
-            OnAimingStart?.Invoke();
-            OnActiveSpellChanged?.Invoke();
-            break;
+                OnAimingStart?.Invoke();
+                OnActiveSpellChanged?.Invoke();
+                break;
             case InputActionPhase.Canceled:
-            ProjectileSkill.Activate(gameObject);
-            OnAimingEnd?.Invoke();
-            break;
+                ProjectileSkill.Activate(gameObject);
+                OnAimingEnd?.Invoke();
+                break;
         }
     }
-    public void OnWaveButtonPress(InputAction.CallbackContext obj){
-        if(obj.started) WaveSkill.Activate(gameObject);
+    public void OnWaveButtonPress(InputAction.CallbackContext obj)
+    {
+        if (obj.started) WaveSkill.Activate(gameObject);
     }
 }

@@ -10,9 +10,9 @@ public class DropItem : MonoBehaviour, IDropHandler
     private ResultSlot resultSlot;
     private bool itResultSlot = false;
     private CraftSlot craftSlot;
-
     private bool itCraftSlot = false;
-
+    private InventoryQuickSlot quickSlot;
+    private bool itQuickSlot = false;
     private event Action addItemToCraftSlot;
 
     private void Start()
@@ -23,14 +23,18 @@ public class DropItem : MonoBehaviour, IDropHandler
         fromInventory = null;
         if (itResultSlot = TryGetComponent<ResultSlot>(out resultSlot))
         {
-            Debug.Log(itResultSlot);
+            // Debug.Log(itResultSlot);
         };
         if (itCraftSlot = TryGetComponent<CraftSlot>(out craftSlot))
         {
-            Debug.Log(itCraftSlot);
-            addItemToCraftSlot += craftSlot.AddToCraft;
-
+            // Debug.Log(itCraftSlot);
+            // addItemToCraftSlot += craftSlot.AddToCraft; //// !!!!! ОТПИШИСЬ!!!!!
+            // Debug.Log("HOLA!!!");
         };
+        if (itQuickSlot = TryGetComponent<InventoryQuickSlot>(out quickSlot))
+        {
+
+        }
     }
     public void OnDrop(PointerEventData eventData)
     {
@@ -89,7 +93,11 @@ public class DropItem : MonoBehaviour, IDropHandler
         //Обработка возможности положить предмет в слот для крафта
         if (itCraftSlot)
         {
-            addItemToCraftSlot?.Invoke();
+            craftSlot.AddToCraft();
+        }
+        if (itQuickSlot)
+        {
+            quickSlot.sendToSkillController();
         }
     }
 
