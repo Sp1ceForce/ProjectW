@@ -5,14 +5,8 @@ using UnityEngine;
 public class AbstractEffect : ScriptableObject
 {
     public string bombTag1;
-    public string bombTag2 = "test";
-    public string potionTag1 = "test";
-    public string potionTag2 = "test";
-    public string potionTag3 = "test";
-
-
-
-
-
-
+    public string bombTag2;
+    public string potionTag1;
+    public string potionTag2;
+    public string potionTag3;
 }

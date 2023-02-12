@@ -4,8 +4,8 @@ using UnityEngine;
 using EventBusSystem;
 public abstract class ResultSlot : MonoBehaviour, IRefreshCraft
 {
-    private InventorySlot slot;
-    private Inventory inventory;
+    protected InventorySlot slot;
+    protected Inventory inventory;
     public abstract void RefreshCraft();
 
     private void Start()

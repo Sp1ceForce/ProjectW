@@ -6,8 +6,8 @@ public class ResultBombSlot : ResultSlot
 {
     [SerializeField] private CraftSlot craftSlot_1;
     [SerializeField] private CraftSlot craftSlot_2;
-    private AbstractEffect effect_1;
-    private AbstractEffect effect_2;
+    private ScriptableObject effect_1;
+    private ScriptableObject effect_2;
 
     public override void RefreshCraft()
     {
@@ -18,7 +18,10 @@ public class ResultBombSlot : ResultSlot
             effect_2 = craftSlot_2.slot.item.ingredient.Effect_2;
 
         //сотворить в слоте бомбу с нужным эффектами
-        if (effect_1.bombTag1 == effect_2.bombTag2) { }
+        if (effect_1.bombTag1 == effect_2.bombTag2)
+        {
+            inventory.AddItemToSelectedSlot(slot, slot.transform)
+        }
         // Inventory.
 
     }
