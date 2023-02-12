@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MeshMaterial
+  m_Name: DissolveMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 70dd8dadac6683d46a7f3d7f6c1b0b33,
     type: 3}
   m_ValidKeywords: []
@@ -39,9 +39,10 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _dissolveAmount: 0
-    - _noiseScale: 94.2
+    - _noiseScale: 75.6
     m_Colors:
     - _EdgeColor: {r: 0.26191637, g: 0.18519048, b: 0.6415094, a: 0}
+    - _baseColor: {r: 0.31755736, g: 0.17254895, b: 0.8392157, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2197945002722342690
 MonoBehaviour:
