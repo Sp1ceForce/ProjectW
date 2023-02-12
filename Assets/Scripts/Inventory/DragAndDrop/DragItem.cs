@@ -19,7 +19,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         canvasGroup = GetComponent<CanvasGroup>();
         dragLayer = GameObject.FindGameObjectWithTag("DragLayer").GetComponent<RectTransform>();
         currentSlot = transform.parent;
-        // inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
+        inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
