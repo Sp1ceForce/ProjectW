@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &34966335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2231,7 +2231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -14.1}
+  m_AnchoredPosition: {x: 0, y: -8.7}
   m_SizeDelta: {x: -448.461, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1294583078
@@ -3161,7 +3161,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1294583078}
   m_FillRect: {fileID: 1160307660}
   m_HandleRect: {fileID: 1294583077}
@@ -3169,7 +3169,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.752
+  m_Value: 0.789
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3753,7 +3753,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1694266714}
   m_FillRect: {fileID: 200608792}
   m_HandleRect: {fileID: 1694266713}
