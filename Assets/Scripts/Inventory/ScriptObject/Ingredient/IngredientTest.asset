@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83407d60219b86e4f8c1f463a4303519, type: 3}
   m_Name: IngredientTest
   m_EditorClassIdentifier: 
-  Effect_1: {fileID: 0}
-  Effect_2: {fileID: 0}
-  Effect_3: {fileID: 0}
+  idPotion: 21
+  Potion: heal
+  idBomb: 9
+  Bomb: damage
+  idDopBomb: 11
+  dopBomp: 1.5
