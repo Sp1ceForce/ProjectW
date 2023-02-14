@@ -3915,8 +3915,9 @@ GameObject:
   - component: {fileID: 412958982}
   - component: {fileID: 412958981}
   - component: {fileID: 412958980}
+  - component: {fileID: 412958984}
   m_Layer: 5
-  m_Name: cell1 (3)
+  m_Name: cell1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3935,7 +3936,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 761221741}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4036,6 +4037,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412958977}
   m_CullTransparentMesh: 1
+--- !u!114 &412958984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412958977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3440e1c587d8cc40bcd3961c2e8b429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  inventorySlot:
+    item: {fileID: 0}
+    amount: 0
+    transform: {fileID: 0}
+    countText: {fileID: 0}
+    iconGameObject: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!4 &416244664 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8809183808524255066, guid: e94710fdedfbf5d4bac4ff3193249cd0,
@@ -8367,10 +8388,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1597539780}
-  - {fileID: 1730401827}
-  - {fileID: 1975598998}
   - {fileID: 412958978}
+  - {fileID: 1975598998}
+  - {fileID: 1730401827}
+  - {fileID: 1597539780}
   m_Father: {fileID: 1679755597}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10210,6 +10231,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   craftSlot_1: {fileID: 1655998473}
   craftSlot_2: {fileID: 782868984}
+  DataIDItem: {fileID: 11400000, guid: 60d872b5cf5aae04d8ecadead3c3d32f, type: 2}
+  KeyBombId: 2
 --- !u!1001 &911845924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13622,14 +13645,37 @@ PrefabInstance:
         type: 3}
       propertyPath: quickslotItems.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 0d87fd3731acae143b8af50ec697c37c,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2226049689613550709, guid: 535db1614a2641745b6c1633c8a9053e,
         type: 3}
       propertyPath: quickslotItems.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 80f9499021454394aa8027474c7f01a0,
-        type: 2}
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226049689613550709, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
+      propertyPath: InventoryQuickSlotItems.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226049689613550709, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
+      propertyPath: InventoryQuickSlotItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 412958984}
+    - target: {fileID: 2226049689613550709, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
+      propertyPath: InventoryQuickSlotItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 1975599004}
+    - target: {fileID: 2226049689613550709, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
+      propertyPath: InventoryQuickSlotItems.Array.data[2]
+      value: 
+      objectReference: {fileID: 1730401833}
+    - target: {fileID: 2226049689613550709, guid: 535db1614a2641745b6c1633c8a9053e,
+        type: 3}
+      propertyPath: InventoryQuickSlotItems.Array.data[3]
+      value: 
+      objectReference: {fileID: 1597539786}
     - target: {fileID: 2226049689613550710, guid: 535db1614a2641745b6c1633c8a9053e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13740,7 +13786,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1639206885, guid: 535db1614a2641745b6c1633c8a9053e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 535db1614a2641745b6c1633c8a9053e, type: 3}
 --- !u!1 &1310150977
 GameObject:
@@ -16044,8 +16091,9 @@ GameObject:
   - component: {fileID: 1597539784}
   - component: {fileID: 1597539783}
   - component: {fileID: 1597539782}
+  - component: {fileID: 1597539786}
   m_Layer: 5
-  m_Name: cell1
+  m_Name: cell4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16064,7 +16112,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 761221741}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -16165,6 +16213,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597539779}
   m_CullTransparentMesh: 1
+--- !u!114 &1597539786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597539779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3440e1c587d8cc40bcd3961c2e8b429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  inventorySlot:
+    item: {fileID: 0}
+    amount: 0
+    transform: {fileID: 0}
+    countText: {fileID: 0}
+    iconGameObject: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1 &1606891739
 GameObject:
   m_ObjectHideFlags: 0
@@ -17312,8 +17380,9 @@ GameObject:
   - component: {fileID: 1730401831}
   - component: {fileID: 1730401830}
   - component: {fileID: 1730401829}
+  - component: {fileID: 1730401833}
   m_Layer: 5
-  m_Name: cell1 (1)
+  m_Name: cell3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17332,7 +17401,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 761221741}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -17433,6 +17502,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730401826}
   m_CullTransparentMesh: 1
+--- !u!114 &1730401833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730401826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3440e1c587d8cc40bcd3961c2e8b429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  inventorySlot:
+    item: {fileID: 0}
+    amount: 0
+    transform: {fileID: 0}
+    countText: {fileID: 0}
+    iconGameObject: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!4 &1732202423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7625361593287480045, guid: d6f245ef652d1a74e9d37050458127dd,
@@ -19901,8 +19990,9 @@ GameObject:
   - component: {fileID: 1975599002}
   - component: {fileID: 1975599001}
   - component: {fileID: 1975599000}
+  - component: {fileID: 1975599004}
   m_Layer: 5
-  m_Name: cell1 (2)
+  m_Name: cell2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19921,7 +20011,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 761221741}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -20022,6 +20112,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1975598997}
   m_CullTransparentMesh: 1
+--- !u!114 &1975599004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975598997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3440e1c587d8cc40bcd3961c2e8b429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  inventorySlot:
+    item: {fileID: 0}
+    amount: 0
+    transform: {fileID: 0}
+    countText: {fileID: 0}
+    iconGameObject: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1001 &1987763677
 PrefabInstance:
   m_ObjectHideFlags: 0

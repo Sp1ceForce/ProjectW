@@ -13,15 +13,8 @@ public class CraftSlot : MonoBehaviour, IAddToCraft
     private Inventory inventory;
     public void AddToCraft()
     {
-        // if (slot.item == null) return;
-        // Debug.Log("THIS " + slot);
-        // Debug.Log("AND THIS " + inventory.GetInventorySlot(transform).item.id);
-
         if (slot.item == null)
             slot = inventory.GetInventorySlot(transform);
-        // Debug.Log("AGAIN THIS " + slot);
-        // Debug.Log("AGAIN AND THIS " + slot.item.id);
-        // Debug.Log("HOLA!!!");
         resultSlot.RefreshCraft();
     }
 
