@@ -38,11 +38,11 @@ Material:
     - _EdgeWidth: 0.076
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _dissolveAmount: 0
+    - _dissolveAmount: 0.48
     - _noiseScale: 75.6
     m_Colors:
-    - _EdgeColor: {r: 0.26191637, g: 0.18519048, b: 0.6415094, a: 0}
-    - _baseColor: {r: 0.31755736, g: 0.17254895, b: 0.8392157, a: 0}
+    - _EdgeColor: {r: 0.26210383, g: 0.6431373, b: 0.18431371, a: 0}
+    - _baseColor: {r: 0.16199106, g: 0.13357066, b: 0.26415092, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2197945002722342690
 MonoBehaviour:
