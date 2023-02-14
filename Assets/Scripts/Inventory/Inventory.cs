@@ -54,6 +54,12 @@ public class Inventory : MonoBehaviour, IAddItem
     public void SendItemToAnotherInventory(Inventory other, InventorySlot otherSlot, InventorySlot thisSlot, int amount = 1)
     {
         other.AddItemToSelectedSlot(thisSlot.item, otherSlot.transform, amount);
+        BombHandler bombHandler;
+        if (thisSlot.iconGameObject.TryGetComponent<BombHandler>(out bombHandler))
+        {
+            var handler = otherSlot.iconGameObject.AddComponent<BombHandler>();
+            handler.InitFromAnotherHandler(bombHandler);
+        }
         RemoveItem(thisSlot);
     }
 

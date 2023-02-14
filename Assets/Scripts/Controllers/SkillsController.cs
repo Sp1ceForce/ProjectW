@@ -20,6 +20,8 @@ public class SkillsController : MonoBehaviour
     [Header("Быстрые слоты")]
 
     [SerializeField] public List<BaseQuickslotItem> quickslotItems;
+    [SerializeField] public List<InventoryQuickSlot> InventoryQuickSlotItems;
+
     BaseQuickslotItem activeItem;
     public void OnQuickSlotButtonPress(InputAction.CallbackContext obj)
     {
@@ -81,6 +83,7 @@ public class SkillsController : MonoBehaviour
                 break;
             case InputActionPhase.Canceled:
                 activeItem.Activate(gameObject);
+                InventoryQuickSlotItems[quickslotItems.IndexOf(activeItem)].removeItemFromSkillController();
                 OnAimingEnd?.Invoke();
                 break;
         }
