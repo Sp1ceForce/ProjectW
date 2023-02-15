@@ -4,6 +4,9 @@ using UnityEngine;
 using EventBusSystem;
 public class TestSave : MonoBehaviour
 {
+    [SerializeField] private CurrentSave CurrentSave;
+    [SerializeField] private SaveLoadManager SaveLoadManager;
+
     private void Update()
     {
         //Просто в нужный момент вызываем ивент с сохранением/загрузкой нужной сущности

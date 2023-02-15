@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83407d60219b86e4f8c1f463a4303519, type: 3}
+  m_Name: RedIngred
+  m_EditorClassIdentifier: 
+  Color: Red
+  BombITem: {fileID: 11400000, guid: 7b3bb8d18a8f2be48b73993bfa11bf9d, type: 2}
+  bombIng: {fileID: 11400000, guid: cfb911d1c34952b419a58a25d605d915, type: 2}

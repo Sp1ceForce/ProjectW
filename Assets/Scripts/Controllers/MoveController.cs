@@ -44,24 +44,31 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
     {
         //rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
-        if(useGlobalData) Data = WitchGlobalData.Instance.MoveControllerData;
+        if (useGlobalData) Data = WitchGlobalData.Instance.MoveControllerData;
         trn = transform;
         SubscribeToEvents();
     }
-    void SubscribeToEvents(){
+    void SubscribeToEvents()
+    {
         var skillsController = GetComponent<SkillsController>();
-        skillsController.OnAimingStart += () => isAiming = true;
-        skillsController.OnAimingEnd += () => isAiming = false;
+        skillsController.OnAimingStart += () => {
+            RotatePlayerToCursor();
+            isAiming = true;
+        };
+        skillsController.OnAimingEnd += () => {
+            RotatePlayerToInput();
+            isAiming = false;
+        };
 
     }
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundChecker.position,groundDistance,groundMask);
+        isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, groundMask);
         MovePlayer();
-        if(!isAiming) RotatePlayerToInput();
-        else RotatePlayerToCursor();   
-        
+        if (!isAiming) RotatePlayerToInput();
+        else RotatePlayerToCursor();
+
     }
 
     private void RotatePlayerToCursor()
@@ -75,17 +82,19 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
 
     private void MovePlayer()
     {
-        InputVector = new Vector3(Input.GetAxisRaw("Horizontal"),0, Input.GetAxisRaw("Vertical")).normalized;
+        InputVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
         Vector3 MovementVector = InputVector * Time.deltaTime * Data.PlayerSpeed * Data.SpeedMultiplier;
 
-        if(!isGrounded) MovementVector += Physics.gravity * Time.deltaTime;
+        if (!isGrounded) MovementVector += Physics.gravity * Time.deltaTime;
         //rb.velocity = new Vector3(InputVector.x * Data.PlayerSpeed * Data.SpeedMultiplier, rb.velocity.y, InputVector.y * Data.PlayerSpeed * Data.SpeedMultiplier);
         characterController.Move(MovementVector);
     }
 
-    public void RotatePlayerToInput(){
-        if(InputVector!= Vector3.zero){
-          transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(InputVector), 0.1f);
+    public void RotatePlayerToInput()
+    {
+        if (InputVector != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(InputVector), 0.1f);
         }
     }
     //Дима
@@ -99,7 +108,6 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
     {
         trn.position = Data.Position;
         trn.rotation = Data.Rotation;
-        Debug.Log("q");
     }
     //Дима
 }

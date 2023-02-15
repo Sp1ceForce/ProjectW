@@ -10,7 +10,7 @@ public class SaveData
     private Quaternion _rotation;
     public Quaternion Rotation { get => _rotation; set => _rotation = value; }
     int hp = 0;
-    int curse = 0;
+    int curced = 0;
 }
 [CreateAssetMenu(fileName = "CurrentSave", menuName = "ProjectW/CurrentSave")]
 public class CurrentSave : ScriptableObject, IWitchToSaveData, ISaveDataToWitch
@@ -40,9 +40,11 @@ public class CurrentSave : ScriptableObject, IWitchToSaveData, ISaveDataToWitch
         MoveControllerData.Position = SaveData.Position;
         EventBus.RaiseEvent<IMoveDataToMoveCntr>(h => h.DataToMoveController());
     }
-    private static CurrentSave LoadData()
+    public static CurrentSave LoadData()
     {
+        Debug.Log("CurrentSave is load!");
         return _instance = Resources.Load<CurrentSave>("CurrentSave");
+
     }
 
 
