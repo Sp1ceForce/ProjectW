@@ -139,20 +139,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "0b0e268115eb4ccf8398bea59f7ff847"
-                },
-                "m_SlotId": 7
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "7a418a277e79418ab64acb6cf5eb3624"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "23e01bcd3add4d698571feb9c818f75e"
                 },
                 "m_SlotId": 2
@@ -188,6 +174,20 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "9d3ddfe516764bcabe8a473f1803cbe3"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "315c6df85d7f417890e6ed5b6d73b986"
+                },
+                "m_SlotId": 7
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "7a418a277e79418ab64acb6cf5eb3624"
                 },
                 "m_SlotId": 0
             }
@@ -3768,7 +3768,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "AlphaClipThreshold",
     "m_StageCapability": 2,
-    "m_Value": 0.07000000029802323,
+    "m_Value": 0.9800000190734863,
     "m_DefaultValue": 0.5,
     "m_Labels": []
 }
