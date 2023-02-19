@@ -93,6 +93,8 @@ public class DropItem : MonoBehaviour, IDropHandler
         //Обработка возможности положить предмет в слот для крафта
         if (itCraftSlot)
         {
+            if (item.craftSlot != null)
+                item.craftSlot.UpdateDataSlot();
             craftSlot.AddToCraft();
         }
         if (itQuickSlot)

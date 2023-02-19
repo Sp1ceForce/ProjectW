@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Item_Ingredient_3_DarkBlue
   m_EditorClassIdentifier: 
   id: 2
-  icon: {fileID: 0}
-  prefab: {fileID: 0}
+  icon: {fileID: 21300000, guid: 70e3ce8ad01f39248a3ea97a35bcf238, type: 3}
+  prefab: {fileID: 8475328201870182764, guid: 5f0b5a6b02238ec469f84866d61e3643, type: 3}
   itSelectedItem: 1
-  timeToPickUp: 2
+  timeToPickUp: 1
   currentTimeToPickUp: 0
-  ingredient: {fileID: 0}
+  ingredient: {fileID: 11400000, guid: 54d82277294983044b1a1e620ece1c00, type: 2}
   quickslotItem: {fileID: 0}
   itQuickSlotItem: 0

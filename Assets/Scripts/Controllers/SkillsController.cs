@@ -82,6 +82,17 @@ public class SkillsController : MonoBehaviour
                 OnActiveSpellChanged?.Invoke();
                 break;
             case InputActionPhase.Canceled:
+                InventoryQuickSlot quickSLot = InventoryQuickSlotItems[quickslotItems.IndexOf(activeItem)];
+                if (quickSLot.transform.GetChild(0).TryGetComponent<BombHandler>(out BombHandler bombHandler))
+                {
+                    ExplosiveBomb bombItem = activeItem as ExplosiveBomb;
+
+                    if (bombItem == null) { Debug.Log("Casting Failed"); }
+                    else
+                    {
+                        bombItem.useBombHandler(bombHandler);
+                    }
+                }
                 activeItem.Activate(gameObject);
                 InventoryQuickSlotItems[quickslotItems.IndexOf(activeItem)].removeItemFromSkillController();
                 OnAimingEnd?.Invoke();

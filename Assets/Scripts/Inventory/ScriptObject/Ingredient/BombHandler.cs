@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BombHandler : MonoBehaviour
 {
-    public float Damage;
+    public int Damage;
     public float Freeze;
     public float TimeFreeze;
     public float Radius;
-    public float DistancePush;
+    public float PushForce;
     public float Pulling;
     public float DamagePerSecond;
     public float TimeCloud;
@@ -19,7 +19,7 @@ public class BombHandler : MonoBehaviour
         Freeze = baseBomb.BaseFreeze;
         TimeFreeze = baseBomb.BaseTimeFreeze;
         Radius = baseBomb.BaseRadius;
-        DistancePush = baseBomb.BaseDistancePush;
+        PushForce = baseBomb.BasePushForce;
         Pulling = baseBomb.BasePulling;
         DamagePerSecond = baseBomb.BaseDamagePerSecond;
         TimeCloud = baseBomb.BaseTimeCloud;
@@ -30,7 +30,7 @@ public class BombHandler : MonoBehaviour
         Freeze *= baseBomb.ModFreeze;
         TimeFreeze *= baseBomb.ModTimeFreeze;
         Radius *= baseBomb.ModRadius;
-        DistancePush *= baseBomb.ModDistancePush;
+        PushForce *= baseBomb.ModPushForce;
         Pulling *= baseBomb.ModPulling;
         DamagePerSecond *= baseBomb.ModDamagePerSecond;
         TimeCloud *= baseBomb.ModTimeCloud;
@@ -41,7 +41,7 @@ public class BombHandler : MonoBehaviour
         Freeze = handler.Freeze;
         TimeFreeze = handler.TimeFreeze;
         Radius = handler.Radius;
-        DistancePush = handler.DistancePush;
+        PushForce = handler.PushForce;
         Pulling = handler.Pulling;
         DamagePerSecond = handler.DamagePerSecond;
         TimeCloud = handler.TimeCloud;

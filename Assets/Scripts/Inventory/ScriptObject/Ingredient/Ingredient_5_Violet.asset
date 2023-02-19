@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83407d60219b86e4f8c1f463a4303519, type: 3}
+  m_Name: Ingredient_5_Violet
+  m_EditorClassIdentifier: 
+  Color: Violet
+  BombITem: {fileID: 11400000, guid: 54e2af0dcc854cc408a79169bed8d7c0, type: 2}
+  bombIng: {fileID: 11400000, guid: e06df0c40c9d7ff40ab4d3d64ca08ad0, type: 2}

@@ -21,6 +21,8 @@ MonoBehaviour:
   - 5
   - 6
   - 7
+  - 21
+  - 211
   Items:
   - {fileID: 11400000, guid: 22c839317acf4f34ea7ea08b30e5473a, type: 2}
   - {fileID: 11400000, guid: 6b799dad0f9911b4cb65a0ab5a7d9c9e, type: 2}
@@ -30,4 +32,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3cecdd927e1ee934fa1c20e30ce6f7c4, type: 2}
   - {fileID: 11400000, guid: b50bbe5339e84b64092109218f6d48de, type: 2}
   - {fileID: 11400000, guid: 10a08b9e49f600847b06917c4c431870, type: 2}
+  - {fileID: 11400000, guid: bdfd72d0935133b489e61eb0be023fa6, type: 2}
+  - {fileID: 11400000, guid: 5a7e80f1315fc134987ec08618dcafb5, type: 2}
   BombPath: Assets/Scripts/Inventory/ScriptObject/Item/Item_Bomb_

@@ -15,7 +15,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Inventory inventory;
     private ResultSlot resultSlot;
     private bool itResultSlot = false;
-    private CraftSlot craftSlot;
+    public CraftSlot craftSlot;
     private bool itCraftSlot = false;
     private InventoryQuickSlot quickSlot;
     private bool itQuickSlot = false;
@@ -33,11 +33,27 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             Debug.Log(itResultSlot);
             resultSlot.removeComponentCraft();
+            // resultSlot.removeResultCraft();
+            // resultSlot.RefreshCraft();
+
         };
         if (itCraftSlot = transform.parent.TryGetComponent<CraftSlot>(out craftSlot))
         {
-            Debug.Log(itCraftSlot);
-            craftSlot.resultSlot.removeResultCraft();
+            var resSlot = craftSlot.resultSlot;
+            resSlot.removeResultCraft();
+            if (resSlot.bomb)
+            {
+                var resBombSlot = resSlot.gameObject.GetComponent<ResultBombSlot>();
+                if (craftSlot != resBombSlot.craftSlot_1 && resBombSlot.craftSlot_1.slot.item != null)
+                {
+                    resBombSlot.RefreshCraft(true, false);
+
+                }
+
+
+            }
+            // craftSlot.resultSlot.RefreshCraft();
+
         };
         if (itQuickSlot = TryGetComponent<InventoryQuickSlot>(out quickSlot))
         {
@@ -81,7 +97,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 transform.position = startPosition;
             }
         }
-        // inventory = null;
+
         slot = null;
         resultSlot = null;
         itResultSlot = false;

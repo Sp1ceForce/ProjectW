@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d50670296a762044b15b01c06e06ed9, type: 3}
-  m_Name: BaseBombIngredient
+  m_Name: Ingredient_Bomb_4_Violet
   m_EditorClassIdentifier: 
   BaseDamage: 50
   BaseFreeze: 2

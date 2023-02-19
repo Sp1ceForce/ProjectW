@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970fdbea258f6a44684f8b982fe1d7b5, type: 3}
   m_Name: Item_Bomb_211_Red_Red
   m_EditorClassIdentifier: 
-  id: 
-  icon: {fileID: 0}
-  prefab: {fileID: 0}
+  id: 211
+  icon: {fileID: 21300000, guid: f9161c6c9e06dc445ada3ee16d991f90, type: 3}
+  prefab: {fileID: 8475328201870182764, guid: 9f15c5fd4e1b60e41a988cef2411f282, type: 3}
   itSelectedItem: 1
   timeToPickUp: 0.5
   currentTimeToPickUp: 0
   ingredient: {fileID: 0}
-  quickslotItem: {fileID: 0}
-  itQuickSlotItem: 0
+  quickslotItem: {fileID: 11400000, guid: 0d87fd3731acae143b8af50ec697c37c, type: 2}
+  itQuickSlotItem: 1

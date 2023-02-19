@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour, IAddItem
     private List<Transform> slots = new List<Transform>();
     private int size;
     [SerializeField] private int steckCount = 3;
-    public int SteckCount { get => steckCount; set => steckCount = value; }
+    public int StackCount { get => steckCount; set => steckCount = value; }
     [SerializeField] private bool mainInventory = false;
 
 
@@ -93,11 +93,13 @@ public class Inventory : MonoBehaviour, IAddItem
     public InventorySlot AddItemToSelectedSlot(Item item, Transform parent, int amount = 1)
     {
         InventorySlot q = GetInventorySlot(parent);
+
         // Debug.Log(q.item);
         q.item = item;
         q.amount = amount;
-        if (parent.childCount < 1)
-            AddItemToUI(q, parent);
+        Destroy(q.iconGameObject);
+        AddItemToUI(q, parent);
+        iconPrefab.GetComponent<Image>().sprite = null;
         return q;
     }
 
@@ -111,7 +113,12 @@ public class Inventory : MonoBehaviour, IAddItem
         invSlot.countText = objectIcon.GetComponentInChildren<TMP_Text>();
         invSlot.countText.SetText(invSlot.amount.ToString());
     }
-
+    public void UpdateUIIcon(InventorySlot slot)
+    {
+        Sprite sprite;
+        if (slot.iconGameObject.TryGetComponent<Sprite>(out sprite) != slot.item.icon)
+            sprite = slot.item.icon;
+    }
     public void AddItem(Item item, int amount = 1)
     {
         //Нельзя добавить, если перебор
@@ -217,12 +224,18 @@ public class Inventory : MonoBehaviour, IAddItem
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (mainInventory == true)
-                foreach (Transform slot in slots)
-                {
-                    slot.gameObject.SetActive(!slot.gameObject.active);
-                }
+            OpenInventory();
         }
+    }
+    [ContextMenu("Open Inventory")]
+
+    public void OpenInventory()
+    {
+        if (mainInventory == true)
+            foreach (Transform slot in slots)
+            {
+                slot.gameObject.SetActive(!slot.gameObject.active);
+            }
     }
     private void OnEnable()
     {
