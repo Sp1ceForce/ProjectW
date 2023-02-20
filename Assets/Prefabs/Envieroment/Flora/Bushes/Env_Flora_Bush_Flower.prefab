@@ -1,0 +1,226 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2982368957838521463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3812987409719629988}
+  m_Layer: 0
+  m_Name: Env_Flora_Bush_Flower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3812987409719629988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982368957838521463}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 178.76828, y: 266.45963, z: 90.26413}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3231018085831256168}
+  - {fileID: 6693070787431453344}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7831978471377090881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8458864510980030276}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8458864510980030276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7831978471377090881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3231018085831256168}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2600821858055525746
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3812987409719629988}
+    m_Modifications:
+    - target: {fileID: 8340307471338675560, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+        type: 3}
+      propertyPath: m_Name
+      value: Env_Flora_Flower_102
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715989031489226706, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715989031489226706, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 80.72218
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715989031489226706, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 80.72219
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715989031489226706, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.3474884
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715989031489226706, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.92230225
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715989031489226706, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.7640457
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715989031489226706, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8933125
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715989031489226706, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.2889702
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715989031489226706, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.078286506
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715989031489226706, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.33520195
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715989031489226706, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -27.632
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715989031489226706, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -22.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715989031489226706, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 46.64
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8, type: 3}
+--- !u!4 &6693070787431453344 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8715989031489226706, guid: c750ddf00d6f3cb47a5e7797b8d6ebb8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2600821858055525746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7289092883904479867
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3812987409719629988}
+    m_Modifications:
+    - target: {fileID: 4806816500580200617, guid: d59eb6e9ab9a1904eae5660f283a2eb4,
+        type: 3}
+      propertyPath: m_Name
+      value: Env_Flora_Bush_Albedo_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331961308329929235, guid: d59eb6e9ab9a1904eae5660f283a2eb4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331961308329929235, guid: d59eb6e9ab9a1904eae5660f283a2eb4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.092972
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331961308329929235, guid: d59eb6e9ab9a1904eae5660f283a2eb4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.7896118
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331961308329929235, guid: d59eb6e9ab9a1904eae5660f283a2eb4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.50650024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331961308329929235, guid: d59eb6e9ab9a1904eae5660f283a2eb4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331961308329929235, guid: d59eb6e9ab9a1904eae5660f283a2eb4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331961308329929235, guid: d59eb6e9ab9a1904eae5660f283a2eb4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331961308329929235, guid: d59eb6e9ab9a1904eae5660f283a2eb4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331961308329929235, guid: d59eb6e9ab9a1904eae5660f283a2eb4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331961308329929235, guid: d59eb6e9ab9a1904eae5660f283a2eb4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331961308329929235, guid: d59eb6e9ab9a1904eae5660f283a2eb4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d59eb6e9ab9a1904eae5660f283a2eb4, type: 3}
+--- !u!4 &3231018085831256168 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5331961308329929235, guid: d59eb6e9ab9a1904eae5660f283a2eb4,
+    type: 3}
+  m_PrefabInstance: {fileID: 7289092883904479867}
+  m_PrefabAsset: {fileID: 0}
