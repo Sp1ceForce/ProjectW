@@ -61,8 +61,15 @@ public class DropItem : MonoBehaviour, IDropHandler
             else if (item != null && childrens.Length > 0)
             {
                 var slot = item.currentSlot;
-                childrens[0].SetItemToSlot(slot);
-                item.SetItemToSlot(transform);
+                childrens[0].SetItemToSlot(slot); //предмет меняемый из этого слота
+                item.SetItemToSlot(transform); //предмет перемещаемый в этот слот
+                if (itQuickSlot)
+                {
+                    childrens[0].transform.parent.GetComponent<InventoryQuickSlot>().sendToSkillController();
+                    quickSlot.sendToSkillController();
+                }
+
+
             }
         }
         // Операции между инвентарями
@@ -97,10 +104,7 @@ public class DropItem : MonoBehaviour, IDropHandler
                 item.craftSlot.UpdateDataSlot();
             craftSlot.AddToCraft();
         }
-        if (itQuickSlot)
-        {
-            quickSlot.sendToSkillController();
-        }
+        if (itQuickSlot) { quickSlot.sendToSkillController(); }
     }
 
 }

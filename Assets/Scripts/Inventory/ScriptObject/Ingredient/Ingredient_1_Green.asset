@@ -15,3 +15,5 @@ MonoBehaviour:
   Color: Green
   BombITem: {fileID: 0}
   bombIng: {fileID: 0}
+  PotionItem: {fileID: 11400000, guid: 539de4b36748b4441bf83cc01e3907fe, type: 2}
+  potionIng: {fileID: 11400000, guid: 7bf12f218f509104d9e3e7787e58fd8e, type: 2}

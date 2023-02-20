@@ -24,7 +24,6 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         canvasGroup = GetComponent<CanvasGroup>();
         dragLayer = GameObject.FindGameObjectWithTag("DragLayer").GetComponent<RectTransform>();
         currentSlot = transform.parent;
-        // inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -49,15 +48,32 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                     resBombSlot.RefreshCraft(true, false);
 
                 }
+            }
+            if (resSlot.potion)
+            {
+                var resPotionSlot = resSlot.gameObject.GetComponent<ResultPotionSlot>();
 
+                //Если 2 слота и убираем второй
+                if (craftSlot != resPotionSlot.craftSlot_1 && resPotionSlot.craftSlot_1.slot.item != null)
+                {
+                    resPotionSlot.RefreshCraft(true, false, false);
+                }
+                //Если 3 слота и убираем третий
+                if (craftSlot != resPotionSlot.craftSlot_1 &&
+                resPotionSlot.craftSlot_1.slot.item != null &&
+                craftSlot != resPotionSlot.craftSlot_2 &&
+                resPotionSlot.craftSlot_2.slot.item != null)
+                {
+                    resPotionSlot.RefreshCraft(true, true, false);
 
+                }
             }
             // craftSlot.resultSlot.RefreshCraft();
 
         };
-        if (itQuickSlot = TryGetComponent<InventoryQuickSlot>(out quickSlot))
+        if (itQuickSlot = transform.parent.TryGetComponent<InventoryQuickSlot>(out quickSlot))
         {
-            quickSlot.removeItemFromSkillController();
+            quickSlot.removeSlotFromSkillController();
         }
         inventory = transform.parent.parent.gameObject.GetComponent<Inventory>();
         slot = null;
@@ -86,9 +102,19 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             {
                 Debug.Log(currentSlot.name);
                 InventorySlot invSlot = inventory.GetInventorySlot(currentSlot);
-                Instantiate(invSlot.item.prefab,
+                GameObject item = Instantiate(invSlot.item.prefab,
                 new Vector3(hit.point.x, hit.point.y + 1, hit.point.z),
                 Quaternion.identity);
+
+                if (invSlot.iconGameObject.TryGetComponent<BombHandler>(out BombHandler bombHandler))
+                {
+                    item.AddComponent<BombHandler>().InitFromAnotherHandler(bombHandler);
+                }
+                if (invSlot.iconGameObject.TryGetComponent<PotionHandler>(out PotionHandler potionHandler))
+                {
+                    item.AddComponent<PotionHandler>().InitFromAnotherHandler(potionHandler);
+                }
+
                 inventory.RemoveItem(inventorySlot: invSlot);
             }
             else

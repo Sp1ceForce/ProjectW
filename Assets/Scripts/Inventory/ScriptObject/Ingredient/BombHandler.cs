@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BombHandler : MonoBehaviour
 {
+    public Item bombItem;
+
     public int Damage;
     public float Freeze;
     public float TimeFreeze;
@@ -37,6 +39,8 @@ public class BombHandler : MonoBehaviour
     }
     public void InitFromAnotherHandler(BombHandler handler)
     {
+        bombItem = handler.bombItem;
+
         Damage = handler.Damage;
         Freeze = handler.Freeze;
         TimeFreeze = handler.TimeFreeze;

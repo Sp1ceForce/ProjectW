@@ -93,8 +93,18 @@ public class SkillsController : MonoBehaviour
                         bombItem.useBombHandler(bombHandler);
                     }
                 }
+                if (quickSLot.transform.GetChild(0).TryGetComponent<PotionHandler>(out PotionHandler potionHandler))
+                {
+                    HealingPotion potionItem = activeItem as HealingPotion;
+
+                    if (potionItem == null) { Debug.Log("Casting Failed"); }
+                    else
+                    {
+                        potionItem.usePotionHandler(potionHandler);
+                    }
+                }
                 activeItem.Activate(gameObject);
-                InventoryQuickSlotItems[quickslotItems.IndexOf(activeItem)].removeItemFromSkillController();
+                quickSLot.removeItemFromSkillController();
                 OnAimingEnd?.Invoke();
                 break;
         }

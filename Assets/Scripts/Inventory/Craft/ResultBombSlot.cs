@@ -11,8 +11,6 @@ public class ResultBombSlot : ResultSlot
     [SerializeField] private DataIDItem DataIDItem;
     [SerializeField] private string KeyBombId;
     private Item Bomb;
-    private Item Item_1_last;
-    private Item Item_2_last;
 
     public override void RefreshCraft()
     {
@@ -21,7 +19,6 @@ public class ResultBombSlot : ResultSlot
         Item Item_2 = craftSlot_2.slot.item;
         Debug.Log(Item_2);
 
-        if ((Item_1_last == Item_1) && (Item_2_last == Item_2)) return;
         bool Ingred_1 = false;
         if (Item_1 != null)
             Ingred_1 = Item_1.ingredient != null;
@@ -49,8 +46,7 @@ public class ResultBombSlot : ResultSlot
         }
         if (Ingred_2 && !Ingred_1)
             removeResultCraft();
-        Item_1_last = null;
-        Item_2_last = null;
+
         Bomb = null;
     }
     public void RefreshCraft(bool Ingred_1, bool Ingred_2)
@@ -77,8 +73,6 @@ public class ResultBombSlot : ResultSlot
         }
         if (Ingred_2 && !Ingred_1)
             removeResultCraft();
-        Item_1_last = null;
-        Item_2_last = null;
         Bomb = null;
     }
 
@@ -89,8 +83,6 @@ public class ResultBombSlot : ResultSlot
         if (q.iconGameObject.TryGetComponent<BombHandler>(out handler))
         {
             if (Ingred_2) handler.UseBombMod(Item_2.ingredient.bombIng);
-            // inventory.UpdateUIIcon(q);
-            // slot.item.icon = newItem.icon;
             return;
         }
         else
@@ -99,6 +91,8 @@ public class ResultBombSlot : ResultSlot
         }
         if (Ingred_1) handler.UseBombBase(Item_1.ingredient.bombIng);
         if (Ingred_2) handler.UseBombMod(Item_2.ingredient.bombIng);
+
+        handler.bombItem = newItem;
     }
     private Item CreateItem(bool Ingred_1, bool Ingred_2, Item Item_1, Item Item_2, string ID)
     {

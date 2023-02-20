@@ -4,9 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ExplosiveBomb", menuName = "ProjectW/Bombs/ExplosiveBomb", order = 0)]
 public class ExplosiveBomb : BaseBomb
 {
-    [Header("Характеристики обычной бомбы")]
-    [SerializeField] int damage;
-    [SerializeField] float pushForce;
+
     public int Damage;
     public float Freeze;
     public float TimeFreeze;

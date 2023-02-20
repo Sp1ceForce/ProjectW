@@ -19,9 +19,26 @@ public class SelectedItem : MonoBehaviour
                 {
                     item.currentTimeToPickUp = 0;
                     if (item.itSelectedItem)
-                        EventBus.RaiseEvent<IAddItem>(h => h.AddItem(item, amount));
+                    {
+                        if (this.gameObject.TryGetComponent<BombHandler>(out BombHandler bombHandler))
+                        {
+                            EventBus.RaiseEvent<IAddItem>(h =>
+                            {
+                                GameObject iconGameObject = h.AddItem(bombHandler.bombItem, amount);
+                                iconGameObject.AddComponent<BombHandler>().InitFromAnotherHandler(bombHandler);
+                            });
+                        }
+                        else if (this.gameObject.TryGetComponent<PotionHandler>(out PotionHandler potionHandler))
+                        {
+                            EventBus.RaiseEvent<IAddItem>(h =>
+                            {
+                                GameObject iconGameObject = h.AddItem(potionHandler.potionItem, amount);
+                                iconGameObject.AddComponent<PotionHandler>().InitFromAnotherHandler(potionHandler);
+                            });
+                        }
+                        else EventBus.RaiseEvent<IAddItem>(h => h.AddItem(item, amount));//почему это работает правильно? на сцене же минимум 4 инвентаря...
+                    }
                     gameObject.GetComponent<AfterInteract>().AfterInteractLogic();
-                    // Destroy(this.gameObject);
                 }
             }
 

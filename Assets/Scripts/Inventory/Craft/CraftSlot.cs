@@ -15,9 +15,6 @@ public class CraftSlot : MonoBehaviour, IAddToCraft
     {
         if (slot.item == null)
             slot = inventory.GetInventorySlot(transform);
-        Debug.Log(resultSlot.GetComponent<ResultBombSlot>().craftSlot_1.slot.item
-        );
-        Debug.Log(slot.item);
         resultSlot.RefreshCraft();
     }
     public void UpdateDataSlot()

@@ -54,11 +54,15 @@ public class Inventory : MonoBehaviour, IAddItem
     public void SendItemToAnotherInventory(Inventory other, InventorySlot otherSlot, InventorySlot thisSlot, int amount = 1)
     {
         other.AddItemToSelectedSlot(thisSlot.item, otherSlot.transform, amount);
-        BombHandler bombHandler;
-        if (thisSlot.iconGameObject.TryGetComponent<BombHandler>(out bombHandler))
+        if (thisSlot.iconGameObject.TryGetComponent<BombHandler>(out BombHandler bombHandler))
         {
             var handler = otherSlot.iconGameObject.AddComponent<BombHandler>();
             handler.InitFromAnotherHandler(bombHandler);
+        }
+        if (thisSlot.iconGameObject.TryGetComponent<PotionHandler>(out PotionHandler potionHandler))
+        {
+            var handler = otherSlot.iconGameObject.AddComponent<PotionHandler>();
+            handler.InitFromAnotherHandler(potionHandler);
         }
         RemoveItem(thisSlot);
     }
@@ -103,7 +107,7 @@ public class Inventory : MonoBehaviour, IAddItem
         return q;
     }
 
-    public void AddItemToUI(InventorySlot invSlot, Transform objSlot)
+    public GameObject AddItemToUI(InventorySlot invSlot, Transform objSlot)
     {
         iconPrefab.GetComponent<Image>().sprite = invSlot.item.icon;
         GameObject objectIcon = Instantiate(iconPrefab, objSlot);
@@ -112,14 +116,16 @@ public class Inventory : MonoBehaviour, IAddItem
         invSlot.transform = objSlot;
         invSlot.countText = objectIcon.GetComponentInChildren<TMP_Text>();
         invSlot.countText.SetText(invSlot.amount.ToString());
+
+        return invSlot.iconGameObject;
     }
-    public void UpdateUIIcon(InventorySlot slot)
-    {
-        Sprite sprite;
-        if (slot.iconGameObject.TryGetComponent<Sprite>(out sprite) != slot.item.icon)
-            sprite = slot.item.icon;
-    }
-    public void AddItem(Item item, int amount = 1)
+    // public void UpdateUIIcon(InventorySlot slot)
+    // {
+    //     Sprite sprite;
+    //     if (slot.iconGameObject.TryGetComponent<Sprite>(out sprite) != slot.item.icon)
+    //         sprite = slot.item.icon;
+    // }
+    public GameObject AddItem(Item item, int amount = 1)
     {
         //Нельзя добавить, если перебор
         // if (items.Count >= size) return;
@@ -132,7 +138,7 @@ public class Inventory : MonoBehaviour, IAddItem
                 if (slot.item.id == item.id && slot.amount < steckCount)
                 {
                     slot.amount += amount;
-                    return;
+                    return null;
                 }
             }
         }
@@ -144,10 +150,13 @@ public class Inventory : MonoBehaviour, IAddItem
             {
                 items[i].item = item;
                 items[i].amount = amount;
-                AddItemToUI(items[i], slots[i]);
-                break;
+                GameObject iconGameObject = AddItemToUI(items[i], slots[i]);
+                return iconGameObject;
             }
+
         }
+        return null;
+
     }
 
     public void RemoveItem(InventorySlot inventorySlot, int amount = 1)
@@ -167,7 +176,6 @@ public class Inventory : MonoBehaviour, IAddItem
             // inventorySlot.transform = null;
         }
     }
-
     public void SwapItem(InventorySlot one, InventorySlot two)
     {
         InventorySlot tmpOne = one;
@@ -182,7 +190,6 @@ public class Inventory : MonoBehaviour, IAddItem
         items[IndexOne].transform = tmpOne.transform;
         items[IndexTwo].transform = tmp;
     }
-
     public InventorySlot GetInventorySlot(Transform trn)
     {
         int q = -1;
@@ -197,6 +204,9 @@ public class Inventory : MonoBehaviour, IAddItem
         else
             return null;
     }
+
+
+
 
     [ContextMenu("Clear Inventory")]
     private void ClearInventory()
