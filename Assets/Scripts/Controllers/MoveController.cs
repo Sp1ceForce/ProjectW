@@ -27,6 +27,7 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
     private CharacterController characterController;
     private Transform trn;
     bool isAiming = false;
+    Camera mainCam;
     [Header("Проверка на нахождение на змле")]
     [SerializeField] Transform groundChecker;
     [SerializeField] float groundDistance;
@@ -46,6 +47,7 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
         characterController = GetComponent<CharacterController>();
         if (useGlobalData) Data = WitchGlobalData.Instance.MoveControllerData;
         trn = transform;
+        mainCam = Camera.main;
         SubscribeToEvents();
     }
     void SubscribeToEvents()
@@ -82,9 +84,18 @@ public class MoveController : MonoBehaviour, IMoveDataToMoveCntr, IMoveDataToSav
 
     private void MovePlayer()
     {
-        InputVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+        //Заменил старый инпут вектор на новый который получает вектор движения относительно камеры
+        //InputVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+        Vector3 forward = mainCam.transform.forward;
+        Vector3 right = mainCam.transform.right;
+        forward.y = 0;
+        right.y=0;
+        forward = forward.normalized;
+        right = right.normalized;
+        InputVector = Input.GetAxisRaw("Horizontal") * right + Input.GetAxisRaw("Vertical") * forward;
+        InputVector = InputVector.normalized;
         Vector3 MovementVector = InputVector * Time.deltaTime * Data.PlayerSpeed * Data.SpeedMultiplier;
-
+        
         if (!isGrounded) MovementVector += Physics.gravity * Time.deltaTime;
         //rb.velocity = new Vector3(InputVector.x * Data.PlayerSpeed * Data.SpeedMultiplier, rb.velocity.y, InputVector.y * Data.PlayerSpeed * Data.SpeedMultiplier);
         characterController.Move(MovementVector);
