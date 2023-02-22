@@ -1,3 +1,0 @@
-# ProjectW
-
-UI, VFX, shaders
