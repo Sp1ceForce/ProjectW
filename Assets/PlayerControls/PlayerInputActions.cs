@@ -80,6 +80,24 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MMBPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f3a6a27-5782-49a3-b21a-9ae5601405f1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MMBScroll"",
+                    ""type"": ""Button"",
+                    ""id"": ""4ab8a25b-d8fa-411c-ba2f-6a125342f298"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -181,6 +199,50 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""RightMouseButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9116e5dc-a9db-4280-975e-63491cb43e96"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MMBPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Scroll"",
+                    ""id"": ""c29241d5-00b7-475b-9857-dcdbd16e38b7"",
+                    ""path"": ""1DAxis(whichSideWins=1)"",
+                    ""interactions"": """",
+                    ""processors"": ""Clamp(min=-1,max=1)"",
+                    ""groups"": """",
+                    ""action"": ""MMBScroll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""b1a3b60a-4dfc-4785-a201-4283e1e5cf14"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MMBScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""ad5027ee-d1f9-445e-bc96-a347388098e8"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MMBScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -195,6 +257,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_LeftMouseButton = m_Player.FindAction("LeftMouseButton", throwIfNotFound: true);
         m_Player_RightMouseButton = m_Player.FindAction("RightMouseButton", throwIfNotFound: true);
         m_Player_QuickSlots = m_Player.FindAction("QuickSlots", throwIfNotFound: true);
+        m_Player_MMBPress = m_Player.FindAction("MMBPress", throwIfNotFound: true);
+        m_Player_MMBScroll = m_Player.FindAction("MMBScroll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -260,6 +324,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LeftMouseButton;
     private readonly InputAction m_Player_RightMouseButton;
     private readonly InputAction m_Player_QuickSlots;
+    private readonly InputAction m_Player_MMBPress;
+    private readonly InputAction m_Player_MMBScroll;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -270,6 +336,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @LeftMouseButton => m_Wrapper.m_Player_LeftMouseButton;
         public InputAction @RightMouseButton => m_Wrapper.m_Player_RightMouseButton;
         public InputAction @QuickSlots => m_Wrapper.m_Player_QuickSlots;
+        public InputAction @MMBPress => m_Wrapper.m_Player_MMBPress;
+        public InputAction @MMBScroll => m_Wrapper.m_Player_MMBScroll;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -297,6 +365,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @QuickSlots.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuickSlots;
                 @QuickSlots.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuickSlots;
                 @QuickSlots.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuickSlots;
+                @MMBPress.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMMBPress;
+                @MMBPress.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMMBPress;
+                @MMBPress.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMMBPress;
+                @MMBScroll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMMBScroll;
+                @MMBScroll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMMBScroll;
+                @MMBScroll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMMBScroll;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -319,6 +393,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @QuickSlots.started += instance.OnQuickSlots;
                 @QuickSlots.performed += instance.OnQuickSlots;
                 @QuickSlots.canceled += instance.OnQuickSlots;
+                @MMBPress.started += instance.OnMMBPress;
+                @MMBPress.performed += instance.OnMMBPress;
+                @MMBPress.canceled += instance.OnMMBPress;
+                @MMBScroll.started += instance.OnMMBScroll;
+                @MMBScroll.performed += instance.OnMMBScroll;
+                @MMBScroll.canceled += instance.OnMMBScroll;
             }
         }
     }
@@ -331,5 +411,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnLeftMouseButton(InputAction.CallbackContext context);
         void OnRightMouseButton(InputAction.CallbackContext context);
         void OnQuickSlots(InputAction.CallbackContext context);
+        void OnMMBPress(InputAction.CallbackContext context);
+        void OnMMBScroll(InputAction.CallbackContext context);
     }
 }
