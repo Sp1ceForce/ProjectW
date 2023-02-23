@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour, IAddItem
     private List<Transform> slots = new List<Transform>();
     private int size;
     [SerializeField] private int steckCount = 3;
-    public int SteckCount { get => steckCount; set => steckCount = value; }
+    public int StackCount { get => steckCount; set => steckCount = value; }
     [SerializeField] private bool mainInventory = false;
 
 
@@ -54,11 +54,15 @@ public class Inventory : MonoBehaviour, IAddItem
     public void SendItemToAnotherInventory(Inventory other, InventorySlot otherSlot, InventorySlot thisSlot, int amount = 1)
     {
         other.AddItemToSelectedSlot(thisSlot.item, otherSlot.transform, amount);
-        BombHandler bombHandler;
-        if (thisSlot.iconGameObject.TryGetComponent<BombHandler>(out bombHandler))
+        if (thisSlot.iconGameObject.TryGetComponent<BombHandler>(out BombHandler bombHandler))
         {
             var handler = otherSlot.iconGameObject.AddComponent<BombHandler>();
             handler.InitFromAnotherHandler(bombHandler);
+        }
+        if (thisSlot.iconGameObject.TryGetComponent<PotionHandler>(out PotionHandler potionHandler))
+        {
+            var handler = otherSlot.iconGameObject.AddComponent<PotionHandler>();
+            handler.InitFromAnotherHandler(potionHandler);
         }
         RemoveItem(thisSlot);
     }
@@ -93,15 +97,17 @@ public class Inventory : MonoBehaviour, IAddItem
     public InventorySlot AddItemToSelectedSlot(Item item, Transform parent, int amount = 1)
     {
         InventorySlot q = GetInventorySlot(parent);
+
         // Debug.Log(q.item);
         q.item = item;
         q.amount = amount;
-        if (parent.childCount < 1)
-            AddItemToUI(q, parent);
+        Destroy(q.iconGameObject);
+        AddItemToUI(q, parent);
+        iconPrefab.GetComponent<Image>().sprite = null;
         return q;
     }
 
-    public void AddItemToUI(InventorySlot invSlot, Transform objSlot)
+    public GameObject AddItemToUI(InventorySlot invSlot, Transform objSlot)
     {
         iconPrefab.GetComponent<Image>().sprite = invSlot.item.icon;
         GameObject objectIcon = Instantiate(iconPrefab, objSlot);
@@ -110,9 +116,16 @@ public class Inventory : MonoBehaviour, IAddItem
         invSlot.transform = objSlot;
         invSlot.countText = objectIcon.GetComponentInChildren<TMP_Text>();
         invSlot.countText.SetText(invSlot.amount.ToString());
-    }
 
-    public void AddItem(Item item, int amount = 1)
+        return invSlot.iconGameObject;
+    }
+    // public void UpdateUIIcon(InventorySlot slot)
+    // {
+    //     Sprite sprite;
+    //     if (slot.iconGameObject.TryGetComponent<Sprite>(out sprite) != slot.item.icon)
+    //         sprite = slot.item.icon;
+    // }
+    public GameObject AddItem(Item item, int amount = 1)
     {
         //Нельзя добавить, если перебор
         // if (items.Count >= size) return;
@@ -125,7 +138,7 @@ public class Inventory : MonoBehaviour, IAddItem
                 if (slot.item.id == item.id && slot.amount < steckCount)
                 {
                     slot.amount += amount;
-                    return;
+                    return null;
                 }
             }
         }
@@ -137,10 +150,13 @@ public class Inventory : MonoBehaviour, IAddItem
             {
                 items[i].item = item;
                 items[i].amount = amount;
-                AddItemToUI(items[i], slots[i]);
-                break;
+                GameObject iconGameObject = AddItemToUI(items[i], slots[i]);
+                return iconGameObject;
             }
+
         }
+        return null;
+
     }
 
     public void RemoveItem(InventorySlot inventorySlot, int amount = 1)
@@ -160,7 +176,6 @@ public class Inventory : MonoBehaviour, IAddItem
             // inventorySlot.transform = null;
         }
     }
-
     public void SwapItem(InventorySlot one, InventorySlot two)
     {
         InventorySlot tmpOne = one;
@@ -175,7 +190,6 @@ public class Inventory : MonoBehaviour, IAddItem
         items[IndexOne].transform = tmpOne.transform;
         items[IndexTwo].transform = tmp;
     }
-
     public InventorySlot GetInventorySlot(Transform trn)
     {
         int q = -1;
@@ -190,6 +204,9 @@ public class Inventory : MonoBehaviour, IAddItem
         else
             return null;
     }
+
+
+
 
     [ContextMenu("Clear Inventory")]
     private void ClearInventory()
@@ -217,12 +234,18 @@ public class Inventory : MonoBehaviour, IAddItem
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (mainInventory == true)
-                foreach (Transform slot in slots)
-                {
-                    slot.gameObject.SetActive(!slot.gameObject.active);
-                }
+            OpenInventory();
         }
+    }
+    [ContextMenu("Open Inventory")]
+
+    public void OpenInventory()
+    {
+        if (mainInventory == true)
+            foreach (Transform slot in slots)
+            {
+                slot.gameObject.SetActive(!slot.gameObject.active);
+            }
     }
     private void OnEnable()
     {

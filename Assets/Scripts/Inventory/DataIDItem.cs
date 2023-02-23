@@ -8,6 +8,8 @@ public class DataIDItem : ScriptableObject
     [SerializeField] public List<string> ItemIdList;
     [SerializeField] public List<Item> Items;
     [SerializeField] public string BombPath = "Assets/Scripts/Inventory/ScriptObject/Item/Item_Bomb_";
+    [SerializeField] public string PotionPath = "Assets/Scripts/Inventory/ScriptObject/Item/Item_Potion_";
+
     public Item GetItemByKey(string Key)
     {
         if (ItemIdList.Contains(Key))

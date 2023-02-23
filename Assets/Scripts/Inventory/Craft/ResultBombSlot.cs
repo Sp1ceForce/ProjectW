@@ -6,24 +6,25 @@ using UnityEditor;
 
 public class ResultBombSlot : ResultSlot
 {
-    [SerializeField] private CraftSlot craftSlot_1;
-    [SerializeField] private CraftSlot craftSlot_2;
+    [SerializeField] public CraftSlot craftSlot_1;
+    [SerializeField] public CraftSlot craftSlot_2;
     [SerializeField] private DataIDItem DataIDItem;
     [SerializeField] private string KeyBombId;
     private Item Bomb;
-    private float dopBomp;
 
     public override void RefreshCraft()
     {
         Item Item_1 = craftSlot_1.slot.item;
+        Debug.Log(Item_1);
         Item Item_2 = craftSlot_2.slot.item;
+        Debug.Log(Item_2);
+
         bool Ingred_1 = false;
         if (Item_1 != null)
             Ingred_1 = Item_1.ingredient != null;
         bool Ingred_2 = false;
         if (Item_2 != null)
             Ingred_2 = Item_2.ingredient != null;
-
         string ID;
         if (Ingred_1)
         {
@@ -31,32 +32,67 @@ public class ResultBombSlot : ResultSlot
             ID = KeyBombId + Item_1.id;
             if (Ingred_2) ID = ID + Item_2.id;
 
-            if (slot.item == null) //Возможно здесь проблема? Что будет, если положить второй ингридиент? 
+            if (DataIDItem.ItemIdList.Contains(ID))
             {
-                if (DataIDItem.ItemIdList.Contains(ID))
-                {
-                    CraftHandler(DataIDItem.GetItemByKey(ID), Item_1, Item_2);
-                }
-                else
-                {
-                    Item newItem = CreateItem(Ingred_1, Ingred_2, Item_1, Item_2, ID);
-                    InitItem(newItem, ID);
-                    CraftHandler(newItem, Item_1, Item_2);
-                }
+                CraftHandler(Ingred_1, Ingred_2, DataIDItem.GetItemByKey(ID), Item_1, Item_2);
+                Debug.Log("before remove");
+            }
+            else
+            {
+                Item newItem = CreateItem(Ingred_1, Ingred_2, Item_1, Item_2, ID);
+                InitItem(newItem, ID);
+                CraftHandler(Ingred_1, Ingred_2, newItem, Item_1, Item_2);
             }
         }
+        if (Ingred_2 && !Ingred_1)
+            removeResultCraft();
+
+        Bomb = null;
     }
-    private void CraftHandler(Item newItem, Item Item_1, Item Item_2)
+    public void RefreshCraft(bool Ingred_1, bool Ingred_2)
     {
-        var q = inventory.AddItemToSelectedSlot(newItem, transform, amount: 1);
-        var handler = q.iconGameObject.AddComponent<BombHandler>();
-        Debug.Log(q.iconGameObject.TryGetComponent<BombHandler>(out handler));
-        // Debug.Log(Item_1);
-        if (Item_1 != null)
-            handler.UseBombBase(Item_1.ingredient.bombIng);
-        // Debug.Log(Item_2);
-        if (Item_2 != null)
-            handler.UseBombMod(Item_2.ingredient.bombIng);
+        Item Item_1 = craftSlot_1.slot.item;
+        Item Item_2 = craftSlot_2.slot.item;
+        string ID;
+        if (Ingred_1)
+        {
+            Bomb = Item_1.ingredient.BombITem;
+            ID = KeyBombId + Item_1.id;
+            if (Ingred_2) ID = ID + Item_2.id;
+
+            if (DataIDItem.ItemIdList.Contains(ID))
+            {
+                CraftHandler(Ingred_1, Ingred_2, DataIDItem.GetItemByKey(ID), Item_1, Item_2);
+            }
+            else
+            {
+                Item newItem = CreateItem(Ingred_1, Ingred_2, Item_1, Item_2, ID);
+                InitItem(newItem, ID);
+                CraftHandler(Ingred_1, Ingred_2, newItem, Item_1, Item_2);
+            }
+        }
+        if (Ingred_2 && !Ingred_1)
+            removeResultCraft();
+        Bomb = null;
+    }
+
+    private void CraftHandler(bool Ingred_1, bool Ingred_2, Item newItem, Item Item_1, Item Item_2)
+    {
+        InventorySlot q = inventory.AddItemToSelectedSlot(newItem, transform, amount: 1);
+        BombHandler handler;
+        if (q.iconGameObject.TryGetComponent<BombHandler>(out handler))
+        {
+            if (Ingred_2) handler.UseBombMod(Item_2.ingredient.bombIng);
+            return;
+        }
+        else
+        {
+            handler = q.iconGameObject.AddComponent<BombHandler>();
+        }
+        if (Ingred_1) handler.UseBombBase(Item_1.ingredient.bombIng);
+        if (Ingred_2) handler.UseBombMod(Item_2.ingredient.bombIng);
+
+        handler.bombItem = newItem;
     }
     private Item CreateItem(bool Ingred_1, bool Ingred_2, Item Item_1, Item Item_2, string ID)
     {
@@ -90,16 +126,18 @@ public class ResultBombSlot : ResultSlot
     }
     public override void removeComponentCraft()
     {
-        if (slot.item == null)
+        Debug.Log(slot);
+        if (slot == null) // || slot.item != null;
             slot = inventory.GetInventorySlot(transform);
         inventory.RemoveItem(craftSlot_1.slot, 1);
         inventory.RemoveItem(craftSlot_2.slot, 1);
     }
     public override void removeResultCraft()
     {
-        if (slot.item == null)
+        if (slot == null || slot.item == null) // || slot.item == null;
             slot = inventory.GetInventorySlot(transform);
         inventory.RemoveItem(slot, 1);
+        Debug.Log("remove");
     }
 
 

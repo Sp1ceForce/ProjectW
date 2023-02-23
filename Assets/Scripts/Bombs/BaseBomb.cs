@@ -1,5 +1,8 @@
+using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 public abstract class BaseBomb : BaseQuickslotItem
 {
     [Header("Полёт бомбы и эффекты")]
@@ -16,9 +19,21 @@ public abstract class BaseBomb : BaseQuickslotItem
     {
         instigator.GetComponent<MonoBehaviour>().StartCoroutine(ThrowBomb(instigator));
     }
+    public virtual void InitiateBomb(List<BombEffectType> effects, BombHandler bombHandler)
+    {
 
-    protected abstract void ExplosionLogic(GameObject instigator, Vector3 explosionPosition, Collider[] entitiesHit);
+    }
+    protected virtual void ExplosionLogic(GameObject instigator, Vector3 explosionPosition, Collider[] entitiesHit){
 
+    }
+    protected void PushAway(Collider[] entitiesHit, float pushForce, Vector3 explosionPosition)
+    {
+        foreach (var entity in entitiesHit)
+        {
+            EnemyKnockbackComponent knockbackComponent = entity.GetComponent<EnemyKnockbackComponent>();
+            if (knockbackComponent != null) knockbackComponent.KnockBack(explosionPosition, pushForce);
+        }
+    }
     protected void DealDamage(Collider[] entitiesHit, int damage)
     {
         foreach (var entity in entitiesHit)
@@ -34,7 +49,7 @@ public abstract class BaseBomb : BaseQuickslotItem
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Ground"));
-        Debug.Log(hit.transform.name);
+
         endPosition = hit.point;
         //Анимация броска бомбы
         Vector3 startPosition = instigator.transform.position + instigator.transform.forward * 0.7f;
@@ -62,14 +77,7 @@ public abstract class BaseBomb : BaseQuickslotItem
         Destroy(explosion, 0.7f);
     }
 
-    protected void PushAway(Collider[] entitiesHit, float pushForce, Vector3 explosionPosition)
-    {
-        foreach (var entity in entitiesHit)
-        {
-            EnemyKnockbackComponent knockbackComponent = entity.GetComponent<EnemyKnockbackComponent>();
-            if (knockbackComponent != null) knockbackComponent.KnockBack(explosionPosition, pushForce);
-        }
-    }
+
 
 }
 

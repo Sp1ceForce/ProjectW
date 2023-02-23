@@ -82,8 +82,29 @@ public class SkillsController : MonoBehaviour
                 OnActiveSpellChanged?.Invoke();
                 break;
             case InputActionPhase.Canceled:
+                InventoryQuickSlot quickSLot = InventoryQuickSlotItems[quickslotItems.IndexOf(activeItem)];
+                if (quickSLot.transform.GetChild(0).TryGetComponent<BombHandler>(out BombHandler bombHandler))
+                {
+                    ExplosiveBomb bombItem = activeItem as ExplosiveBomb;
+
+                    if (bombItem == null) { Debug.Log("Casting Failed"); }
+                    else
+                    {
+                        bombItem.useBombHandler(bombHandler);
+                    }
+                }
+                if (quickSLot.transform.GetChild(0).TryGetComponent<PotionHandler>(out PotionHandler potionHandler))
+                {
+                    HealingPotion potionItem = activeItem as HealingPotion;
+
+                    if (potionItem == null) { Debug.Log("Casting Failed"); }
+                    else
+                    {
+                        potionItem.usePotionHandler(potionHandler);
+                    }
+                }
                 activeItem.Activate(gameObject);
-                InventoryQuickSlotItems[quickslotItems.IndexOf(activeItem)].removeItemFromSkillController();
+                quickSLot.removeItemFromSkillController();
                 OnAimingEnd?.Invoke();
                 break;
         }

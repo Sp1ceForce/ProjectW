@@ -17,7 +17,10 @@ public class CraftSlot : MonoBehaviour, IAddToCraft
             slot = inventory.GetInventorySlot(transform);
         resultSlot.RefreshCraft();
     }
-
+    public void UpdateDataSlot()
+    {
+        slot = inventory.GetInventorySlot(transform);
+    }
     private void Start()
     {
         inventory = transform.parent.GetComponent<Inventory>();

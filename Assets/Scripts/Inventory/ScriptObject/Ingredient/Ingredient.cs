@@ -8,7 +8,7 @@ public class Ingredient : ScriptableObject
     [SerializeField] public string Color;
     [SerializeField] public Item BombITem;
     [SerializeField] public BaseBombIng bombIng;
-    // [SerializeField] public Item PotionItem;
-    // [SerializeField] public BaseBombIng potionIng;
+    [SerializeField] public Item PotionItem;
+    [SerializeField] public BasePotionIng potionIng;
 
 }

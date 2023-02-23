@@ -6,20 +6,20 @@ using UnityEngine;
 public class BaseBombIng : ScriptableObject
 {
     [Header("Base Settings")]
-    public float BaseDamage;
+    public int BaseDamage;
     public float BaseFreeze;
     public float BaseTimeFreeze;
     public float BaseRadius;
-    public float BaseDistancePush;
+    public float BasePushForce;
     public float BasePulling;
     public float BaseDamagePerSecond;
     public float BaseTimeCloud;
     [Header("Mod Settings")]
-    public float ModDamage;
+    public int ModDamage;
     public float ModFreeze;
     public float ModTimeFreeze;
     public float ModRadius;
-    public float ModDistancePush;
+    public float ModPushForce;
     public float ModPulling;
     public float ModDamagePerSecond;
     public float ModTimeCloud;

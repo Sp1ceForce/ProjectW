@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d50670296a762044b15b01c06e06ed9, type: 3}
+  m_Name: Ingredient_Bomb_4_Violet
+  m_EditorClassIdentifier: 
+  BaseDamage: 50
+  BaseFreeze: 2
+  BaseTimeFreeze: 2
+  BaseRadius: 2
+  BaseDistancePush: 2
+  BasePulling: 2
+  BaseDamagePerSecond: 0
+  BaseTimeCloud: 0
+  ModDamage: 2
+  ModFreeze: 1
+  ModTimeFreeze: 1
+  ModRadius: 1
+  ModDistancePush: 1
+  ModPulling: 1
+  ModDamagePerSecond: 1
+  ModTimeCloud: 1

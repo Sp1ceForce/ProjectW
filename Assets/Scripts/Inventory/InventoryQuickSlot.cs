@@ -9,7 +9,6 @@ public class InventoryQuickSlot : MonoBehaviour
     private SkillsController skillsController;
     public Item item;
     [HideInInspector]
-
     public InventorySlot inventorySlot;
     [HideInInspector]
     public Inventory inventory;
@@ -44,6 +43,13 @@ public class InventoryQuickSlot : MonoBehaviour
         else
         {
             inventory.RemoveItem(inventorySlot, 1);
+            skillsController.quickslotItems[number] = null;
+        }
+    }
+    public void removeSlotFromSkillController()
+    {
+        if (inventorySlot.amount <= 1)
+        {
             skillsController.quickslotItems[number] = null;
         }
 

@@ -12,6 +12,7 @@ public class RunningState : State
     }
     public override State StateUpdate()
     {
+        if(!navAgent.enabled) return null;
         navAgent.destination = playerObject.transform.position;
         return null;
     }

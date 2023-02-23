@@ -31,3 +31,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b50bbe5339e84b64092109218f6d48de, type: 2}
   - {fileID: 11400000, guid: 10a08b9e49f600847b06917c4c431870, type: 2}
   BombPath: Assets/Scripts/Inventory/ScriptObject/Item/Item_Bomb_
+  PotionPath: Assets/Scripts/Inventory/ScriptObject/Item/Item_Potion_
