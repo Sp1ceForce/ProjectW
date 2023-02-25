@@ -4440,6 +4440,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: IceExplosion
       objectReference: {fileID: 0}
+    - target: {fileID: 4918260879944080065, guid: 4fb3205439e2e7b43a15d00c85cfea40,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4918260879944080066, guid: 4fb3205439e2e7b43a15d00c85cfea40,
         type: 3}
       propertyPath: m_RootOrder
@@ -4582,6 +4587,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: IceBomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 5924389266512186825, guid: b1fdf862ea019a643b8a96f786c436e6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5924389266512186829, guid: b1fdf862ea019a643b8a96f786c436e6,
         type: 3}
