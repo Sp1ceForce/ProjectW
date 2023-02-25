@@ -74,7 +74,7 @@ public abstract class BaseBomb : BaseQuickslotItem
         var colliders = Physics.OverlapSphere(endPosition, explosionRaidus, physicsMask);
         ExplosionLogic(instigator, endPosition, colliders);
         Destroy(bomb);
-        Destroy(explosion, 0.7f);
+        Destroy(explosion, 10f);
     }
 
 

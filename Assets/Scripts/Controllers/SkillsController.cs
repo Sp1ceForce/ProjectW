@@ -83,7 +83,7 @@ public class SkillsController : MonoBehaviour
                 break;
             case InputActionPhase.Canceled:
                 activeItem.Activate(gameObject);
-                InventoryQuickSlotItems[quickslotItems.IndexOf(activeItem)].removeItemFromSkillController();
+          //      InventoryQuickSlotItems[quickslotItems.IndexOf(activeItem)].removeItemFromSkillController();
                 OnAimingEnd?.Invoke();
                 break;
         }

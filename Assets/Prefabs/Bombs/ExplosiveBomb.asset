@@ -47,13 +47,14 @@ MonoBehaviour:
     m_RotationOrder: 4
   throwDuration: 0.7
   maxHeight: 3
-  bombObject: {fileID: 1086224761313166, guid: fa66820763744ef46b5a9cfb5ef88187, type: 3}
-  explosionParticles: {fileID: 1804206099813350, guid: 4dd02b5f854b6c84990fbeb810abffe4,
+  bombObject: {fileID: 7406992971143198694, guid: f5d4308464ffba94583783a9e9da4f68,
+    type: 3}
+  explosionParticles: {fileID: 4918260879944080065, guid: 4fb3205439e2e7b43a15d00c85cfea40,
     type: 3}
   physicsMask:
     serializedVersion: 2
     m_Bits: 128
   explosionRaidus: 4
-  explosionTime: 0.7
+  explosionTime: 0.05
   damage: 60
   pushForce: 200
