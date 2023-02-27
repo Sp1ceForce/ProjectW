@@ -11,7 +11,7 @@ public class HPUIController : MonoBehaviour
         hpController = FindObjectOfType<Witch>();
         hpController.OnHealthChange+=UpdateHealth;  
     }
-    void UpdateHealth(){
-        HPText.text = hpController.witchData.CurrentHealth.ToString();   
+    void UpdateHealth(int newHealth){
+        HPText.text = newHealth.ToString();   
     }
 }

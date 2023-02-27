@@ -14,21 +14,21 @@ public class WitchData {
 
     //Сюда можно добавить интервал с которым проклятие будет увеличиваться, а так же насколько сильно будет повышаться само проклятие, функцию реализую, но добавить это можем и позже 
 }
-public class Witch : MonoBehaviour {
+public class Witch : MonoBehaviour, IHealthComponent {
     [Header("Статы")]
     [SerializeField] bool useGlobalData = true;
     public WitchData witchData;
 
 
     //События
-    public Action OnHealthChange;
+    public Action<int> OnHealthChange;
     public Action OnDeath;
     public Action OnCurseLevelChange;
     
     private void Start()
     {
         LoadData();
-        OnHealthChange?.Invoke();
+        OnHealthChange?.Invoke(witchData.CurrentHealth);
     }
 
     private void LoadData()
@@ -36,8 +36,9 @@ public class Witch : MonoBehaviour {
         if (WitchGlobalData.Instance.WitchData != null && useGlobalData) witchData = WitchGlobalData.Instance.WitchData;
         witchData.CurrentHealth = witchData.MaxHealth;
     }
-
+    
     public void TakeDamage(int Damage){
+        Debug.Log(Damage);
         int newHealth = witchData.CurrentHealth-Damage;
         if(witchData.CurrentHealth == 1){
             witchData.CurrentHealth = newHealth;
@@ -45,7 +46,7 @@ public class Witch : MonoBehaviour {
         else {
             witchData.CurrentHealth = Math.Clamp(newHealth,1,witchData.MaxHealth);
         }
-        OnHealthChange?.Invoke();
+        OnHealthChange?.Invoke(witchData.CurrentHealth);
         if(witchData.CurrentHealth <=0) {
             OnDeath?.Invoke();
             Death();
@@ -57,7 +58,7 @@ public class Witch : MonoBehaviour {
     public void Heal(int Healing){
         witchData.CurrentHealth+=Healing;
         witchData.CurrentHealth = Math.Clamp(witchData.CurrentHealth,0,witchData.MaxHealth);
-        OnHealthChange?.Invoke();
+        OnHealthChange?.Invoke(witchData.CurrentHealth);
     }
     public IEnumerator CurseIncreaseCoroutine(){
         yield return new NotImplementedException();

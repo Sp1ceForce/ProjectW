@@ -18,10 +18,10 @@ public class SkillsController : MonoBehaviour
     //Выпускании спелла и возвращения к обычному режиму поворота персонажа
     public Action OnAimingEnd;
     [Header("Быстрые слоты")]
-
-    [SerializeField] public List<BaseQuickslotItem> quickslotItems;
-    [SerializeField] public List<InventoryQuickSlot> InventoryQuickSlotItems;
-
+    [SerializeReference]
+    public List<BaseQuickslotItem> quickslotItems;
+    public List<InventoryQuickSlot> InventoryQuickSlotItems;
+    [SerializeField] List<BombEffectType> effects;
     BaseQuickslotItem activeItem;
     public void OnQuickSlotButtonPress(InputAction.CallbackContext obj)
     {
@@ -43,6 +43,12 @@ public class SkillsController : MonoBehaviour
                     break;
             }
         }
+    }
+    [ContextMenu("Generate bomb")]
+    public void GenerateTestBomb(){
+        BaseBomb newBomb = new BaseBomb(new TestHandler(),effects);
+        quickslotItems[0] = newBomb;
+
     }
     void ChangeQuickSlot(int slotIndex)
     {

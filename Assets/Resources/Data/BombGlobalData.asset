@@ -9,26 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78145a66eaaa5ca418de9bb05962af82, type: 3}
-  m_Name: ExplosiveBomb
+  m_Script: {fileID: 11500000, guid: 489a07c2a30e3654d86b38722f6185e6, type: 3}
+  m_Name: BombGlobalData
   m_EditorClassIdentifier: 
-  throwingArc:
+  ThrowingArc:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2.0168066
-      outSlope: 2.0168066
+      inSlope: 2
+      outSlope: 2
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.49583334
+      time: 0.5
       value: 1
-      inSlope: 0.016667783
-      outSlope: 0.016667783
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -36,8 +36,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -1.983471
-      outSlope: -1.983471
+      inSlope: -2
+      outSlope: -2
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -45,15 +45,20 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  throwDuration: 0.7
-  maxHeight: 3
-  bombObject: {fileID: 1086224761313166, guid: fa66820763744ef46b5a9cfb5ef88187, type: 3}
-  explosionParticles: {fileID: 1804206099813350, guid: 4dd02b5f854b6c84990fbeb810abffe4,
+  ThrowDuration: 1
+  MaxHeight: 2.5
+  BombObject: {fileID: 1758002909022086, guid: 1aeca1bd9f707c245a80c7f103d235f9, type: 3}
+  ExplosionParticles: {fileID: 1804206099813350, guid: 4dd02b5f854b6c84990fbeb810abffe4,
     type: 3}
-  physicsMask:
+  FreezeParticles: {fileID: 0}
+  RaycastMask:
+    serializedVersion: 2
+    m_Bits: 264
+  PhysicsMask:
     serializedVersion: 2
     m_Bits: 128
-  explosionRaidus: 4
-  explosionTime: 0.7
-  damage: 60
-  pushForce: 200
+  ExplosionTime: 0.5
+  PosionFogObject: {fileID: 4969460845425004552, guid: b8bdd837efe214c4fa6c1d3251b00cda,
+    type: 3}
+  PullingZoneObject: {fileID: 5241703914784676622, guid: a245f76e156f7a84cbe553947e58b39b,
+    type: 3}

@@ -11,6 +11,13 @@ public class EnemyKnockbackComponent : MonoBehaviour
         GetComponent<Rigidbody>().AddForce(knockdirection.normalized * knockbackForce,ForceMode.Impulse);
         StartCoroutine(KnockedCooldown());
     }
+    public void PullTowards(Vector3 instigatorPosition, float knockbackForce){
+        GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<EnemyStateController>().enabled = false;
+        Vector3 knockdirection = instigatorPosition - transform.position;
+        GetComponent<Rigidbody>().AddForce(knockdirection.normalized * knockbackForce,ForceMode.Impulse);
+        StartCoroutine(KnockedCooldown());
+    }
     IEnumerator KnockedCooldown(){
         yield return new WaitForSeconds(knockedTime);
         GetComponent<NavMeshAgent>().enabled = true;
