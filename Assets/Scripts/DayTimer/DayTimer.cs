@@ -23,6 +23,7 @@ public class DayTimer : MonoBehaviour
     float periodSunSet; //endSunSet - startSunSet;
     int frameCount = 0;
     float pasTime = 0f;
+    
 
 
 
@@ -42,7 +43,7 @@ public class DayTimer : MonoBehaviour
         pasTime += Time.deltaTime;
         if (frameCount == frameCountUpdate){
             frameCount = 0;
-            UpdateSun();
+            //UpdateSun();
             currentTimeOfDay += (pasTime / secondsInFullDay) * timeMultiplier;
             if (currentTimeOfDay >= 1) {currentTimeOfDay = 0;}
             pasTime = 0;
