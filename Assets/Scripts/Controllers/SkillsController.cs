@@ -89,16 +89,16 @@ public class SkillsController : MonoBehaviour
                 break;
             case InputActionPhase.Canceled:
                 InventoryQuickSlot quickSLot = InventoryQuickSlotItems[quickslotItems.IndexOf(activeItem)];
-                if (quickSLot.transform.GetChild(0).TryGetComponent<BombHandler>(out BombHandler bombHandler))
+                /* if (quickSLot.transform.GetChild(0).TryGetComponent<BombHandler>(out BombHandler bombHandler))
                 {
-                    ExplosiveBomb bombItem = activeItem as ExplosiveBomb;
+                    BaseBomb bombItem = activeItem as BaseBomb;
 
                     if (bombItem == null) { Debug.Log("Casting Failed"); }
                     else
                     {
                         bombItem.useBombHandler(bombHandler);
                     }
-                }
+                } */
                 if (quickSLot.transform.GetChild(0).TryGetComponent<PotionHandler>(out PotionHandler potionHandler))
                 {
                     HealingPotion potionItem = activeItem as HealingPotion;
