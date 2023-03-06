@@ -11,7 +11,7 @@ public class SpawnTimer : MonoBehaviour
     public float sizeField = 5f;
     public float timePointForSpawn = 0.25f;
     private bool isTodaySpawned = false; 
-    private SpawnItemHandler spawnItemHandler = new SpawnItemHandler();
+    private SpawnItemHandler spawnItemHandler;
 
     void Awake() {
         dayTimer = GameObject.Find("DayTimer").GetComponent<DayTimer>();
@@ -20,6 +20,7 @@ public class SpawnTimer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spawnItemHandler = gameObject.AddComponent<SpawnItemHandler>();
         spawnItemHandler.CreateListOfFields(fieldsForSpawn);
         spawnItemHandler.SetSizeField(sizeField);
     }

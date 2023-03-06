@@ -10,11 +10,12 @@ public class SpawnItemTrigger : AfterInteract
     public GameObject SpawnedItem;
     public int amountItems = 1;
     public float sizeField = 5f;
-    private SpawnItemHandler spawnItemHandler = new SpawnItemHandler();
+    private SpawnItemHandler spawnItemHandler;
 
     // Start is called before the first frame update
     void Start()
     {
+        spawnItemHandler = gameObject.AddComponent<SpawnItemHandler>();
         spawnItemHandler.CreateListOfFields(fieldsForSpawn);
         spawnItemHandler.SetSizeField(sizeField);
     }
