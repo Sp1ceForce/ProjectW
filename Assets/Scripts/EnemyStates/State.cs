@@ -1,12 +1,12 @@
 using UnityEngine;
 using System;
 public abstract class State {
-    protected GameObject entity;
-    protected Transform entityTransform;
+    [SerializeField] protected GameObject entity;
+    [SerializeField] protected Transform entityTransform;
     protected EnemyStateController stateController;
     public Action OnStateEnter;
     public Action OnStateExit;
-    public State(GameObject EntityObject){
+    public virtual void InitState(GameObject EntityObject){
         entityTransform = EntityObject.transform;
         entity = EntityObject;
         stateController = EntityObject.GetComponent<EnemyStateController>();

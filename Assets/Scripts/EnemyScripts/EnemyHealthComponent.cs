@@ -1,25 +1,30 @@
 using UnityEngine;
 using System;
-public class EnemyHealthComponent : MonoBehaviour
+public class EnemyHealthComponent : MonoBehaviour, IHealthComponent
 {
     //Пока что временно будут просто переменные, позже продумаю как грамотно сделать классы для статов
-    [SerializeField] int maxHealth;
-    [SerializeField] int currentHealth;
+    public int MaxHealth;
+    public int CurrentHealth;
     public Action OnDeath;
     public Action OnTakeDamage;
     public Action<int> OnHealthChange;
     private void Start() {
-        currentHealth = maxHealth;
+        CurrentHealth = MaxHealth;
     }
     public void TakeDamage(int Damage){
-        currentHealth -=Damage;
+        CurrentHealth -=Damage;
         OnTakeDamage?.Invoke();
-        if(currentHealth<=0){
+        if(CurrentHealth<=0){
             OnDeath?.Invoke();
             Death();
         }
     }
+    public void Heal(int Healing){
+        CurrentHealth+=Healing;
+        CurrentHealth = Math.Clamp(CurrentHealth,0,MaxHealth);
+        OnHealthChange?.Invoke(CurrentHealth);
+    }
     void Death(){
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

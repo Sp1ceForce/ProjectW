@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "HealingPotion", menuName = "ProjectW/Potions/HealingPotion", order = 0)]
 public class HealingPotion : BaseQuickslotItem
 {
     public int AddHP;
