@@ -80,11 +80,12 @@ public class MeleeState : State
         if(Vector3.Distance(entity.transform.position,playerObject.transform.position)<aimStartDistance){
             var lookRot = Quaternion.LookRotation(playerObject.transform.position - entity.transform.position,Vector3.up);
             entityTransform.rotation = Quaternion.Slerp(entityTransform.rotation,lookRot,0.5f);
-            
+            if(Vector3.Distance(stateController.AttackPoint.transform.position,playerObject.transform.position)<attackDistance){
+                Debug.Log(Vector2.Distance(stateController.AttackPoint.transform.position,playerObject.transform.position));
+                currentState = MSState.MS_PreparingAttack;
+            }
         }
-
-        if(Physics.OverlapSphere(stateController.AttackPoint.position,attackRadius,LayerMask.GetMask("Player")).Length>0){
-            currentState = MSState.MS_PreparingAttack;
-        }
+//Physics.OverlapSphere(stateController.AttackPoint.position,attackRadius,LayerMask.GetMask("Player")).Length>0
+     
     }
 }

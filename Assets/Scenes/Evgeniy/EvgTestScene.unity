@@ -2436,6 +2436,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7621167479062229024, guid: cb86da9317f76814abacd73f3f01010f,
+        type: 3}
+      propertyPath: BattleType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621167479062229024, guid: cb86da9317f76814abacd73f3f01010f,
+        type: 3}
+      propertyPath: managedReferences[3761131462203801605].attackDistance
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7621167479062229031, guid: cb86da9317f76814abacd73f3f01010f,
         type: 3}
       propertyPath: m_RootOrder

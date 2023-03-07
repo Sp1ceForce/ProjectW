@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 public enum EnemyBehaviourType{
     EBT_Idle,
     EBT_Patrolling,
@@ -25,8 +26,8 @@ public static class StateFactory{
 public class EnemyStateController : MonoBehaviour
 {
     public State CurrentState {get; private set;}
-    public EnemyBehaviourType IdleStateEnum;
-    public EnemyBehaviourType BattleStateEnum;
+    public EnemyBehaviourType IdleType;
+    public EnemyBehaviourType BattleType;
     public Transform AttackPoint;
     [SerializeReference] public State IdleState;
     [SerializeReference] public State BattleState;
@@ -36,26 +37,27 @@ public class EnemyStateController : MonoBehaviour
         IdleState.InitState(gameObject);
         BattleState.InitState(gameObject);
         CurrentState = IdleState;
+        StartCoroutine(AIUpdate());
     }
     [ContextMenu("Generate states classes")]
     public void GenerateStates(){
-        IdleState = StateFactory.CreateState(IdleStateEnum,gameObject);
-        BattleState = StateFactory.CreateState(BattleStateEnum,gameObject);
+        IdleState = StateFactory.CreateState(IdleType,gameObject);
+        BattleState = StateFactory.CreateState(BattleType,gameObject);
     }
     public void SetState(State newState) {
         CurrentState = newState;
     }
     // Update is called once per frame
-    void Update()
-    {
-        var newState = CurrentState.StateUpdate();
-        if(newState !=null){
-            SetState(newState);
+    IEnumerator AIUpdate(){
+        var waitForSeconds = new WaitForSeconds(0.05f);
+        while(true){
+            yield return waitForSeconds;
+            var newState = CurrentState.StateUpdate();
+            if(newState !=null){
+                SetState(newState);
+            }
         }
     }
-    private void OnDestroy() {
-        Debug.Log("Bruh");
-        Debug.Log(GetComponent<EnemyHealthComponent>().CurrentHealth);
-    }
+
 
 }

@@ -1,9 +1,10 @@
 using UnityEngine;
 using System;
 public abstract class State {
-    [SerializeField] protected GameObject entity;
-    [SerializeField] protected Transform entityTransform;
+    protected GameObject entity;
+    protected Transform entityTransform;
     protected EnemyStateController stateController;
+    public float UpdateRate;
     public Action OnStateEnter;
     public Action OnStateExit;
     public virtual void InitState(GameObject EntityObject){
