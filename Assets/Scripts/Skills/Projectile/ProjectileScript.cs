@@ -15,8 +15,8 @@ public class ProjectileScript : MonoBehaviour {
         rb.velocity = transform.forward * projectileMoveSpeed;
     }
     private void OnCollisionEnter(Collision other) {
-        var healthComponent = other.collider.GetComponent<EnemyHealthComponent>();
-        if(healthComponent) healthComponent.TakeDamage(projectileDamage);
+        var healthComponent = other.collider.GetComponent<IHealthComponent>();
+        if(healthComponent != null) healthComponent.TakeDamage(projectileDamage);
         Destroy(gameObject);
     }
 }

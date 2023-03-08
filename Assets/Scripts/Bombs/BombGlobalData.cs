@@ -15,14 +15,17 @@ public class BombGlobalData : ScriptableObject {
     static BombGlobalData instance;
     
     [Header("Полёт бомбы и эффекты")]
-    [SerializeField] AnimationCurve throwingArc;
-    [SerializeField] float throwDuration = 1f;
-    [SerializeField] float maxHeight = 2.5f;
-    [SerializeField] GameObject bombObject;
-    [SerializeField] GameObject explosionParticles;
-    [Header("Взрыв бомбы")]
-    [SerializeField] LayerMask physicsMask;    
+    public AnimationCurve ThrowingArc;
+    public float ThrowDuration = 1f;
+    public float MaxHeight = 2.5f;
+    public GameObject BombObject;
+    public GameObject ExplosionParticles;
+    public GameObject FreezeParticles;
+    public LayerMask RaycastMask;  
 
+    [Header("Взрыв бомбы")]
+    public LayerMask PhysicsMask;    
+    public float ExplosionTime = 0.5f;
     public PoisonousFog PosionFogObject;
     public PullingZone PullingZoneObject;    
 }
