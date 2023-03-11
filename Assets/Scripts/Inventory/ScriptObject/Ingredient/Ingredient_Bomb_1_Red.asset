@@ -12,19 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d50670296a762044b15b01c06e06ed9, type: 3}
   m_Name: Ingredient_Bomb_1_Red
   m_EditorClassIdentifier: 
+  effects: 02000000
   BaseDamage: 50
   BaseFreeze: 2
-  BaseTimeFreeze: 2
+  BaseFreezeTime: 0
   BaseRadius: 2
   BaseDistancePush: 2
-  BasePulling: 2
-  BaseDamagePerSecond: 0
-  BaseTimeCloud: 0
+  BasePullForce: 0
+  BasePullzoneLifetime: 0
+  BaseBleedingDamagePerTick: 0
+  BaseBleedingTickInterval: 0
+  BaseBleedingTime: 0
+  BaseCloudDamagePerTick: 0
+  BaseCloudTickInterval: 0
+  BaseCloudLifetime: 0
   ModDamage: 2
   ModFreeze: 1
-  ModTimeFreeze: 1
+  ModFreezeTime: 0
   ModRadius: 1
   ModDistancePush: 1
-  ModPulling: 1
-  ModDamagePerSecond: 1
-  ModTimeCloud: 1
+  ModPullForce: 0
+  ModPullzoneLifetime: 0
+  ModBleedingDamagePerTick: 0
+  ModBleedingTickInterval: 0
+  ModBleedingTime: 0
+  ModCloudDamagePerTick: 0
+  ModCloudTickInterval: 0
+  ModCloudLifetime: 0

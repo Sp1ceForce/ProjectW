@@ -5,22 +5,34 @@ using UnityEngine;
 
 public class BaseBombIng : ScriptableObject
 {
+    [Header("Effects Settings")]
+    [SerializeField] public List<BombEffectType> effects;
     [Header("Base Settings")]
     public int BaseDamage;
     public float BaseFreeze;
-    public float BaseTimeFreeze;
+    public float BaseFreezeTime;
     public float BaseRadius;
-    public float BasePushForce;
-    public float BasePulling;
-    public float BaseDamagePerSecond;
-    public float BaseTimeCloud;
+    public float BaseDistancePush;
+    public float BasePullForce;
+    public float BasePullzoneLifetime;
+    public int BaseBleedingDamagePerTick;
+    public float BaseBleedingTickInterval;
+    public float BaseBleedingTime;
+    public int BaseCloudDamagePerTick;
+    public float BaseCloudTickInterval;
+    public float BaseCloudLifetime;
     [Header("Mod Settings")]
     public int ModDamage;
     public float ModFreeze;
-    public float ModTimeFreeze;
+    public float ModFreezeTime;
     public float ModRadius;
-    public float ModPushForce;
-    public float ModPulling;
-    public float ModDamagePerSecond;
-    public float ModTimeCloud;
+    public float ModDistancePush;
+    public float ModPullForce;
+    public float ModPullzoneLifetime;
+    public int ModBleedingDamagePerTick;
+    public float ModBleedingTickInterval;
+    public float ModBleedingTime;
+    public int ModCloudDamagePerTick;
+    public float ModCloudTickInterval;
+    public float ModCloudLifetime;
 }

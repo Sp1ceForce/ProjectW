@@ -46,14 +46,16 @@ public class BombEffectFreeze : IBombEffect
     public string Name = "Freeze";
     public void ActivateEffect(Collider[] entitiesHit, Vector3 explosionPosition, TestHandler bombStats)
     {
-        foreach(var entity in entitiesHit){
+        foreach (var entity in entitiesHit)
+        {
             var freezeComp = entity.gameObject.GetComponent<FreezeComponent>();
-            if(freezeComp== null) 
+            if (freezeComp == null)
             {
                 var freeze = entity.gameObject.AddComponent<FreezeComponent>();
                 freeze.Init(bombStats);
             }
-            else if(freezeComp.Stats.Freeze < bombStats.Freeze){
+            else if (freezeComp.Stats.Freeze < bombStats.Freeze)
+            {
                 var freeze = entity.gameObject.AddComponent<FreezeComponent>();
                 freeze.Init(bombStats);
             }
@@ -66,7 +68,7 @@ public class BombEffectVacuum : IBombEffect
     public string Name = "Vacuum cleaner";
     public void ActivateEffect(Collider[] entitiesHit, Vector3 explosionPosition, TestHandler bombStats)
     {
-        PullingZone pullingZone = GameObject.Instantiate(BombGlobalData.Instance.PullingZoneObject,explosionPosition,Quaternion.identity);
+        PullingZone pullingZone = GameObject.Instantiate(BombGlobalData.Instance.PullingZoneObject, explosionPosition, Quaternion.identity);
         pullingZone.Init(bombStats);
     }
 }
@@ -76,7 +78,8 @@ public class BombEffectApplyBleeding : IBombEffect
     public string Name = "Apply bleeding";
     public void ActivateEffect(Collider[] entitiesHit, Vector3 explosionPosition, TestHandler bombStats)
     {
-        foreach(var entity in entitiesHit){
+        foreach (var entity in entitiesHit)
+        {
             //TODO: Поставить проверку на тэг Enemy, чёт не хочется чтобы у камней было кровотечение
             //if(entity.tag == "Enemy")
             entity.gameObject.AddComponent<BleedingComponent>().Init(bombStats);
@@ -89,7 +92,7 @@ public class BombEffectPoisonFog : IBombEffect
     public string Name = "Create poison fog";
     public void ActivateEffect(Collider[] entitiesHit, Vector3 explosionPosition, TestHandler bombStats)
     {
-        PoisonousFog fog = GameObject.Instantiate(BombGlobalData.Instance.PosionFogObject,explosionPosition,Quaternion.identity);
+        PoisonousFog fog = GameObject.Instantiate(BombGlobalData.Instance.PosionFogObject, explosionPosition, Quaternion.identity);
         fog.Init(bombStats);
     }
 }
@@ -117,7 +120,8 @@ public class BombEffectFactory
     }
 }
 [Serializable]
-public class TestHandler{
+public class TestHandler
+{
     public int Damage;
     public float Freeze;
     public float FreezeTime;
@@ -131,7 +135,8 @@ public class TestHandler{
     public int CloudDamagePerTick;
     public float CloudTickInterval;
     public float CloudLifetime;
-    public TestHandler(){
+    public TestHandler()
+    {
         Damage = 20;
         Freeze = 60;
         FreezeTime = 30;
@@ -145,6 +150,56 @@ public class TestHandler{
         CloudDamagePerTick = 20;
         CloudTickInterval = 0.1f;
         CloudLifetime = 20;
+    }
+    public TestHandler(BaseBombIng baseBomb, BaseBombIng ModBomb)
+    {
+        Damage = 20;
+        Freeze = 60;
+        FreezeTime = 30;
+        Radius = 10;
+        DistancePush = 20;
+        PullForce = 20;
+        PullzoneLifetime = 10f;
+        BleedingDamagePerTick = 20;
+        BleedingTickInterval = 0.1f;
+        BleedingTime = 10f;
+        CloudDamagePerTick = 20;
+        CloudTickInterval = 0.1f;
+        CloudLifetime = 20;
+
+        if (baseBomb != null)
+        {
+            Damage = baseBomb.BaseDamage;
+            Freeze = baseBomb.BaseFreeze;
+            FreezeTime = baseBomb.BaseFreezeTime;
+            Radius = baseBomb.BaseRadius;
+            DistancePush = baseBomb.BaseDistancePush;
+            PullForce = baseBomb.BasePullForce;
+            PullzoneLifetime = baseBomb.BasePullzoneLifetime;
+            BleedingDamagePerTick = baseBomb.BaseBleedingDamagePerTick;
+            BleedingTickInterval = baseBomb.BaseBleedingTickInterval;
+            BleedingTime = baseBomb.BaseBleedingTime;
+            CloudDamagePerTick = baseBomb.BaseCloudDamagePerTick;
+            CloudTickInterval = baseBomb.BaseCloudTickInterval;
+            CloudLifetime = baseBomb.BaseCloudLifetime;
+            Damage = baseBomb.BaseDamage;
+        }
+
+        if (ModBomb != null)
+        {
+            Freeze *= ModBomb.ModFreeze;
+            FreezeTime *= ModBomb.ModFreezeTime;
+            Radius *= ModBomb.ModRadius;
+            DistancePush *= ModBomb.ModDistancePush;
+            PullForce *= ModBomb.ModPullForce;
+            PullzoneLifetime *= ModBomb.ModPullzoneLifetime;
+            BleedingDamagePerTick *= ModBomb.ModBleedingDamagePerTick;
+            BleedingTickInterval *= ModBomb.ModBleedingTickInterval;
+            BleedingTime *= ModBomb.ModBleedingTime;
+            CloudDamagePerTick *= ModBomb.ModCloudDamagePerTick;
+            CloudTickInterval *= ModBomb.ModCloudTickInterval;
+            CloudLifetime *= ModBomb.ModCloudLifetime;
+        }
     }
 }
 

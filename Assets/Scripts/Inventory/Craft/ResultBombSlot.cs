@@ -15,9 +15,7 @@ public class ResultBombSlot : ResultSlot
     public override void RefreshCraft()
     {
         Item Item_1 = craftSlot_1.slot.item;
-        Debug.Log(Item_1);
         Item Item_2 = craftSlot_2.slot.item;
-        Debug.Log(Item_2);
 
         bool Ingred_1 = false;
         if (Item_1 != null)
@@ -35,7 +33,6 @@ public class ResultBombSlot : ResultSlot
             if (DataIDItem.ItemIdList.Contains(ID))
             {
                 CraftHandler(Ingred_1, Ingred_2, DataIDItem.GetItemByKey(ID), Item_1, Item_2);
-                Debug.Log("before remove");
             }
             else
             {
@@ -60,13 +57,13 @@ public class ResultBombSlot : ResultSlot
             ID = KeyBombId + Item_1.id;
             if (Ingred_2) ID = ID + Item_2.id;
 
-            if (DataIDItem.ItemIdList.Contains(ID))
+            if (DataIDItem.ItemIdList.Contains(ID))    //где искать предмет? 
             {
                 CraftHandler(Ingred_1, Ingred_2, DataIDItem.GetItemByKey(ID), Item_1, Item_2);
             }
             else
             {
-                Item newItem = CreateItem(Ingred_1, Ingred_2, Item_1, Item_2, ID);
+                Item newItem = CreateItem(Ingred_1, Ingred_2, Item_1, Item_2, ID); //Вызов создания предмета в файле
                 InitItem(newItem, ID);
                 CraftHandler(Ingred_1, Ingred_2, newItem, Item_1, Item_2);
             }
@@ -79,33 +76,38 @@ public class ResultBombSlot : ResultSlot
     private void CraftHandler(bool Ingred_1, bool Ingred_2, Item newItem, Item Item_1, Item Item_2)
     {
         InventorySlot q = inventory.AddItemToSelectedSlot(newItem, transform, amount: 1);
-        BombHandler handler;
-        if (q.iconGameObject.TryGetComponent<BombHandler>(out handler))
-        {
-            if (Ingred_2) handler.UseBombMod(Item_2.ingredient.bombIng);
-            return;
-        }
-        else
-        {
-            handler = q.iconGameObject.AddComponent<BombHandler>();
-        }
-        if (Ingred_1) handler.UseBombBase(Item_1.ingredient.bombIng);
-        if (Ingred_2) handler.UseBombMod(Item_2.ingredient.bombIng);
+        ////ЗДЕСЬ ОШИБКА!/////
+        ////Для указания связи используется неправильный предмет из слота крафта, а должен использоваться добавленный из слота результата
+        Debug.Log(q.item.id);
+        // if (q.item.prefab.TryGetComponent<SelectedItem>(out SelectedItem selectedItem)) selectedItem.item = newItem;
+        TestHandler handler = new TestHandler(
+        Ingred_1 == true ? Item_1.ingredient.bombIng : null,
+        Ingred_2 == true ? Item_2.ingredient.bombIng : null);
+        List<BombEffectType> effectsList = new List<BombEffectType>();
+        for (int i = 0; i < Item_1.ingredient.bombIng.effects.Count; i++)
+            effectsList.Add(Item_1.ingredient.bombIng.effects[i]);
+        if (Ingred_2)
+            foreach (BombEffectType effect in Item_2.ingredient.bombIng.effects)
+            {
+                if (!effectsList.Contains(effect))
+                    effectsList.Add(effect);
+            }
+        BaseBomb newBomb = new BaseBomb(handler, effectsList);
+        newItem.quickslotItem = newBomb;
 
-        handler.bombItem = newItem;
     }
     private Item CreateItem(bool Ingred_1, bool Ingred_2, Item Item_1, Item Item_2, string ID)
     {
         Item newItem = ScriptableObject.CreateInstance<Item>();
-        string name = null;
-        if (Ingred_1)
-            name = UnityEditor.AssetDatabase.GenerateUniqueAssetPath(DataIDItem.BombPath
-            + ID + "_" + Item_1.ingredient.Color + "_" + ".asset");
-        if (Ingred_2 && Ingred_1)
-            name = UnityEditor.AssetDatabase.GenerateUniqueAssetPath(DataIDItem.BombPath
-            + ID + "_" + Item_1.ingredient.Color + "_" + Item_2.ingredient.Color + ".asset");
-        AssetDatabase.CreateAsset(newItem, name);
-        AssetDatabase.SaveAssets();
+        // string name = null;
+        // if (Ingred_1)
+        //     name = UnityEditor.AssetDatabase.GenerateUniqueAssetPath(DataIDItem.BombPath
+        //     + ID + "_" + Item_1.ingredient.Color + "_" + ".asset");
+        // if (Ingred_2 && Ingred_1)
+        //     name = UnityEditor.AssetDatabase.GenerateUniqueAssetPath(DataIDItem.BombPath
+        //     + ID + "_" + Item_1.ingredient.Color + "_" + Item_2.ingredient.Color + ".asset");
+        // AssetDatabase.CreateAsset(newItem, name);
+        // AssetDatabase.SaveAssets();
         return newItem;
     }
     private Item InitItem(Item newItem, string ID)
@@ -121,12 +123,11 @@ public class ResultBombSlot : ResultSlot
         newItem.itSelectedItem = true;
         newItem.prefab = Bomb.prefab;
         newItem.timeToPickUp = Bomb.timeToPickUp;
-        newItem.quickslotItem = Bomb.quickslotItem;
+        // newItem.quickslotItem = Bomb.quickslotItem;
         return newItem;
     }
     public override void removeComponentCraft()
     {
-        Debug.Log(slot);
         if (slot == null) // || slot.item != null;
             slot = inventory.GetInventorySlot(transform);
         inventory.RemoveItem(craftSlot_1.slot, 1);
@@ -137,7 +138,6 @@ public class ResultBombSlot : ResultSlot
         if (slot == null || slot.item == null) // || slot.item == null;
             slot = inventory.GetInventorySlot(transform);
         inventory.RemoveItem(slot, 1);
-        Debug.Log("remove");
     }
 
 

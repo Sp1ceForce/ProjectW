@@ -6,7 +6,7 @@ using EventBusSystem;
 
 public class CraftSlot : MonoBehaviour, IAddToCraft
 {
-    // private Inventory inventory;
+
     [HideInInspector]
     public InventorySlot slot;
     [SerializeField] public ResultSlot resultSlot;

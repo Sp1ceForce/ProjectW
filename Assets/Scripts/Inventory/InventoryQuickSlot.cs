@@ -31,8 +31,11 @@ public class InventoryQuickSlot : MonoBehaviour
     {
         inventorySlot = inventory.GetInventorySlot(transform);
         item = inventorySlot.item;
+
         if (item.itQuickSlotItem)
-            skillsController.quickslotItems[number] = item.quickslotItem;
+        {
+            skillsController.addToSlot(item.quickslotItem, number);
+        }
     }
     public void removeItemFromSkillController()
     {
@@ -43,14 +46,15 @@ public class InventoryQuickSlot : MonoBehaviour
         else
         {
             inventory.RemoveItem(inventorySlot, 1);
-            skillsController.quickslotItems[number] = null;
+            skillsController.removeFromSlot(number);
         }
+        inventorySlot = inventory.GetInventorySlot(transform);
     }
     public void removeSlotFromSkillController()
     {
         if (inventorySlot.amount <= 1)
         {
-            skillsController.quickslotItems[number] = null;
+            skillsController.removeFromSlot(number);
         }
 
     }

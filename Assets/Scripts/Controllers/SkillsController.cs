@@ -45,10 +45,20 @@ public class SkillsController : MonoBehaviour
         }
     }
     [ContextMenu("Generate bomb")]
-    public void GenerateTestBomb(){
-        BaseBomb newBomb = new BaseBomb(new TestHandler(),effects);
+    public void GenerateTestBomb()
+    {
+        BaseBomb newBomb = new BaseBomb(new TestHandler(), effects);
         quickslotItems[0] = newBomb;
 
+    }
+    public void addToSlot(BaseQuickslotItem slotItem, int number)
+    {
+        if (slotItem is BaseBomb) { quickslotItems[number] = slotItem as BaseBomb; }
+
+    }
+    public void removeFromSlot(int number)
+    {
+        quickslotItems[number] = null;
     }
     void ChangeQuickSlot(int slotIndex)
     {
@@ -77,7 +87,6 @@ public class SkillsController : MonoBehaviour
         }
 
     }
-
     public void OnRightClickPress(InputAction.CallbackContext obj)
     {
         if (activeItem == null) return;
@@ -88,29 +97,15 @@ public class SkillsController : MonoBehaviour
                 OnActiveSpellChanged?.Invoke();
                 break;
             case InputActionPhase.Canceled:
-                InventoryQuickSlot quickSLot = InventoryQuickSlotItems[quickslotItems.IndexOf(activeItem)];
-                /* if (quickSLot.transform.GetChild(0).TryGetComponent<BombHandler>(out BombHandler bombHandler))
-                {
-                    BaseBomb bombItem = activeItem as BaseBomb;
+                int indexItem = quickslotItems.IndexOf(activeItem);
 
-                    if (bombItem == null) { Debug.Log("Casting Failed"); }
-                    else
-                    {
-                        bombItem.useBombHandler(bombHandler);
-                    }
-                } */
-                if (quickSLot.transform.GetChild(0).TryGetComponent<PotionHandler>(out PotionHandler potionHandler))
-                {
-                    HealingPotion potionItem = activeItem as HealingPotion;
-
-                    if (potionItem == null) { Debug.Log("Casting Failed"); }
-                    else
-                    {
-                        potionItem.usePotionHandler(potionHandler);
-                    }
-                }
                 activeItem.Activate(gameObject);
-                quickSLot.removeItemFromSkillController();
+                if (indexItem >= 0)
+                {
+                    InventoryQuickSlot quickSLot = InventoryQuickSlotItems[indexItem];
+                    quickSLot.removeItemFromSkillController();
+                    activeItem = null;
+                }
                 OnAimingEnd?.Invoke();
                 break;
         }

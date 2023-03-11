@@ -106,14 +106,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 new Vector3(hit.point.x, hit.point.y + 1, hit.point.z),
                 Quaternion.identity);
 
-                if (invSlot.iconGameObject.TryGetComponent<BombHandler>(out BombHandler bombHandler))
-                {
-                    item.AddComponent<BombHandler>().InitFromAnotherHandler(bombHandler);
-                }
-                if (invSlot.iconGameObject.TryGetComponent<PotionHandler>(out PotionHandler potionHandler))
-                {
-                    item.AddComponent<PotionHandler>().InitFromAnotherHandler(potionHandler);
-                }
+                item.GetComponent<SelectedItem>().item = invSlot.item;
 
                 inventory.RemoveItem(inventorySlot: invSlot);
             }
