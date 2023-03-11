@@ -4,7 +4,7 @@ using UnityEngine;
 using EventBusSystem;
 public class SelectedItem : MonoBehaviour
 {
-    [SerializeField] private Item item;
+    [SerializeField] public Item item;
     [SerializeField] private int amount = 1;
 
     private void OnTriggerStay(Collider other)

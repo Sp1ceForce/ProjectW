@@ -17,25 +17,25 @@ public class BombHandler : MonoBehaviour
 
     public void UseBombBase(BaseBombIng baseBomb)
     {
-        Damage = baseBomb.BaseDamage;
-        Freeze = baseBomb.BaseFreeze;
-        TimeFreeze = baseBomb.BaseTimeFreeze;
-        Radius = baseBomb.BaseRadius;
-        PushForce = baseBomb.BasePushForce;
-        Pulling = baseBomb.BasePulling;
-        DamagePerSecond = baseBomb.BaseDamagePerSecond;
-        TimeCloud = baseBomb.BaseTimeCloud;
+        // Damage = baseBomb.BaseDamage;
+        // Freeze = baseBomb.BaseFreeze;
+        // TimeFreeze = baseBomb.BaseTimeFreeze;
+        // Radius = baseBomb.BaseRadius;
+        // PushForce = baseBomb.BasePushForce;
+        // Pulling = baseBomb.BasePulling;
+        // DamagePerSecond = baseBomb.BaseDamagePerSecond;
+        // TimeCloud = baseBomb.BaseTimeCloud;
     }
     public void UseBombMod(BaseBombIng baseBomb)
     {
-        Damage *= baseBomb.ModDamage;
-        Freeze *= baseBomb.ModFreeze;
-        TimeFreeze *= baseBomb.ModTimeFreeze;
-        Radius *= baseBomb.ModRadius;
-        PushForce *= baseBomb.ModPushForce;
-        Pulling *= baseBomb.ModPulling;
-        DamagePerSecond *= baseBomb.ModDamagePerSecond;
-        TimeCloud *= baseBomb.ModTimeCloud;
+        // Damage *= baseBomb.ModDamage;
+        // Freeze *= baseBomb.ModFreeze;
+        // TimeFreeze *= baseBomb.ModTimeFreeze;
+        // Radius *= baseBomb.ModRadius;
+        // PushForce *= baseBomb.ModPushForce;
+        // Pulling *= baseBomb.ModPulling;
+        // DamagePerSecond *= baseBomb.ModDamagePerSecond;
+        // TimeCloud *= baseBomb.ModTimeCloud;
     }
     public void InitFromAnotherHandler(BombHandler handler)
     {

@@ -21,4 +21,11 @@ public class DataIDItem : ScriptableObject
         }
         return null;
     }
+
+    private void OnDisable()
+    {
+        Items.RemoveRange(8, ItemIdList.Count - 8);
+        ItemIdList.RemoveRange(8, ItemIdList.Count - 8);
+    }
+
 }
