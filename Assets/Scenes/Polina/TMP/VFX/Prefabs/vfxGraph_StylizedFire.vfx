@@ -1685,7 +1685,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":1.8289082050323487,"g":1.4415040016174317,"b":0.2252350002527237,"a":1.0},"time":0.005905241705477238},{"color":{"r":1.1332244873046876,"g":0.4294869303703308,"b":0.031047247350215913,"a":1.0},"time":0.7683222889900208},{"color":{"r":0.9764705896377564,"g":0.16078431904315949,"b":0.11764705926179886,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.8584905862808228,"g":0.8584905862808228,"b":0.8584905862808228,"a":1.0},"time":0.005905241705477238},{"color":{"r":0.35656818747520449,"g":0.38540884852409365,"b":0.6037735939025879,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
     m_Space: 2147483647
   m_Property:
     name: gradient

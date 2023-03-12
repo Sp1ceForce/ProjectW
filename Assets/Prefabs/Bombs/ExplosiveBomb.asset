@@ -49,7 +49,7 @@ MonoBehaviour:
   maxHeight: 3
   bombObject: {fileID: 7406992971143198694, guid: f5d4308464ffba94583783a9e9da4f68,
     type: 3}
-  explosionParticles: {fileID: 4918260879944080065, guid: 4fb3205439e2e7b43a15d00c85cfea40,
+  explosionParticles: {fileID: 1172284384670456596, guid: 483cb67bbbd0c5e4fa415a6f6902dbf0,
     type: 3}
   physicsMask:
     serializedVersion: 2
