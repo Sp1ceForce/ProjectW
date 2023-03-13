@@ -35,7 +35,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Base_Color:
-        m_Texture: {fileID: 2800000, guid: 441d79da40df4c249bda0d2df60fc0ef, type: 3}
+        m_Texture: {fileID: 2800000, guid: 87ca219c550fdf746b551b8d071d01e6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -59,11 +59,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Grass_Base:
-        m_Texture: {fileID: 2800000, guid: a9c83a48d3d21b849bf9cc9635b60555, type: 3}
+        m_Texture: {fileID: 2800000, guid: 72572dc73830f414f905faa73599f0de, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Grass_Normal:
-        m_Texture: {fileID: 2800000, guid: eab4a04a4f5a4a741a40f593fa5a12e7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 37d94edb0621f9641a0c36daebca98d7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -75,12 +75,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: b9558931c1b49314581e3154a2f7fedb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 45e7e165aa3c60c4ba6260d80717631b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal2:
         m_Texture: {fileID: 2800000, guid: b9558931c1b49314581e3154a2f7fedb, type: 3}
-        m_Scale: {x: 0.1, y: 0.1}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -126,8 +126,8 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _GrassHeightBlend: 68.4
-    - _Grass_Trashlold: 1
-    - _Level_2: 0.261
+    - _Grass_Trashlold: 0.823
+    - _Level_2: 0.645
     - _Metallic: 0
     - _Multiplayer: 0.01
     - _OcclusionStrength: 1
