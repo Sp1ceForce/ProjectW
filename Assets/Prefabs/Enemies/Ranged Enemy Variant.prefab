@@ -67,12 +67,17 @@ PrefabInstance:
     - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
       propertyPath: IdleState
-      value: 3761131459885400077
+      value: 3761131616496517120
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: BattleType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
       propertyPath: BattleState
-      value: 3761131459885400078
+      value: 3761131616496517121
       objectReference: {fileID: 0}
     - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
@@ -101,6 +106,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
+      propertyPath: managedReferences[3761131616496517120]
+      value: Assembly-CSharp StandingState
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: managedReferences[3761131616496517121]
+      value: Assembly-CSharp RangedState
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
       propertyPath: managedReferences[3761131459885400071].entity
       value: 
       objectReference: {fileID: 0}
@@ -121,12 +136,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
+      propertyPath: managedReferences[3761131616496517121].castTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: managedReferences[3761131616496517120].UpdateRate
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: managedReferences[3761131616496517121].UpdateRate
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: managedReferences[3761131616496517121].reloadTime
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
       propertyPath: managedReferences[3761131459885400071].showDebugInfo
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
       propertyPath: managedReferences[3761131459885400077].showDebugInfo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: managedReferences[3761131616496517120].showDebugInfo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: managedReferences[3761131616496517121].shootDistance
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: managedReferences[3761131616496517121].showDebugInfo
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
@@ -159,6 +209,32 @@ PrefabInstance:
       propertyPath: managedReferences[3761131459885400078].entityTransform
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: managedReferences[3761131616496517120].detectionRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: managedReferences[3761131616496517121].projectileSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: managedReferences[3761131616496517121].projectileDamage
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: managedReferences[3761131616496517121].projectileObject
+      value: 
+      objectReference: {fileID: 2891046712479863512, guid: 6de1e6676007a994591e55e4faea51f8,
+        type: 3}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: managedReferences[3761131616496517121].projectileLifetime
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2783563693967746199, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
       propertyPath: m_RootOrder
@@ -167,7 +243,7 @@ PrefabInstance:
     - target: {fileID: 2783563693967746199, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.173313
+      value: 5.423313
       objectReference: {fileID: 0}
     - target: {fileID: 2783563693967746199, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
@@ -177,7 +253,7 @@ PrefabInstance:
     - target: {fileID: 2783563693967746199, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.9945335
+      value: 0.75546646
       objectReference: {fileID: 0}
     - target: {fileID: 2783563693967746199, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
@@ -217,7 +293,7 @@ PrefabInstance:
     - target: {fileID: 2783563693967746202, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
       propertyPath: m_Name
-      value: Ranged Enemy
+      value: Ranged Enemy (3)
       objectReference: {fileID: 0}
     - target: {fileID: 7918915427943476180, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
@@ -253,6 +329,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 8.536
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924852023123254227, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.22
       objectReference: {fileID: 0}
     - target: {fileID: 7925207246503337902, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}

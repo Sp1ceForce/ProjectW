@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
+
 public enum EnemyBehaviourType{
     EBT_Idle,
     EBT_Patrolling,
@@ -23,6 +25,7 @@ public static class StateFactory{
         }
     }
 } 
+[RequireComponent(typeof(NavMeshAgent))]
 public class EnemyStateController : MonoBehaviour
 {
     public State CurrentState {get; private set;}
@@ -31,12 +34,12 @@ public class EnemyStateController : MonoBehaviour
     public Transform AttackPoint;
     [SerializeReference] public State IdleState;
     [SerializeReference] public State BattleState;
-    public bool IsAiming;
+    WaitForSeconds stateUpdateTimer;
     void Start()
     {
         IdleState.InitState(gameObject);
         BattleState.InitState(gameObject);
-        CurrentState = IdleState;
+        SetState(IdleState);
         StartCoroutine(AIUpdate());
     }
     [ContextMenu("Generate states classes")]
@@ -45,13 +48,16 @@ public class EnemyStateController : MonoBehaviour
         BattleState = StateFactory.CreateState(BattleType,gameObject);
     }
     public void SetState(State newState) {
+        if(CurrentState !=null) CurrentState.StateExit();
         CurrentState = newState;
+        CurrentState.StateEnter();
+        stateUpdateTimer = new WaitForSeconds(CurrentState.UpdateRate);
     }
     // Update is called once per frame
     IEnumerator AIUpdate(){
-        var waitForSeconds = new WaitForSeconds(0.05f);
+        
         while(true){
-            yield return waitForSeconds;
+            yield return stateUpdateTimer;
             var newState = CurrentState.StateUpdate();
             if(newState !=null){
                 SetState(newState);

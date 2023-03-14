@@ -17,7 +17,7 @@ public class ProjectileSpell : Spell
     [SerializeField] ProjectileData spellData;
     //Мне не особо нравится идея пустого объекта который является начальной точкой для запуска снаряда, поэтому попробую просто Forward вектор игрока умножать на forwardOffset
     [SerializeField] float forwardOffset =1.1f;
-
+    [SerializeField] float verticalOffset = 0.5f;
     public override void Activate(GameObject Instigator)
     {
 
@@ -27,7 +27,8 @@ public class ProjectileSpell : Spell
         RaycastHit hit;
         Physics.Raycast(ray, out hit, Mathf.Infinity);
         Vector3 projectileSpawnPoint =Instigator.transform.position + Instigator.transform.forward * forwardOffset;
-        Instantiate(ProjectileObject,projectileSpawnPoint,Instigator.transform.rotation).Init(spellData.ProjectileSpeed,spellData.Damage,spellData.ProjectileLifetime);
+        var projectileRotation = Quaternion.LookRotation(hit.point - Instigator.transform.position  + new Vector3(0,verticalOffset,0),Vector3.up);
+        Instantiate(ProjectileObject,projectileSpawnPoint,projectileRotation).Init(spellData.ProjectileSpeed,spellData.Damage,spellData.ProjectileLifetime);
         canCast = false;
         Instigator.GetComponent<SkillsController>().StartCoroutine(StartCooldown(spellData.SpellCooldown));
     }

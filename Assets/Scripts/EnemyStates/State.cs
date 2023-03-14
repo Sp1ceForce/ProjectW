@@ -7,6 +7,7 @@ public abstract class State {
     public float UpdateRate;
     public Action OnStateEnter;
     public Action OnStateExit;
+    [SerializeField] protected bool showDebugInfo;
     public virtual void InitState(GameObject EntityObject){
         entityTransform = EntityObject.transform;
         entity = EntityObject;
@@ -15,6 +16,7 @@ public abstract class State {
     public virtual void StateEnter(){
         OnStateEnter?.Invoke();
     }
+    protected virtual void DrawDebugInfo(){}
     public virtual void StateExit(){
         OnStateExit?.Invoke();
     }

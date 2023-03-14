@@ -49,7 +49,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2783563693967746202}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 9
   m_Acceleration: 16
   avoidancePriority: 50
@@ -74,7 +74,7 @@ Rigidbody:
   m_Drag: 3
   m_AngularDrag: 2
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f80ceb2fe2adc5a4eb490dfbbcc8a18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdleStateEnum: 0
-  BattleStateEnum: 0
+  IdleType: 0
+  BattleType: 0
   AttackPoint: {fileID: 7924852023123254227}
   IdleState:
     rid: -2

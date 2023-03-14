@@ -14,6 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
+      propertyPath: BattleType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
       propertyPath: BattleState
       value: 3761131462203801605
       objectReference: {fileID: 0}
@@ -44,6 +49,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
+      propertyPath: managedReferences[3761131462203801604].UpdateRate
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
+      propertyPath: managedReferences[3761131462203801605].UpdateRate
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
+        type: 3}
       propertyPath: managedReferences[3761131462203801605].attackDamage
       value: 30
       objectReference: {fileID: 0}
@@ -65,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
       propertyPath: managedReferences[3761131462203801605].attackDistance
-      value: 0.7
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 2783563693967746192, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
@@ -115,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 2783563693967746199, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.9945335
+      value: 23.9
       objectReference: {fileID: 0}
     - target: {fileID: 2783563693967746199, guid: ab887ac4abad1124c84382ff89890f28,
         type: 3}
