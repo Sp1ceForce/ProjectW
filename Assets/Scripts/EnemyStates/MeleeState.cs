@@ -23,15 +23,16 @@ public class MeleeState : State
     [SerializeField] float aimStartDistance;
     [SerializeField] float attackRadius;
     
-    [SerializeField] bool showDebugInfo;
-
+    Witch playerWitchComponent;
     public Action OnAttackWindupStart;
     public Action OnAttackPerformed;
+    
     public override void InitState(GameObject EntityObject) 
     {
         base.InitState(EntityObject);
         playerObject = GameObject.FindGameObjectWithTag("Player");
         navAgent = EntityObject.GetComponent<NavMeshAgent>();
+        playerWitchComponent = playerObject.GetComponent<Witch>();
     }
     public override State StateUpdate()
     {
@@ -49,9 +50,10 @@ public class MeleeState : State
         if(showDebugInfo){
             DrawDebugInfo();
         }
+        if(playerWitchComponent.isHidden) return stateController.IdleState;
         return null;
     }
-    void DrawDebugInfo(){
+    protected override void DrawDebugInfo(){
         DebugExtension.DebugWireSphere(stateController.AttackPoint.position,Color.red,attackRadius);
         DebugExtension.DebugWireSphere(entity.transform.position,Color.yellow,aimStartDistance);
         Debug.DrawLine(entity.transform.position,entity.transform.position + entity.transform.forward*attackDistance,Color.magenta);
@@ -80,11 +82,12 @@ public class MeleeState : State
         if(Vector3.Distance(entity.transform.position,playerObject.transform.position)<aimStartDistance){
             var lookRot = Quaternion.LookRotation(playerObject.transform.position - entity.transform.position,Vector3.up);
             entityTransform.rotation = Quaternion.Slerp(entityTransform.rotation,lookRot,0.5f);
-            
+            if(Vector3.Distance(stateController.AttackPoint.transform.position,playerObject.transform.position)<attackDistance){
+                Debug.Log(Vector2.Distance(stateController.AttackPoint.transform.position,playerObject.transform.position));
+                currentState = MSState.MS_PreparingAttack;
+            }
         }
-
-        if(Physics.OverlapSphere(stateController.AttackPoint.position,attackRadius,LayerMask.GetMask("Player")).Length>0){
-            currentState = MSState.MS_PreparingAttack;
-        }
+        //Physics.OverlapSphere(stateController.AttackPoint.position,attackRadius,LayerMask.GetMask("Player")).Length>0
+     
     }
 }

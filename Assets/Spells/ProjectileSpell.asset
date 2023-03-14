@@ -24,3 +24,4 @@ MonoBehaviour:
     projectileSpeed: 20
     projectileLifetime: 10
   forwardOffset: 1.1
+  verticalOffset: 1

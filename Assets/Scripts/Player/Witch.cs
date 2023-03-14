@@ -19,7 +19,7 @@ public class Witch : MonoBehaviour, IHealthComponent {
     [SerializeField] bool useGlobalData = true;
     public WitchData witchData;
 
-
+    public bool isHidden = false;
     //События
     public Action<int> OnHealthChange;
     public Action OnDeath;
@@ -38,7 +38,6 @@ public class Witch : MonoBehaviour, IHealthComponent {
     }
     
     public void TakeDamage(int Damage){
-        Debug.Log(Damage);
         int newHealth = witchData.CurrentHealth-Damage;
         if(witchData.CurrentHealth == 1){
             witchData.CurrentHealth = newHealth;
